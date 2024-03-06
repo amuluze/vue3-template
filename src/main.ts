@@ -1,5 +1,10 @@
 import { createApp } from 'vue';
-import './style.css';
 import App from './App.vue';
+import router from './router';
+import { setupStore } from '@/store/setup';
+import 'virtual:svg-icons-register';
+import '@/styles/index.scss';
 
-createApp(App).mount('#app');
+const app = createApp(App);
+setupStore(app);
+app.use(router).mount('#app'); //注册路由
