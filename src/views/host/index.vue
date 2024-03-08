@@ -59,8 +59,8 @@ let option:EChartsOption = {
 }
 
 const options = reactive({
-    width: '60%',
-    height: '60%',
+    width: '600px',
+    height: '600px',
     option: option,
 })
 </script>
