@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
-import echarts, { EChartsOption } from './echarts';
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import echarts, { EChartsOption } from './echarts'
 
 interface Props {
     width?: string
