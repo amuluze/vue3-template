@@ -17,31 +17,33 @@
 </template>
 
 <script setup lang="ts">
-import Sidebar from '@/layout/sidebar/index.vue';
-import Navbar from '@/layout/navbar/index.vue';
-import Content from '@/layout/content/index.vue';
+import Content from '@/layout/content/index.vue'
+import Navbar from '@/layout/navbar/index.vue'
+import Sidebar from '@/layout/sidebar/index.vue'
 </script>
 
 <style scoped lang="scss">
 @include b(layout-container) {
-    height: 100%;
     width: 100%;
+    height: 100%;
+
     :deep(.el-container) {
         height: 100% !important;
     }
 
     @include e(left) {
         width: 200px;
+
         .el-aside {
-            height: 100%;
             width: 200px;
+            height: 100%;
         }
     }
 
     @include e(right) {
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         height: 100%;
     }
 }
@@ -52,7 +54,7 @@ import Content from '@/layout/content/index.vue';
 }
 
 @include b(content) {
-    padding: 0;
     width: 100%;
+    padding: 0;
 }
 </style>

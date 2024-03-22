@@ -4,7 +4,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import Avatar from '@/layout/navbar/Avatar.vue';
+import Avatar from '@/layout/navbar/Avatar.vue'
 </script>
 
 <style scoped lang="scss">
@@ -13,6 +13,7 @@ import Avatar from '@/layout/navbar/Avatar.vue';
     align-items: center;
     justify-content: flex-end;
     height: 64px;
+
     .el-header {
         display: flex;
         align-items: center;

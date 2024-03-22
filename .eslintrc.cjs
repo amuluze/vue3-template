@@ -1,29 +1,25 @@
-{
-    "env": {
-        "browser": true,
-        "node": true,
-        "es2021": true
+module.exports = {
+    env: {
+        browser: true,
+        es2021: true,
+        node: true
     },
-    "parser": "vue-eslint-parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "parser": "@typescript-eslint/parser",
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/vue3-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended",
-        "eslint-config-prettier",
-        "./.eslintrc-auto-import.json"
+    extends: [
+        'eslint:recommended',
+        'plugin:vue/vue3-recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended',
+        'eslint-config-prettier',
+        './.eslintrc-auto-import.json'
     ],
-    "plugins": ["vue", "@typescript-eslint", "prettier"],
-    "rules": {
-        // eslint (http://eslint.cn/docs/rules)
+    parser: 'vue-eslint-parser',
+    parserOptions: {
+        ecmaVersion: 'latest',
+        parser: '@typescript-eslint/parser',
+        sourceType: 'module'
+    },
+    plugins: ['vue', '@typescript-eslint', 'prettier'],
+    rules: {
         "no-var": "error", // 要求使用 let 或 const 而不是 var
         "no-undef": "off",
         "no-multiple-empty-lines": ["error", { "max": 1 }], // 不允许多个空行
@@ -62,5 +58,13 @@
         "vue/multi-word-component-names": "off", // 要求组件名称始终为 “-” 链接的单词
         "prettier/prettier": 0, // 开启 prettier 格式化规则校验提示
         "vue/comment-directive": "off"
+        // 'no-console': [
+        //     //提交时不允许有console.log
+        //     'warn',
+        //     {
+        //         allow: ['warn', 'error']
+        //     }
+        // ],
+        // 'no-debugger': 'warn' //提交时不允许有debugger
     }
 }

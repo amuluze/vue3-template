@@ -1,4 +1,4 @@
 export interface UserState {
-    token: string;
-    refresh: string;
+    token: string
+    refresh: string
 }

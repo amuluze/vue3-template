@@ -1,70 +1,66 @@
 <template>
-    <echarts :option="options"/>
+    <echarts :option="options" />
 </template>
 <script setup lang="ts">
-import Echarts from "@/components/Echarts/index.vue";
-import { EChartsOption } from '@/components/Echarts/echarts.ts';
+import { EChartsOption } from '@/components/Echarts/echarts.ts'
+import Echarts from '@/components/Echarts/index.vue'
 
-let option:EChartsOption = {
+let option: EChartsOption = {
     title: {
-        text: "第二个 ECharts 实例",
+        text: '第二个 ECharts 实例'
     },
     tooltip: {
-        trigger: "axis",
-            axisPointer: {
-            type: "cross",
-                label: {
-                backgroundColor: "#6a7985",
-            },
-        },
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
     },
     legend: {
-        data: ["Email"],
+        data: ['Email']
     },
     toolbox: {
         feature: {
-            saveAsImage: {},
-        },
+            saveAsImage: {}
+        }
     },
     grid: {
-        left: "3%",
-            right: "4%",
-            bottom: "3%",
-            containLabel: true,
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
     },
     xAxis: [
         {
-            type: "category",
+            type: 'category',
             boundaryGap: false,
-            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-        },
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        }
     ],
-        yAxis: [
-    {
-        type: "value",
-    },
-],
+    yAxis: [
+        {
+            type: 'value'
+        }
+    ],
     series: [
-    {
-        name: "Email",
-        type: "line",
-        stack: "Total",
-        areaStyle: {},
-        emphasis: {
-            focus: "series",
-        },
-        data: [120, 132, 101, 134, 90, 230, 210],
-    }
-]
+        {
+            name: 'Email',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+                focus: 'series'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+        }
+    ]
 }
 
 const options = reactive({
     width: '600px',
     height: '600px',
-    option: option,
+    option: option
 })
 </script>
-
-<style scoped>
-
-</style>

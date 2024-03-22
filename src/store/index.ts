@@ -1,8 +1,8 @@
-import { useUserStore } from '@/store/modules/user';
+import { useUserStore } from '@/store/modules/user'
 
 // 注册子模块
 const useStore = () => ({
-    user: useUserStore(),
-});
+    user: useUserStore()
+})
 
-export default useStore;
+export default useStore

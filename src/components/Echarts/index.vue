@@ -1,16 +1,15 @@
 <template>
-    <div ref="chartRef" :style="{ height: props.option.height, width: props.option.width }" />
+    <div ref="chartRef" :style="{ height: props.height, width: props.width }" />
 </template>
 
 <script setup lang="ts">
-import {  onBeforeUnmount, onMounted, ref } from 'vue'
-import { EChartsOption } from './echarts'
-import echarts from './echarts'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import echarts, { EChartsOption } from './echarts'
 
 interface Props {
-    width?: string;
-    height?: string;
-    option: EChartsOption;
+    width?: string
+    height?: string
+    option: EChartsOption
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 console.log(props.option)
 
 const chartRef = ref<HTMLDivElement>()
-let chart: echarts.ECharts;
+let chart: echarts.ECharts
 
 const resizeHandler = () => {
     chart?.resize()
@@ -37,7 +36,7 @@ onMounted(() => {
 
 const initChart = () => {
     chart = echarts.init(chartRef.value as HTMLDivElement)
-    console.log(">>>>>", props.option.option)
+    console.log('>>>>>', props.option.option)
     chart.setOption(props.option.option as EChartsOption, true)
 }
 
@@ -45,9 +44,4 @@ onBeforeUnmount(() => {
     window.removeEventListener('resize', resizeHandler)
     chart?.dispose()
 })
-
 </script>
-
-<style scoped>
-
-</style>

@@ -9,23 +9,24 @@
     </div>
 </template>
 <script setup lang="ts">
-import Menuitem from '@/layout/sidebar/Menuitem.vue';
-import { dynamicRoutes } from '@/router/dynamic.ts';
-const currentRoute = useRoute();
+import Menuitem from '@/layout/sidebar/Menuitem.vue'
+import { dynamicRoutes } from '@/router/dynamic.ts'
+const currentRoute = useRoute()
 </script>
 
 <style scoped lang="scss">
 @include b(sidebar-container) {
-    height: 100%;
     width: 200px;
+    height: 100%;
+
     .el-menu {
         border: none;
     }
 
     @include e(logo) {
         display: flex;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         height: 64px;
     }
 }

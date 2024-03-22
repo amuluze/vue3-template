@@ -3,13 +3,12 @@
         <router-view />
     </section>
 </template>
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 @include b(content-container) {
-    height: 100%;
     width: 100%;
+    height: 100%;
     background-color: darkgray;
 }
 </style>

@@ -3,7 +3,7 @@
         <template #title>
             <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon" />
         </template>
-        <menuitem v-for="i in item.children" :key="i.name" :item="i"></menuitem>
+        <menuitem v-for="i in item.children" :key="i.name" :item="i"> </menuitem>
     </el-sub-menu>
     <el-menu-item v-else :index="item.path" @click="handleClickMenu(item)">
         <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon" />
@@ -11,16 +11,14 @@
     </el-menu-item>
 </template>
 <script setup lang="ts">
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router'
 
 defineProps<{
-    item: RouteRecordRaw;
-}>();
+    item: RouteRecordRaw
+}>()
 
-const router = useRouter();
+const router = useRouter()
 function handleClickMenu(item: RouteRecordRaw) {
-    router.push(item.path);
+    router.push(item.path)
 }
 </script>
-
-<style scoped></style>

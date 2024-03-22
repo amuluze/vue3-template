@@ -20,7 +20,5 @@ const doLogout = () => {
     // store.app.isCollapse = false;
     // 3.重定向到登录页
     // router.replace('/login');
-};
+}
 </script>
-
-<style scoped></style>

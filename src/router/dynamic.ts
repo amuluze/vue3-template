@@ -1,4 +1,4 @@
-import { RouteRecordRaw } from 'vue-router';
+import { RouteRecordRaw } from 'vue-router'
 
 export const dynamicRoutes: RouteRecordRaw[] = [
     {
@@ -19,4 +19,4 @@ export const dynamicRoutes: RouteRecordRaw[] = [
             icon: 'system'
         }
     }
-];
+]
