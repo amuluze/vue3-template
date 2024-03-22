@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import echarts, { EChartsOption } from './echarts'
+import { onBeforeUnmount, onMounted, ref } from 'vue';
+import echarts, { EChartsOption } from './echarts';
 
 interface Props {
     width?: string
@@ -16,9 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
     width: '100%',
     height: '100%',
     option: () => ({})
-})
-
-console.log(props.option)
+});
 
 const chartRef = ref<HTMLDivElement>()
 let chart: echarts.ECharts

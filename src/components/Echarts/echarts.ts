@@ -45,8 +45,8 @@ export type EChartsOption = ComposeOption<
 >
 
 /**
- 注册必须的组件，包括标题、提示框、网格、数据集、数据转换器，
- 以及柱状图、折线图、标签布局、通用过渡动画和 Canvas 渲染器。
+    注册必须的组件，包括标题、提示框、网格、数据集、数据转换器，
+    以及柱状图、折线图、标签布局、通用过渡动画和 Canvas 渲染器。
  */
 echarts.use([
     TitleComponent,
