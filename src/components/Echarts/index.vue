@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
     width: '100%',
     height: '100%',
     option: () => ({})
-});
+})
 
 const chartRef = ref<HTMLDivElement>()
 let chart: echarts.ECharts
