@@ -6,8 +6,7 @@
 export {}
 
 declare module 'vue' {
-
-    export interface GlobalComponents {
+  export interface GlobalComponents {
     404: typeof import('./../src/components/Error/404.vue')['default']
     Echarts: typeof import('./../src/components/Echarts/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
