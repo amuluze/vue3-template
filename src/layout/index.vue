@@ -9,7 +9,7 @@
                     <navbar />
                 </el-header>
                 <el-main class="am-content">
-                    <content />
+                    <content></content>
                 </el-main>
             </el-container>
         </el-container>

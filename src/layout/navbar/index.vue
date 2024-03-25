@@ -1,6 +1,6 @@
 <template>
     <div class="am-navbar-container">
-        <avatar></avatar>
+        <avatar />
     </div>
 </template>
 <script setup lang="ts">

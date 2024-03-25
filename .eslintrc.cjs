@@ -1,70 +1,88 @@
 module.exports = {
+    root: true,
     env: {
         browser: true,
         es2021: true,
         node: true
     },
-    extends: [
-        'eslint:recommended',
-        'plugin:vue/vue3-recommended',
-        'plugin:@typescript-eslint/recommended',
-        'plugin:prettier/recommended',
-        'eslint-config-prettier',
-        './.eslintrc-auto-import.json'
-    ],
     parser: 'vue-eslint-parser',
+    extends: [
+        // https://eslint.vuejs.org/user-guide/#usage
+        'plugin:vue/vue3-recommended',
+        './.eslintrc-auto-import.json',
+        'prettier',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:prettier/recommended'
+    ],
     parserOptions: {
         ecmaVersion: 'latest',
+        sourceType: 'module',
         parser: '@typescript-eslint/parser',
-        sourceType: 'module'
+        project: './tsconfig.*?.json',
+        createDefaultProgram: false,
+        extraFileExtensions: ['.vue']
     },
-    plugins: ['vue', '@typescript-eslint', 'prettier'],
+    plugins: ['vue', '@typescript-eslint'],
     rules: {
-        "no-var": "error", // 要求使用 let 或 const 而不是 var
-        "no-undef": "off",
-        "no-multiple-empty-lines": ["error", { "max": 1 }], // 不允许多个空行
-        "prefer-const": "off", // 使用 let 关键字声明但在初始分配后从未重新分配的变量，要求使用 const
-        "no-use-before-define": "off", // 禁止在 函数/类/变量 定义之前使用它们
-
-        // typeScript (https://typescript-eslint.io/rules)
-        "@typescript-eslint/no-unused-vars": [
-            "off",
+        // https://eslint.vuejs.org/rules/#priority-a-essential-error-prevention
+        'vue/multi-word-component-names': 'off',
+        'vue/no-v-model-argument': 'off',
+        'vue/script-setup-uses-vars': 'error',
+        'vue/no-reserved-component-names': 'off',
+        'vue/custom-event-name-casing': 'off',
+        'vue/attributes-order': 'off',
+        'vue/one-component-per-file': 'off',
+        'vue/html-closing-bracket-newline': 'off',
+        'vue/max-attributes-per-line': 'off',
+        'vue/multiline-html-element-content-newline': 'off',
+        'vue/singleline-html-element-content-newline': 'off',
+        'vue/attribute-hyphenation': 'off',
+        'vue/require-default-prop': 'off',
+        'vue/require-explicit-emits': 'off',
+        'vue/html-self-closing': [
+            'error',
             {
-                "argsIgnorePattern": "^_",
-                "varsIgnorePattern": "^_"
+                html: {
+                    void: 'always',
+                    normal: 'never',
+                    component: 'always'
+                },
+                svg: 'always',
+                math: 'always'
             }
-        ], // 禁止定义未使用的变量
-        "@typescript-eslint/prefer-ts-expect-error": "error", // 禁止使用 @ts-ignore
-        "@typescript-eslint/ban-ts-comment": "error", // 禁止 @ts-<directive> 使用注释或要求在指令后进行描述
-        "@typescript-eslint/no-inferrable-types": "off", // 可以轻松推断的显式类型可能会增加不必要的冗长
-        "@typescript-eslint/no-namespace": "off", // 禁止使用自定义 TypeScript 模块和命名空间
-        "@typescript-eslint/no-explicit-any": "off", // 禁止使用 any 类型
-        "@typescript-eslint/ban-types": "off", // 禁止使用特定类型
-        "@typescript-eslint/no-var-requires": "off", // 允许使用 require() 函数导入模块
-        "@typescript-eslint/no-empty-function": "off", // 禁止空函数
-        "@typescript-eslint/no-non-null-assertion": "off", // 不允许使用后缀运算符的非空断言(!)
+        ],
 
-        // vue (https://eslint.vuejs.org/rules)
-        "vue/script-setup-uses-vars": "error", // 防止<script setup>使用的变量<template>被标记为未使用，此规则仅在启用该no-unused-vars规则时有效
-        "vue/v-slot-style": "error", // 强制执行 v-slot 指令样式
-        "vue/no-mutating-props": "error", // 不允许改变组件 prop
-        "vue/custom-event-name-casing": "error", // 为自定义事件名称强制使用特定大小写
-        "vue/html-closing-bracket-newline": "error", // 在标签的右括号之前要求或禁止换行
-        "vue/attribute-hyphenation": "error", // 对模板中的自定义组件强制执行属性命名样式：my-prop="prop"
-        "vue/v-on-event-hyphenation": "off", // 关闭 eslint 中对 vue.js 时间名只用连接符的特殊要求
-        "vue/attributes-order": "off", // vue api使用顺序，强制执行属性顺序
-        "vue/no-v-html": "off", // 禁止使用 v-html
-        "vue/require-default-prop": "off", // 此规则要求为每个 prop 为必填时，必须提供默认值
-        "vue/multi-word-component-names": "off", // 要求组件名称始终为 “-” 链接的单词
-        "prettier/prettier": 1, // 开启 prettier 格式化规则校验提示
-        "vue/comment-directive": "off"
-        // 'no-console': [
-        //     //提交时不允许有console.log
-        //     'warn',
-        //     {
-        //         allow: ['warn', 'error']
-        //     }
-        // ],
-        // 'no-debugger': 'warn' //提交时不允许有debugger
+        '@typescript-eslint/no-empty-function': 'off', // 关闭空方法检查
+        '@typescript-eslint/no-explicit-any': 'off', // 关闭any类型的警告
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/ban-ts-ignore': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-var-requires': 'off',
+        '@typescript-eslint/no-empty-function': 'off',
+        '@typescript-eslint/no-use-before-define': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+
+        'prettier/prettier': [
+            'error',
+            {
+                useTabs: false // 不使用制表符
+            }
+        ]
+    },
+    // eslint不能对html文件生效
+    overrides: [
+        {
+            files: ['*.html'],
+            processor: 'vue/.vue'
+        }
+    ],
+    // https://eslint.org/docs/latest/use/configure/language-options#specifying-globals
+    globals: {
+        OptionType: 'readonly'
     }
 }
