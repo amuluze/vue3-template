@@ -11,7 +11,7 @@
     </el-menu-item>
 </template>
 <script setup lang="ts">
-import { RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router';
 
 defineProps<{
     item: RouteRecordRaw
