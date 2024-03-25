@@ -3,8 +3,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue'
-import echarts, { EChartsOption } from './echarts'
+import { useEcharts } from '@/hooks/useEcharts'
+import { EChartsOption } from './echarts'
 
 interface Props {
     width?: string
@@ -17,29 +17,22 @@ const props = withDefaults(defineProps<Props>(), {
     height: '100%',
     option: () => ({})
 })
+console.log('>>>>>>>>>>>', props.option)
+const chartRef = shallowRef<HTMLDivElement>()
+const currentOptions = shallowRef<EChartsOption>(props.option)
 
-const chartRef = ref<HTMLDivElement>()
-let chart: echarts.ECharts
+const { setOptions, initCharts } = useEcharts(chartRef as Ref<HTMLDivElement>, currentOptions.value)
 
-const resizeHandler = () => {
-    chart?.resize()
-}
+watch(
+    () => props.option,
+    (newVal) => {
+        let targetOptions: EChartsOption = {}
+        targetOptions = { ...newVal }
+        setOptions(targetOptions)
+    }
+)
 
 onMounted(() => {
-    setTimeout(() => {
-        initChart()
-    }, 20)
-    window.addEventListener('resize', resizeHandler)
-})
-
-const initChart = () => {
-    chart = echarts.init(chartRef.value as HTMLDivElement)
-    console.log('>>>>>', props.option.option)
-    chart.setOption(props.option.option as EChartsOption, true)
-}
-
-onBeforeUnmount(() => {
-    window.removeEventListener('resize', resizeHandler)
-    chart?.dispose()
+    initCharts()
 })
 </script>

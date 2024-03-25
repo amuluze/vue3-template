@@ -7,7 +7,6 @@
 			"ESNext",
 			"DOM",
 		],
-		"skipLibCheck": true,
 		/* Bundler mode */
 		"moduleResolution": "node",
 		"allowImportingTsExtensions": true,
@@ -17,6 +16,8 @@
 		"jsx": "preserve",
 		/* Linting */
 		"strict": true,
+		"noLib": false,
+		"sourceMap": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
@@ -31,10 +32,14 @@
 				"src/types/*"
 			]
 		}, //路径映射,配合别名使用
-		// Volar支持，指定全局组件类型
 		"types": [
-			"element-plus/global"
-		]
+			"webpack-env",
+			"vite/client",
+			"vue"
+		], //声明文件包
+		"skipLibCheck": true /* Skip type checking all .d.ts files. */,
+		"allowSyntheticDefaultImports": true /* 允许默认导入 */,
+		"forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
 	},
 	"include": [
 		"src/**/*.d.ts",
