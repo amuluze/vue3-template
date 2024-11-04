@@ -7,4 +7,4 @@ import '@/styles/index.scss'
 
 const app = createApp(App)
 setupStore(app)
-app.use(router).mount('#app') //注册路由
+app.use(router).mount('#app') // 注册路由

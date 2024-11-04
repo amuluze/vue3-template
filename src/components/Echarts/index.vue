@@ -1,10 +1,6 @@
-<template>
-    <div ref="chartRef" :style="{ height: props.height, width: props.width }"></div>
-</template>
-
 <script setup lang="ts">
 import { useEcharts } from '@/hooks/useEcharts'
-import { EChartsOption } from './echarts'
+import type { EChartsOption } from './echarts'
 
 interface Props {
     width?: string
@@ -15,9 +11,9 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     width: '100%',
     height: '100%',
-    option: () => ({})
+    option: () => ({}),
 })
-console.log('>>>>>>>>>>>', props.option)
+
 const chartRef = shallowRef<HTMLDivElement>()
 const currentOptions = shallowRef<EChartsOption>(props.option)
 
@@ -29,10 +25,14 @@ watch(
         let targetOptions: EChartsOption = {}
         targetOptions = { ...newVal }
         setOptions(targetOptions)
-    }
+    },
 )
 
 onMounted(() => {
     initCharts()
 })
 </script>
+
+<template>
+    <div ref="chartRef" :style="{ height: props.height, width: props.width }" />
+</template>

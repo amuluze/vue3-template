@@ -1,11 +1,12 @@
-<template>
-    <div class="am-navbar-container">
-        <avatar />
-    </div>
-</template>
 <script setup lang="ts">
 import Avatar from '@/layout/navbar/Avatar.vue'
 </script>
+
+<template>
+    <div class="am-navbar-container">
+        <Avatar />
+    </div>
+</template>
 
 <style scoped lang="scss">
 @include b(navbar-container) {

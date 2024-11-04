@@ -3,8 +3,9 @@
  * @Date       : 2024/1/8 14:18
  * @Description:
  */
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
-import { ResultData } from '@/interface/result.ts'
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, InternalAxiosRequestConfig } from 'axios'
+import axios from 'axios'
+import type { ResultData } from '@/interface/result.ts'
 
 const config = {
     // 默认地址请求地址，可在 .env.*** 文件中修改
@@ -15,7 +16,7 @@ const config = {
     // 设置默认请求头
     headers: { 'Content-Type': 'application/json;charset=utf-8' },
     // 跨域时候允许携带凭证
-    withCredentials: true
+    withCredentials: true,
 }
 
 class Request {
@@ -40,7 +41,7 @@ class Request {
             },
             (error: AxiosError) => {
                 return Promise.reject(error)
-            }
+            },
         )
     }
 

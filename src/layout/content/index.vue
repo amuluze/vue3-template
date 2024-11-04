@@ -1,9 +1,10 @@
+<script setup lang="ts"></script>
+
 <template>
     <section class="am-content-container">
         <router-view />
     </section>
 </template>
-<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 @include b(content-container) {

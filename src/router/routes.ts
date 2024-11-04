@@ -1,23 +1,23 @@
-import { RouteRecordRaw } from 'vue-router'
+import type { RouteRecordRaw } from 'vue-router'
 import { dynamicRoutes } from '@/router/dynamic.ts'
 
 const routes: RouteRecordRaw[] = [
     {
         path: '/login',
-        component: () => import('@/views/login/index.vue') //路由懒加载
+        component: () => import('@/views/login/index.vue'), // 路由懒加载
     },
     {
         // The main page
         path: '/',
         name: 'layout',
         component: () => import('@/layout/index.vue'),
-        children: [...dynamicRoutes]
+        children: [...dynamicRoutes],
     },
     // Resolve refresh page, route warnings
     {
         path: '/:pathMatch(.*)*',
-        component: () => import('@/components/Error/404.vue')
-    }
+        component: () => import('@/components/Error/404.vue'),
+    },
 ]
 
 export default routes

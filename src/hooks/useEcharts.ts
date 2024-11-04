@@ -4,21 +4,25 @@
  * @Description:
  */
 
-import echarts, { EChartsOption } from '@/components/Echarts/echarts'
+import type { EChartsOption } from '@/components/Echarts/echarts'
+import echarts from '@/components/Echarts/echarts'
 
-const useEcharts = (elRef: Ref<HTMLDivElement>, options: EChartsOption) => {
+function useEcharts(elRef: Ref<HTMLDivElement>, options: EChartsOption): {
+    initCharts: () => void
+    setOptions: (options: EChartsOption) => void
+    echartsResize: () => void
+} {
     const charts = shallowRef<echarts.ECharts>()
 
-    const initCharts = () => {
+    const setOptions = (options: EChartsOption): void => {
+        charts.value && charts.value.setOption(options)
+    }
+    const initCharts = (): void => {
         charts.value = echarts.init(elRef.value)
         setOptions(options)
     }
 
-    const setOptions = (options: EChartsOption) => {
-        charts.value && charts.value.setOption(options)
-    }
-
-    const echartsResize = () => {
+    const echartsResize = (): void => {
         charts.value && charts.value.resize()
     }
 

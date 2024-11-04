@@ -1,17 +1,5 @@
-<template>
-    <el-dropdown>
-        <el-avatar>
-            <i-ep-user />
-        </el-avatar>
-        <template #dropdown>
-            <el-dropdown-menu>
-                <el-dropdown-item @click.prevent="doLogout">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-        </template>
-    </el-dropdown>
-</template>
 <script setup lang="ts">
-const doLogout = () => {
+function doLogout() {
     // 1. 退出登录
     // logout();
     // 2.清除缓存
@@ -22,3 +10,18 @@ const doLogout = () => {
     // router.replace('/login');
 }
 </script>
+
+<template>
+    <el-dropdown>
+        <el-avatar>
+            <i-ep-user />
+        </el-avatar>
+        <template #dropdown>
+            <el-dropdown-menu>
+                <el-dropdown-item @click.prevent="doLogout">
+                    退出登录
+                </el-dropdown-item>
+            </el-dropdown-menu>
+        </template>
+    </el-dropdown>
+</template>
