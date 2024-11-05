@@ -1,10 +1,10 @@
 /**
  * @Author     : Amu
  * @Date       : 2024/11/5 16:47
- * @Description:
+ * @Description: ElMessage ElMessageBox 找不到的问题 https://blog.csdn.net/weixin_59916662/article/details/127334196
  */
 
-export function message(msg: string) {
+export function message(msg: string): void {
     ElMessage({
         showClose: true,
         dangerouslyUseHTMLString: true,
@@ -16,7 +16,7 @@ export function message(msg: string) {
  * 成功提示
  * @param msg 提示信息
  */
-export function success(msg: string) {
+export function success(msg: string): void {
     ElMessage({
         showClose: true,
         dangerouslyUseHTMLString: true,
@@ -29,7 +29,7 @@ export function success(msg: string) {
  * 消息提示
  * @param msg 提示信息
  */
-export function info(msg: string) {
+export function info(msg: string): void {
     ElMessage({
         showClose: true,
         dangerouslyUseHTMLString: true,
@@ -42,7 +42,7 @@ export function info(msg: string) {
  * 警告提示
  * @param msg 提示信息
  */
-export function warning(msg: string) {
+export function warning(msg: string): void {
     ElMessage({
         showClose: true,
         dangerouslyUseHTMLString: true,
@@ -55,7 +55,7 @@ export function warning(msg: string) {
  * 错误提示
  * @param msg 提示信息
  */
-export function error(msg: string) {
+export function error(msg: string): void {
     ElMessage({
         showClose: true,
         dangerouslyUseHTMLString: true,
@@ -73,12 +73,14 @@ export function error(msg: string) {
  * @param cancel 取消函数
  * @param cText cancel按钮文字
  */
-export function confirm(title: string, msg: string, ok: any, okText: string, cancel: any, cText: string) {
-    ElMessageBox.confirm(msg, title || '提示', {
+export async function confirm(title: string, msg: string, ok: any, okText: string, cancel: any, cText: string) {
+    await ElMessageBox.confirm(msg, title || '提示', {
         confirmButtonText: okText || '确定',
         cancelButtonText: cText || '取消',
         draggable: true,
     })
-        .then(ok || (() => {}))
-        .catch(cancel || (() => {}))
+        .then(ok || (() => {
+        }))
+        .catch(cancel || (() => {
+        }))
 }

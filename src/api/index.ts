@@ -27,18 +27,18 @@ class Request {
 
     requestQueue: Function[]
     /** 存储因 token 过期而导致发送失败的请求 */
-    private saveErrorRequest = (expiredRequest: () => any) => {
+    private saveErrorRequest = (expiredRequest: () => any): void => {
         this.requestQueue.push(expiredRequest)
     }
 
     /** 清理当前存储的过期请求 */
-    private clearExpiredRequest = () => {
+    private clearExpiredRequest = (): void => {
         this.requestQueue = []
     }
 
     /** 执行当前存储的由于过期导致失败的请求 */
-    private againRequest = () => {
-        this.requestQueue.forEach((request) => {
+    private againRequest = (): void => {
+        this.requestQueue.forEach((request): void => {
             request()
         })
         this.clearExpiredRequest()
@@ -47,12 +47,12 @@ class Request {
     /** 避免频繁发送更新 */
     firstRequest: boolean
     /** 利用 refreshToken 更新 accessToken */
-    private updateAccessTokenByRefreshToken = () => {
+    private updateAccessTokenByRefreshToken = (): void => {
         this.firstRequest = false
         const store = useStore()
         this.service.post('/api/v1/auth/token_update', {}, {
             headers: { Authorization: `Bearer ${store.user.refresh}` },
-        }).then((res) => {
+        }).then((res): void => {
             // 更新本地 token
             store.user.setToken(res.data.access_token, res.data.refresh_token)
             // 更新 token 后，重启发起之前失败的请求
@@ -63,7 +63,7 @@ class Request {
         })
     }
 
-    private refreshToken = (expiredRequest: () => any) => {
+    private refreshToken = (expiredRequest: () => any): void => {
         this.saveErrorRequest(expiredRequest)
         // 保证再发起更新时，已经没有过期请求要进行存储了
 
@@ -96,7 +96,7 @@ class Request {
                 }
                 return config
             },
-            (error: AxiosError) => {
+            async (error: AxiosError) => {
                 return Promise.reject(error)
             },
         )
@@ -111,7 +111,7 @@ class Request {
                     if (downLoadMark[0] === 'attachment') {
                         // 执行下载
                         let fileName = downLoadMark[1].split('filename=')[1]
-                        if (fileName) {
+                        if (fileName !== '') {
                             // fileName = decodeURIComponent(filename);//对filename进行转码
                             fileName = decodeURI(fileName)
                             const content = response.data
@@ -168,11 +168,11 @@ class Request {
     /**
      * 常用请求方法封装
      */
-    get<T>(url: string, params?: object): Promise<ResultData<T>> {
+    async get<T>(url: string, params?: object): Promise<ResultData<T>> {
         return this.service.get(url, { params, ...config })
     }
 
-    post<T>(url: string, params?: object): Promise<ResultData<T>> {
+    async post<T>(url: string, params?: object): Promise<ResultData<T>> {
         return this.service.post(url, params, config)
     }
 }

@@ -17,7 +17,7 @@ export default defineConfig({
             // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
             imports: ['vue', 'vue-router', 'pinia'],
             eslintrc: {
-                enabled: false, // 是否自动生成 eslint 规则，建议生成之后设置 false，手动维护
+                enabled: true, // 是否自动生成 eslint 规则，建议生成之后设置 false，手动维护
                 filepath: './.eslintrc-auto-import.json', // 指定自动导入函数 eslint 规则的文件路径
                 globalsPropValue: true,
             },
@@ -73,10 +73,12 @@ export default defineConfig({
             },
         },
     },
+    // https://blog.csdn.net/kaixing1967/article/details/143210418
     css: {
         preprocessorOptions: {
             scss: {
-                additionalData: '@import "@/styles/bem.scss";',
+                api: 'modern-compiler',
+                additionalData: '@use "@/styles/bem.scss" as *;',
             },
         },
     },

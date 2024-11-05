@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import type { RouteRecordRaw } from 'vue-router'
+    import type { RouteRecordRaw } from 'vue-router'
 
-defineProps<{
-    item: RouteRecordRaw
-}>()
+    defineProps<{
+        item: RouteRecordRaw
+    }>()
 
-const router = useRouter()
-function handleClickMenu(item: RouteRecordRaw) {
-    router.push(item.path)
-}
+    const router = useRouter()
+    function handleClickMenu(item: RouteRecordRaw) {
+        router.push(item.path)
+    }
 </script>
 
 <template>
@@ -16,7 +16,7 @@ function handleClickMenu(item: RouteRecordRaw) {
         <template #title>
             <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />
         </template>
-        <menuitem v-for="i in item.children" :key="i.name" :item="i"></menuitem>
+        <menuitem v-for="i in item.children" :key="i.name" :item="i" />
     </el-sub-menu>
     <el-menu-item v-else :index="item.path" @click="handleClickMenu(item)">
         <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />

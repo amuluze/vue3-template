@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config'
 
+// https://ithelp.ithome.com.tw/articles/10349428
 export default antfu(
     {
         formatters: {
@@ -20,7 +21,9 @@ export default antfu(
              */
             markdown: 'prettier',
         },
-        typescript: true,
+        typescript: {
+            tsconfigPath: 'tsconfig.json',
+        },
         vue: true,
         ignores: ['**/fixtures'],
     },
@@ -29,9 +32,46 @@ export default antfu(
             'style/no-tabs': 'off',
             'perfectionist/sort-imports': 'off',
             'ts/no-unsafe-function-type': 'off',
+            'ts/no-unsafe-call': 'off',
+            'ts/no-unsafe-argument': 'off',
+            'ts/no-unsafe-member-access': 'off',
+            'ts/no-unsafe-assignment': 'off',
+            'ts/no-unsafe-return': 'off',
+            'ts/strict-boolean-expressions': 'off',
+            'ts/explicit-function-return-type': 'off',
             'style/indent': ['error', 4],
             'jsonc/indent': ['error', 4],
             'vue/html-indent': ['error', 4],
+        },
+    },
+    {
+        files: ['**/*.vue'],
+        rules: {
+            // https://eslint.vuejs.org/rules/script-indent
+            'vue/script-indent': ['error', 4, {
+                baseIndent: 1,
+                switchCase: 1,
+                ignores: [],
+            }],
+            'style/indent': 'off',
+            'vue/operator-linebreak': ['error', 'before'],
+            'vue/html-closing-bracket-newline': ['error', {
+                singleline: 'never',
+                multiline: 'always',
+                selfClosingTag: {
+                    singleline: 'never',
+                    multiline: 'always',
+                },
+            }],
+            'vue/html-self-closing': ['error', {
+                html: {
+                    void: 'always',
+                    normal: 'always',
+                    component: 'always',
+                },
+                svg: 'always',
+                math: 'always',
+            }],
         },
     },
 )

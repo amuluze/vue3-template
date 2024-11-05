@@ -4,7 +4,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     {
         path: '/container',
         name: 'container',
-        component: () => import('@/views/container/index.vue'), // 路由懒加载
+        component: async () => import('@/views/container/index.vue'), // 路由懒加载
         meta: {
             title: '容器管理',
             icon: 'system',
@@ -13,7 +13,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
     {
         path: '/host',
         name: 'host',
-        component: () => import('@/views/host/index.vue'), // 路由懒加载
+        component: async () => import('@/views/host/index.vue'), // 路由懒加载
         meta: {
             title: '宿主机',
             icon: 'system',

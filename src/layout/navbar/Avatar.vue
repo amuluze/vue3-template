@@ -1,5 +1,5 @@
 <script setup lang="ts">
-function doLogout() {
+    function doLogout() {
     // 1. 退出登录
     // logout();
     // 2.清除缓存
@@ -8,7 +8,7 @@ function doLogout() {
     // store.app.isCollapse = false;
     // 3.重定向到登录页
     // router.replace('/login');
-}
+    }
 </script>
 
 <template>

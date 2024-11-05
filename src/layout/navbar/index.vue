@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Avatar from '@/layout/navbar/Avatar.vue'
+    import Avatar from '@/layout/navbar/Avatar.vue'
 </script>
 
 <template>
@@ -10,15 +10,15 @@ import Avatar from '@/layout/navbar/Avatar.vue'
 
 <style scoped lang="scss">
 @include b(navbar-container) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 64px;
+
+  .el-header {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    height: 64px;
-
-    .el-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    justify-content: center;
+  }
 }
 </style>

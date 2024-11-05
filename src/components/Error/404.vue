@@ -1,14 +1,14 @@
 <script setup lang="ts">
-const router = useRouter()
+    const router = useRouter()
 
-function goHome() {
-    router.replace('/')
-}
+    function goHome() {
+        router.replace('/')
+    }
 </script>
 
 <template>
     <div class="am-error-container">
-        <img src="@/assets/images/404.png" alt="404">
+        <img src="@/assets/images/404.png" alt="404" />
         <div class="am-error-container__msg">
             <p>404!</p>
             <span>抱歉，您访问的页面不存在~🤷‍♂️🤷‍♀️</span>
