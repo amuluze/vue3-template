@@ -36,12 +36,12 @@ import type { ComposeOption } from 'echarts/core'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 export type EChartsOption = ComposeOption<
-    | BarSeriesOption
-    | LineSeriesOption
-    | TitleComponentOption
-    | TooltipComponentOption
-    | GridComponentOption
-    | DatasetComponentOption
+  | BarSeriesOption
+  | LineSeriesOption
+  | TitleComponentOption
+  | TooltipComponentOption
+  | GridComponentOption
+  | DatasetComponentOption
 >
 
 /**
