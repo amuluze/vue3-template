@@ -15,7 +15,7 @@
                     <Navbar />
                 </el-header>
                 <el-main class="am-content">
-                    <content />
+                    <Content />
                 </el-main>
             </el-container>
         </el-container>
