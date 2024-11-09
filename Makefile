@@ -9,3 +9,7 @@ build:
 .PHONY: dev
 dev:
 	pnpm run dev
+
+.PHONY: lint
+lint:
+	pnpm lint:fix

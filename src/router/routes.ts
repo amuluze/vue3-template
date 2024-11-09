@@ -4,16 +4,19 @@ import { dynamicRoutes } from '@/router/dynamic.ts'
 const routes: RouteRecordRaw[] = [
     {
         path: '/login',
-        component: async () => import('@/views/login/index.vue'), // 路由懒加载
+        name: 'login',
+        component: async () => import('@/views/login/index.vue'),
+        meta: {
+            title: '登录',
+        },
     },
     {
-        // The main page
         path: '/',
         name: 'layout',
         component: async () => import('@/layout/index.vue'),
+        redirect: '/overview',
         children: [...dynamicRoutes],
     },
-    // Resolve refresh page, route warnings
     {
         path: '/:pathMatch(.*)*',
         component: async () => import('@/components/Error/404.vue'),

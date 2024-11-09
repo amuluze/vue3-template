@@ -48,11 +48,7 @@ export default antfu(
         files: ['**/*.vue'],
         rules: {
             // https://eslint.vuejs.org/rules/script-indent
-            'vue/script-indent': ['error', 4, {
-                baseIndent: 1,
-                switchCase: 1,
-                ignores: [],
-            }],
+            'vue/script-indent': ['error'],
             'style/indent': 'off',
             'vue/operator-linebreak': ['error', 'before'],
             'vue/html-closing-bracket-newline': ['error', {
