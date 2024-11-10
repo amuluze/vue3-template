@@ -2,11 +2,14 @@
 import * as echarts from 'echarts/core'
 
 // 引入柱状图和折线图组件。
-import { BarChart, LineChart } from 'echarts/charts'
+import {
+    BarChart,
+    LineChart,
+} from 'echarts/charts'
 
 // 引入标题、提示框、网格、数据集和数据转换器组件。
 import {
-    DatasetComponent, // 数据集组件
+    DatasetComponent,
     GridComponent,
     LegendComponent,
     TitleComponent,

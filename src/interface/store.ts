@@ -6,3 +6,7 @@ export interface UserState {
 export interface AppState {
     isCollapse: boolean
 }
+
+export interface PermissionsState {
+    permissions: string[]
+}
