@@ -22,7 +22,6 @@
         },
         "resolveJsonModule": true, // 路径映射,配合别名使用
         "types": [
-            "webpack-env",
             "vite/client",
             "vue"
         ],
