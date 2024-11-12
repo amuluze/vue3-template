@@ -3,6 +3,8 @@
  * @Date       : 2024/11/12 17:49
  * @Description:
  */
+import type { AppContext } from 'vue'
+import { createVNode, render } from 'vue'
 
 export interface Options {
     visible?: boolean
@@ -35,6 +37,7 @@ function getAppendToElement(props: Options): HTMLElement {
 function initInstance<T extends Component>(Component: T, props: Options, container: HTMLElement, appContext: AppContext | null = null) {
     const vNode = createVNode(Component, props)
     vNode.appContext = appContext
+
     render(vNode, container)
 
     getAppendToElement(props).appendChild(container)
@@ -73,6 +76,7 @@ export function useCommandComponent<T extends Component>(Component: T): CommandC
         const vm = vNode.component?.proxy as ComponentPublicInstance<Options>
         for (const prop in options) {
             if (Reflect.has(options, prop) && !Reflect.has(vm.$props, prop)) {
+                // @ts-expect-error
                 vm[prop as keyof ComponentPublicInstance] = options[prop]
             }
         }

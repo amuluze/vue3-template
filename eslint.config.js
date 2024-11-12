@@ -29,6 +29,7 @@ export default antfu(
     },
     {
         rules: {
+            'no-console': 'off',
             'style/no-tabs': 'off',
             'perfectionist/sort-imports': 'off',
             'ts/no-unsafe-function-type': 'off',
@@ -39,6 +40,7 @@ export default antfu(
             'ts/no-unsafe-return': 'off',
             'ts/strict-boolean-expressions': 'off',
             'ts/explicit-function-return-type': 'off',
+            'ts/ban-ts-comment': 'off',
             'style/indent': ['error', 4],
             'jsonc/indent': ['error', 4],
             'vue/html-indent': ['error', 4],
