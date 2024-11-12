@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import useCommandComponent from '@/hooks/useCommandComponent.ts'
 import Dialog from '@/views/overview/components/Dialog.vue'
-import Comp from '@/views/overview/components/Comp.vue'
+
+const props = defineProps<{ text: string }>()
 
 const dialog = useCommandComponent(Dialog)
 </script>
 
 <template>
     <div>
-        <el-button @click="dialog({ title: '弹窗标题' })">
-            打开弹窗
+        <span>{{ props.text }}</span>
+        <el-button type="primary" @click="dialog({ title: props.text })">
+            提交（需确认）
         </el-button>
-        <Comp text="子组件 1" />
-        <Comp text="子组件 2" />
     </div>
 </template>

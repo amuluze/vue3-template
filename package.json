@@ -27,6 +27,7 @@
         "@iconify-json/ep": "^1.1.15",
         "@types/node": "^22.8.7",
         "@vitejs/plugin-vue": "^5.1.4",
+        "axios-mock-adapter": "^2.1.0",
         "eslint": "^9.14.0",
         "eslint-plugin-format": "^0.1.2",
         "lint-staged": "^15.2.10",

@@ -5,11 +5,7 @@
  */
 
 export function message(msg: string): void {
-    ElMessage({
-        showClose: true,
-        dangerouslyUseHTMLString: true,
-        message: msg,
-    })
+    ElMessage({ showClose: true, dangerouslyUseHTMLString: true, message: msg })
 }
 
 /**
@@ -17,12 +13,7 @@ export function message(msg: string): void {
  * @param msg 提示信息
  */
 export function success(msg: string): void {
-    ElMessage({
-        showClose: true,
-        dangerouslyUseHTMLString: true,
-        message: msg,
-        type: 'success',
-    })
+    ElMessage({ showClose: true, dangerouslyUseHTMLString: true, message: msg, type: 'success' })
 }
 
 /**
@@ -30,12 +21,7 @@ export function success(msg: string): void {
  * @param msg 提示信息
  */
 export function info(msg: string): void {
-    ElMessage({
-        showClose: true,
-        dangerouslyUseHTMLString: true,
-        message: msg,
-        type: 'info',
-    })
+    ElMessage({ showClose: true, dangerouslyUseHTMLString: true, message: msg, type: 'info' })
 }
 
 /**
@@ -43,12 +29,7 @@ export function info(msg: string): void {
  * @param msg 提示信息
  */
 export function warning(msg: string): void {
-    ElMessage({
-        showClose: true,
-        dangerouslyUseHTMLString: true,
-        message: msg,
-        type: 'warning',
-    })
+    ElMessage({ showClose: true, dangerouslyUseHTMLString: true, message: msg, type: 'warning' })
 }
 
 /**
@@ -56,12 +37,7 @@ export function warning(msg: string): void {
  * @param msg 提示信息
  */
 export function error(msg: string): void {
-    ElMessage({
-        showClose: true,
-        dangerouslyUseHTMLString: true,
-        message: msg,
-        type: 'error',
-    })
+    ElMessage({ showClose: true, dangerouslyUseHTMLString: true, message: msg, type: 'error' })
 }
 
 /**
@@ -74,11 +50,7 @@ export function error(msg: string): void {
  * @param cText cancel按钮文字
  */
 export async function confirm(title: string, msg: string, ok: any, okText: string, cancel: any, cText: string) {
-    await ElMessageBox.confirm(msg, title || '提示', {
-        confirmButtonText: okText || '确定',
-        cancelButtonText: cText || '取消',
-        draggable: true,
-    })
+    await ElMessageBox.confirm(msg, title || '提示', { confirmButtonText: okText || '确定', cancelButtonText: cText || '取消', draggable: true })
         .then(ok || (() => {
         }))
         .catch(cancel || (() => {
