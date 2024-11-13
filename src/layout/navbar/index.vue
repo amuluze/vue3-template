@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Avatar from '@/layout/navbar/Avatar.vue'
 import Breadcrumb from './Breadcrumb.vue'
+import ThemeChange from '@/layout/navbar/ThemeChange.vue'
 
 const router = useRouter()
 function toHomepage() {
@@ -10,8 +11,13 @@ function toHomepage() {
 
 <template>
     <div class="am-navbar">
-        <Breadcrumb style="cursor: pointer" @click="toHomepage" />
-        <Avatar />
+        <div>
+            <Breadcrumb style="cursor: pointer" @click="toHomepage" />
+        </div>
+        <div>
+            <ThemeChange />
+            <Avatar />
+        </div>
     </div>
 </template>
 

@@ -32,6 +32,7 @@ export default antfu(
             'no-console': 'off',
             'style/no-tabs': 'off',
             'perfectionist/sort-imports': 'off',
+            'ts/restrict-template-expressions': 'off',
             'ts/no-unsafe-function-type': 'off',
             'ts/no-unsafe-call': 'off',
             'ts/no-unsafe-argument': 'off',

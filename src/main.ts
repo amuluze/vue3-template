@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import { setupStore } from '@/store/setup'
 import 'virtual:svg-icons-register'
+// element默认主题
+import 'element-plus/dist/index.css'
+// element dark css
+import 'element-plus/theme-chalk/dark/css-vars.css'
 import '@/styles/index.scss'
 import registerDirective from '@/directive'
 

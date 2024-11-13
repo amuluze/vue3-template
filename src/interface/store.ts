@@ -10,3 +10,8 @@ export interface AppState {
 export interface PermissionsState {
     permissions: string[]
 }
+
+export interface themeState {
+    primary: string
+    isDark: boolean
+}
