@@ -16,7 +16,7 @@ const changeCollapse = () => store.app.setCollapse(!store.app.isCollapse)
 
 <style scoped lang="scss">
 .collapse-ico {
-  font-size: 12px;
+  font-size: 8px;
   color: #424345;
   cursor: pointer;
 }

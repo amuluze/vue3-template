@@ -31,6 +31,7 @@ import Sidebar from '@/layout/sidebar/index.vue'
   position: relative;
   height: 100%;
   transition: 0.5s;
+  border-right: #f4f4f4 1px solid;
   background-color: #e9effd;
 }
 
@@ -40,6 +41,7 @@ import Sidebar from '@/layout/sidebar/index.vue'
   width: 100%;
   height: 100%;
   margin-left: 8px;
-  overflow-y: scroll;
+  border-radius: 4px;
+  //overflow-y: scroll;
 }
 </style>

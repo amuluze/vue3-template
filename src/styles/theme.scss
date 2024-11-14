@@ -26,13 +26,12 @@ html.dark {
     }
   }
 
-  .layout-footer-container {
-    color: var(--el-text-color-regular) !important;
-    background-color: var(--v-main-bg-color) !important;
-  }
-
   .fold-unfold {
     color: #fff !important;
+  }
+
+  .el-scrollbar {
+    background-color: var(--v-main-bg-color) !important;
   }
 
   .el-menu,
@@ -41,13 +40,15 @@ html.dark {
   .el-sub-menu__title {
     background-color: var(--v-bg-color) !important;
 
+    // 菜单字体颜色
     &:not(.is-active) {
-      color: #bdbdc0 !important;
+      color: #fff !important;
     }
 
+    // 菜单激活色
     &.is-active {
-      color: #fff !important;
-      background-color: #000 !important;
+      color: var(--el-color-primary) !important;
+      background-color: #363535 !important;
     }
   }
 
@@ -55,45 +56,50 @@ html.dark {
     background-color: var(--v-main-bg-color) !important;
   }
 
-  .nav-bar-container {
-    background-color: var(--v-bg-color) !important;
+  .am-logo {
+    background-color: var(--v-main-bg-color);
+    border-bottom: #575656 1px solid;
+  }
+
+  .am-layout {
+    background-color: var(--v-main-bg-color);
+  }
+
+  .am-layout-sidebar {
+    border-right: #575656 1px solid;
+  }
+
+
+  .am-collapse {
+    background-color: var(--v-main-bg-color) !important;
+    border-top: #575656 1px solid;
+    border-bottom: #575656 1px solid;
+    border-right: #575656 1px solid;
+
+    .collapse-ico {
+      color: #aba9a9;
+    }
+  }
+
+  .am-navbar {
+    background-color: var(--v-main-bg-color) !important;
+    border-bottom: #575656 1px solid;
+    border-left: #575656 1px solid;
+    color: #fff;
+  }
+
+  .am-content {
+    background-color: var(--v-main-bg-color) !important;
+    border-top: #575656 1px solid;
+    border-left: #575656 1px solid;
+    //border-bottom: #575656 1px solid;
+    border-radius: 4px;
+    color: #fff;
   }
 
   .table-header {
     .el-icon {
       color: #fff;
-    }
-  }
-
-  .tabs-bar-container {
-    background-color: var(--v-bg-color) !important;
-    border-top: 1px solid var(--el-border-color-light) !important;
-
-    .tabs-action {
-      .el-icon {
-        color: #fff !important;
-      }
-    }
-
-    .fold-unfold {
-      color: #fff;
-    }
-
-    .el-tabs__item.is-active {
-      color: var(--el-color-primary);
-      background-color: var(--v-main-bg-color) !important;
-
-      .el-icon {
-        color: var(--el-color-primary) !important;
-      }
-    }
-
-    .el-tabs__item:not(.is_active):hover {
-      background-color: var(--v-main-bg-color) !important;
-
-      .el-icon {
-        color: var(--el-color-primary) !important;
-      }
     }
   }
 }

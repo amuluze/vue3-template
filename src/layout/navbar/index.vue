@@ -2,19 +2,14 @@
 import Avatar from '@/layout/navbar/Avatar.vue'
 import Breadcrumb from './Breadcrumb.vue'
 import ThemeChange from '@/layout/navbar/ThemeChange.vue'
-
-const router = useRouter()
-function toHomepage() {
-  router.push('/overview')
-}
 </script>
 
 <template>
     <div class="am-navbar">
         <div>
-            <Breadcrumb style="cursor: pointer" @click="toHomepage" />
+            <Breadcrumb style="cursor: pointer" />
         </div>
-        <div>
+        <div class="am-navbar__right">
             <ThemeChange />
             <Avatar />
         </div>
@@ -32,5 +27,11 @@ function toHomepage() {
   background-color: #e9effd;
   border-radius: 4px;
   border-bottom: #cdcfd2 1px solid;
+
+  @include e(right) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }
 </style>

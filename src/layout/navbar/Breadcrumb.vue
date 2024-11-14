@@ -4,11 +4,15 @@ const router = useRouter()
 const breadcrumbList = computed(() => {
   return router.currentRoute.value.matched.map(item => item)
 })
+
+function toHomepage() {
+  router.push('/overview')
+}
 </script>
 
 <template>
     <div class="am-breadcrumb">
-        <svg-icon icon-class="homepage" />
+        <svg-icon icon-class="homepage" @click="toHomepage" />
         <el-breadcrumb separator="/">
             <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index" :to="{ path: item.path }">
                 <span>{{ item.meta.title }}</span>

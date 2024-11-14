@@ -12,7 +12,7 @@ function themeChange() {
 </script>
 
 <template>
-    <el-switch v-model="store.theme.isDark" @change="themeChange">
+    <el-switch v-model="store.theme.isDark" class="am-breadcrumb" @change="themeChange">
         <template #active-action>
             <svg-icon icon-class="moon" />
         </template>
@@ -23,5 +23,7 @@ function themeChange() {
 </template>
 
 <style scoped lang="scss">
-
+@include b(breadcrumb) {
+  margin-right: 16px;
+}
 </style>
