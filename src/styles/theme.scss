@@ -50,6 +50,11 @@ html.dark {
       color: var(--el-color-primary) !important;
       background-color: #363535 !important;
     }
+
+    .svg-icon {
+      width: 1.2em;
+      height: 1.2em;
+    }
   }
 
   .el-menu-item:not(.is-active):hover {

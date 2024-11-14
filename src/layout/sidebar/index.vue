@@ -19,7 +19,7 @@ const menus = computed(() => {
 </script>
 
 <template>
-    <el-aside :width="store.app.isCollapse ? '54px' : '210px'">
+    <el-aside :width="store.app.isCollapse ? '64px' : '180px'">
         <div class="am-logo">
             <img class="am-logo__img" src="@/assets/images/logo.png" alt="template" />
             <span v-show="!store.app.isCollapse" class="am-logo__text">Template</span>
