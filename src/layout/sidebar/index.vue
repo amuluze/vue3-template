@@ -10,12 +10,6 @@ const store = useStore()
 const menus = computed(() => {
   return dynamicRoutes.filter(item => item.meta?.show)
 })
-// const onRoute = computed(() => {
-//   if (currentRoute.meta.activeMenu) {
-//     return currentRoute.meta.activeMenu as string
-//   }
-//   return currentRoute.path
-// })
 </script>
 
 <template>
@@ -36,7 +30,7 @@ const menus = computed(() => {
                     active-text-color="#105eeb"
                     mode="vertical"
                 >
-                    <Menuitem v-for="(item, index) in menus" :key="index" :item="item" />
+                    <Menuitem :items="menus" />
                 </el-menu>
             </el-scrollbar>
         </div>

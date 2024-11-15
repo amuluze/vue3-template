@@ -1,36 +1,32 @@
 <script setup lang="ts">
-import useStore from '@/store'
 import type { RouteRecordRaw } from 'vue-router'
 
 defineProps<{
-  item: RouteRecordRaw
+  items: RouteRecordRaw[]
 }>()
 
 const router = useRouter()
 function handleClickMenu(item: RouteRecordRaw) {
   router.push(item.path)
 }
-
-const store = useStore()
-const hideSidebar = computed(() => store.app.isCollapse)
 </script>
 
 <template>
-    <div class="am-menuitem" :class="{ 'am-hide-sidebar': hideSidebar }">
+    <template v-for="item in items" :key="item.name">
         <el-sub-menu v-if="item.children?.length" :index="item.path">
             <template #title>
                 <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />
-                <span v-show="!store.app.isCollapse">{{ item.meta?.title }}</span>
+                <span class="sle">{{ item.meta?.title }}</span>
             </template>
-            <menuitem v-for="i in item.children" :key="i.name" :item="i" />
+            <menuitem :items="item.children" />
         </el-sub-menu>
         <el-menu-item v-else :index="item.path" @click="handleClickMenu(item)">
             <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />
             <template #title>
-                {{ item.meta?.title }}
+                <span class="sle">{{ item.meta?.title }}</span>
             </template>
         </el-menu-item>
-    </div>
+    </template>
 </template>
 
 <style scoped lang="scss">
@@ -40,12 +36,11 @@ const hideSidebar = computed(() => store.app.isCollapse)
   }
 }
 
-@include b(hide-sidebar) {
-  .el_sub-menu {
-    overflow: hidden;
-  }
-  .svg-icon {
-    margin-right: 0;
-  }
+/* 文字单行省略号 */
+.sle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 8px;
 }
 </style>
