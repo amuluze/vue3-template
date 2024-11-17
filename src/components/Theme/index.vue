@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // 打开主题设置
-import { echartsThemeData } from '@/config/echartTheme.ts'
+import { echartsThemeData } from '@/config/theme.ts'
 import mittBus from '@/utils/mitt.ts'
 import useStore from '@/store'
 
@@ -9,7 +9,7 @@ mittBus.on('openThemeDrawer', () => (drawerVisible.value = true))
 
 const store = useStore()
 function handleClick(theme: Array<string>) {
-  store.theme.updateCurrentColorArray(theme)
+  store.echarts.setCurrentColorArray(theme)
 }
 </script>
 

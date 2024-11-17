@@ -4,7 +4,12 @@ import * as echarts from 'echarts/core'
 // 引入柱状图和折线图组件。
 import {
     BarChart,
+    GaugeChart,
     LineChart,
+    LinesChart,
+    PieChart,
+    RadarChart,
+    ScatterChart,
 } from 'echarts/charts'
 
 // 引入标题、提示框、网格、数据集和数据转换器组件。
@@ -12,6 +17,7 @@ import {
     DatasetComponent,
     GridComponent,
     LegendComponent,
+    PolarComponent,
     TitleComponent,
     ToolboxComponent,
     TooltipComponent,
@@ -25,7 +31,15 @@ import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
 
 // 系列类型的定义后缀都为 SeriesOption
-import type { BarSeriesOption, LineSeriesOption } from 'echarts/charts'
+import type {
+    BarSeriesOption,
+    GaugeSeriesOption,
+    LineSeriesOption,
+    LinesSeriesOption,
+    PieSeriesOption,
+    RadarSeriesOption,
+    ScatterSeriesOption,
+} from 'echarts/charts'
 
 // 组件类型的定义后缀都为 ComponentOption
 import type {
@@ -36,15 +50,21 @@ import type {
 } from 'echarts/components'
 
 import type { ComposeOption } from 'echarts/core'
+import 'echarts-liquidfill'
 
 // 通过 ComposeOption 来组合出一个只有必须组件和图表的 Option 类型
 export type EChartsOption = ComposeOption<
   | BarSeriesOption
   | LineSeriesOption
+  | LinesSeriesOption
+  | PieSeriesOption
+  | GaugeSeriesOption
+  | ScatterSeriesOption
   | TitleComponentOption
   | TooltipComponentOption
   | GridComponentOption
   | DatasetComponentOption
+  | RadarSeriesOption
 >
 
 /**
@@ -59,8 +79,14 @@ echarts.use([
     GridComponent,
     DatasetComponent,
     TransformComponent,
+    PolarComponent,
     BarChart,
     LineChart,
+    LinesChart,
+    RadarChart,
+    PieChart,
+    ScatterChart,
+    GaugeChart,
     LabelLayout,
     UniversalTransition,
     CanvasRenderer,

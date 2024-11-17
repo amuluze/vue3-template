@@ -51,13 +51,13 @@ const menus = computed(() => {
 
   @include e(img) {
     height: 28px;
-    width: 28px;
-    margin-right: 6px;
+    object-fit: contain;
   }
 
   @include e(text) {
     font-size: 20px;
     font-weight: bold;
+    margin-left: 8px;
     color: #105eeb;
     white-space: nowrap;
   }
@@ -94,5 +94,13 @@ const menus = computed(() => {
   border-bottom: 1px solid;
   border-right: 1px solid;
   border-color: #e9e9ea;
+}
+
+/* 文字单行省略号 */
+.sle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 8px;
 }
 </style>

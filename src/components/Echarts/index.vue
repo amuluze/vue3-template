@@ -18,7 +18,7 @@ const props = withDefaults(defineProps<Props>(), {
 const chartRef = shallowRef<HTMLDivElement>()
 const currentOptions = shallowRef<EChartsOption>(props.option)
 
-const { setOptions, initCharts } = useEcharts(chartRef as Ref<HTMLDivElement>, currentOptions.value)
+const { setOptions, initCharts, echartsResize } = useEcharts(chartRef as Ref<HTMLDivElement>, currentOptions.value)
 
 const store = useStore()
 
@@ -29,13 +29,23 @@ watch(
     targetOptions = { ...newVal }
     setOptions(targetOptions)
   },
+  {
+    deep: true,
+  },
 )
 
 watch(
-  () => store.theme.currentColorArray,
+  () => store.echarts.currentColorArray,
   (newValue) => {
     currentOptions.value.color = newValue
     setOptions(currentOptions.value)
+  },
+)
+
+watch(
+  () => store.app.isCollapse,
+  () => {
+    echartsResize()
   },
 )
 
@@ -45,5 +55,15 @@ onMounted(() => {
 </script>
 
 <template>
-    <div ref="chartRef" :style="{ height: props.height, width: props.width }" />
+    <div class="am-echarts">
+        <slot />
+        <div ref="chartRef" :style="{ height: props.height, width: props.width }" />
+    </div>
 </template>
+
+<style lang="scss" scoped>
+@include b(echarts) {
+  height: 100%;
+  width: 100%;
+}
+</style>

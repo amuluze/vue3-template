@@ -40,8 +40,8 @@ import Sidebar from '@/layout/sidebar/index.vue'
   position: relative;
   width: 100%;
   height: 100%;
-  margin-left: 8px;
+  margin-left: 16px;
   border-radius: 4px;
-  //overflow-y: scroll;
+  overflow-y: scroll;
 }
 </style>

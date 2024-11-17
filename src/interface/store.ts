@@ -15,3 +15,7 @@ export interface themeState {
     primary: string
     isDark: boolean
 }
+
+export interface echartsThemeState {
+    currentColorArray: string[]
+}

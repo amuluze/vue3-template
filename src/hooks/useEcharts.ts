@@ -17,8 +17,9 @@ function useEcharts(elRef: Ref<HTMLDivElement>, options: EChartsOption): {
     const setOptions = (options: EChartsOption): void => {
         charts.value && charts.value.setOption(options)
     }
+
     const initCharts = (): void => {
-        charts.value = echarts.init(elRef.value)
+        charts.value = echarts.init(elRef.value, null, { renderer: 'canvas' })
         setOptions(options)
     }
 
@@ -37,6 +38,11 @@ function useEcharts(elRef: Ref<HTMLDivElement>, options: EChartsOption): {
 
     onBeforeUnmount(() => {
         window.removeEventListener('resize', echartsResize)
+        charts.value && charts.value.dispose()
+    })
+
+    onActivated(() => {
+        window.addEventListener('resize', echartsResize)
     })
     return { initCharts, setOptions, echartsResize }
 }
