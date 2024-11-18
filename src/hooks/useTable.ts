@@ -58,7 +58,8 @@ export function useTable(
             Object.assign(state.totalParam, params, isPageable ? pageParam.value : {})
             let { data } = await api({ ...state.totalParam })
             dataCallBack && (data = dataCallBack(data))
-            state.tableData = isPageable ? data.list : data
+            console.log(data)
+            state.tableData = data.data
             // 解构后台返回的分页数据（如果有分页更新分页信息）
             if (isPageable) {
                 state.pageable.total = data.total
@@ -109,7 +110,7 @@ export function useTable(
     }
 
     return {
-        ...state,
+        ...toRefs(state),
         search,
         handleSizeChange,
         handleCurrentChange,

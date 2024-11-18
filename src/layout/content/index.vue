@@ -9,11 +9,15 @@
 
 <style scoped lang="scss">
 @include b(content) {
-  position: relative;
-  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
   height: calc(100vh - 72px);
+
   overflow: hidden;
   margin-top: 8px;
+  position: relative;
+  box-sizing: border-box;
 }
 </style>

@@ -7,7 +7,7 @@ defineProps<{
 
 const router = useRouter()
 function handleClickMenu(item: RouteRecordRaw) {
-  router.push(item.path)
+  router.replace(item.path)
 }
 </script>
 

@@ -177,4 +177,5 @@ class Request {
     }
 }
 
-export default new Request(config)
+const request = new Request(config)
+export default request
