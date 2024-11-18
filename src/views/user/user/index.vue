@@ -4,6 +4,8 @@ import type { User } from '@/interface/account.ts'
 import { useTable } from '@/hooks/useTable.ts'
 import { queryUser } from '@/api/account'
 import type { TableInstance } from 'element-plus'
+import useCommandComponent from '@/hooks/useCommandComponent.ts'
+import AddUser from '@/views/user/user/components/AddUser.vue'
 
 const { tableData, pageable, loading, search, handleCurrentChange, handleSizeChange } = useTable(queryUser)
 onMounted(async () => {
@@ -19,6 +21,8 @@ function handleSelectionChange(val: User[]) {
   console.log('selection: ', val)
   tableSelection.value = val
 }
+
+const addUser = useCommandComponent(AddUser)
 </script>
 
 <!-- 表格使用的完整实例 -->
@@ -26,7 +30,7 @@ function handleSelectionChange(val: User[]) {
     <div class="am-container">
         <div class="am-table-operator">
             <div class="am-table-operator__left">
-                <el-button type="primary" plain>
+                <el-button type="primary" plain @click="addUser({ title: '添加用户', update: search })">
                     <svg-icon icon-class="add" style="margin-right: 4px" />
                     新增用户
                 </el-button>
