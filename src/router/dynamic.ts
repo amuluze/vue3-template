@@ -118,4 +118,12 @@ export const dynamicRoutes: RouteRecordRaw[] = [
             show: true,
         },
     },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: async () => import('@/views/profile/index.vue'),
+        meta: {
+            show: false,
+        },
+    },
 ]

@@ -6,8 +6,9 @@ import { queryUser } from '@/api/account'
 import type { TableInstance } from 'element-plus'
 import useCommandComponent from '@/hooks/useCommandComponent.ts'
 import AddUser from '@/views/user/user/components/AddUser.vue'
+import DeleteUser from '@/views/user/user/components/DeleteUser.vue'
 
-const { tableData, pageable, loading, search, handleCurrentChange, handleSizeChange } = useTable(queryUser)
+const { tableData, pageable, loading, search, handleCurrentChange, handleSizeChange } = useTable(queryUser, {}, false)
 onMounted(async () => {
   await search()
 })
@@ -23,6 +24,7 @@ function handleSelectionChange(val: User[]) {
 }
 
 const addUser = useCommandComponent(AddUser)
+const deleteUser = useCommandComponent(DeleteUser)
 </script>
 
 <!-- 表格使用的完整实例 -->
@@ -34,7 +36,7 @@ const addUser = useCommandComponent(AddUser)
                     <svg-icon icon-class="add" style="margin-right: 4px" />
                     新增用户
                 </el-button>
-                <el-button type="primary" plain>
+                <el-button type="primary" plain @click="deleteUser({ title: '批量删除' })">
                     <svg-icon icon-class="delete" style="margin-right: 4px" />
                     批量删除
                 </el-button>

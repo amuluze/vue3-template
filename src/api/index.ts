@@ -59,7 +59,7 @@ class Request {
             this.againRequest()
         }).catch(() => {
             // 此时 refreshToken 也失效了，返回登录页
-            window.location.href = '/app/app/login'
+            window.location.href = '/login'
         })
     }
 
@@ -136,8 +136,15 @@ class Request {
             async (error) => {
                 const { data, config, status } = error.response
                 return new Promise((resolve, reject) => {
+                    const store = useStore()
                     /** 判断当前请求失败的原因 */
-                    if (status === 400) {
+                    if (status === 400 && config.url === '/api/v1/auth/token_update') {
+                        // refreshToken 也失效了，清理 token，返回登录页
+                        store.user.setToken('', '')
+                        this.clearExpiredRequest()
+                        window.location.href = '/login'
+                    }
+                    else if (status === 400) {
                         warning(data.msg)
                     }
                     else if (status === 403) {
@@ -146,18 +153,13 @@ class Request {
                     else if (status === 500) {
                         warning('服务器错误，请稍后再试')
                     }
-                    else if (status === 401 && config.url === '/api/v1/auth/token_update') {
-                        // refreshToken 也失效了，返回登录页
-                        this.clearExpiredRequest()
-                        window.location.href = '/app/app/login'
-                    }
                     else if (status === 401 && config.url !== '/api/v1/auth/token_update') {
                         this.refreshToken(() => {
                             resolve(this.service(config))
                         })
                     }
                     else {
-                        window.location.href = '/app/app/login'
+                        window.location.href = '/login'
                         reject(error.response)
                     }
                 })

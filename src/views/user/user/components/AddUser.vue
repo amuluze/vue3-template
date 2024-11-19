@@ -14,7 +14,7 @@ const emits = defineEmits<{
   (e: 'close'): void
 }>()
 
-const dialogVisible = computed<boolean>({
+const drawerVisible = computed<boolean>({
   get() {
     return props.visible
   },
@@ -34,10 +34,6 @@ async function roleQuery() {
 }
 onMounted(() => {
   roleQuery()
-})
-
-onBeforeUnmount(() => {
-  props.update && props.update()
 })
 
 const userCreateRef = ref<FormInstance>()
@@ -80,7 +76,8 @@ async function confirmUserCreate(formEl: FormInstance | undefined) {
       }
       createUser(params).finally(() => {
         userCreateLoading.value = false
-        dialogVisible.value = false
+        drawerVisible.value = false
+        props.update && props.update()
       })
     }
   })
@@ -88,38 +85,36 @@ async function confirmUserCreate(formEl: FormInstance | undefined) {
 </script>
 
 <template>
-    <el-drawer v-model="dialogVisible" :title="title" size="50%">
-        <div class="am-user-create">
-            <el-form ref="userCreateRef" :model="userCreateMode" :rules="rules" label-width="120px" label-position="left">
-                <el-form-item label="用户名" prop="username">
-                    <el-input v-model="userCreateMode.username" placeholder="请输入用户名" />
-                </el-form-item>
-                <el-form-item label="密码" prop="password">
-                    <el-input v-model="userCreateMode.password" placeholder="请输入密码" />
-                </el-form-item>
-                <el-form-item label="角色" prop="role_ids">
-                    <el-select v-model="userCreateMode.role_ids" multiple placeholder="请选择角色">
-                        <el-option
-                            v-for="item in roleData"
-                            :key="item.id"
-                            :label="item.name"
-                            :value="item.id"
-                        />
-                    </el-select>
-                </el-form-item>
-                <el-form-item label="备注" prop="remark">
-                    <el-input v-model="userCreateMode.remark" placeholder="请输入备注" />
-                </el-form-item>
-                <el-form-item label="状态" prop="status">
-                    <el-tooltip content="用户状态，1为正常，2为禁用" placement="top">
-                        <el-switch v-model="userCreateMode.status" active-value="1" inactive-value="2" />
-                    </el-tooltip>
-                </el-form-item>
-            </el-form>
-        </div>
+    <el-drawer v-model="drawerVisible" :destroy-on-close="true" :title="title" size="30%">
+        <el-form ref="userCreateRef" :model="userCreateMode" :rules="rules" label-width="120px" label-position="left">
+            <el-form-item label="用户名" prop="username">
+                <el-input v-model="userCreateMode.username" placeholder="请输入用户名" />
+            </el-form-item>
+            <el-form-item label="密码" prop="password">
+                <el-input v-model="userCreateMode.password" show-password placeholder="请输入密码" />
+            </el-form-item>
+            <el-form-item label="角色" prop="role_ids">
+                <el-select v-model="userCreateMode.role_ids" multiple placeholder="请选择角色">
+                    <el-option
+                        v-for="item in roleData"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                    />
+                </el-select>
+            </el-form-item>
+            <el-form-item label="备注" prop="remark">
+                <el-input v-model="userCreateMode.remark" placeholder="请输入备注" />
+            </el-form-item>
+            <el-form-item label="状态" prop="status">
+                <el-tooltip content="用户状态，1为正常，2为禁用" placement="top">
+                    <el-switch v-model="userCreateMode.status" active-value="1" inactive-value="2" />
+                </el-tooltip>
+            </el-form-item>
+        </el-form>
         <template #footer>
             <span>
-                <el-button @click="dialogVisible = false">Cancel</el-button>
+                <el-button @click="drawerVisible = false">Cancel</el-button>
                 <el-button type="primary" @click="confirmUserCreate(userCreateRef)">Confirm</el-button>
             </span>
         </template>

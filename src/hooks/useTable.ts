@@ -56,6 +56,7 @@ export function useTable(
             state.loading = true
             // 先把初始化参数和分页参数放到总参数里面
             Object.assign(state.totalParam, params, isPageable ? pageParam.value : {})
+            console.log('total param: ', state.totalParam)
             let { data } = await api({ ...state.totalParam })
             dataCallBack && (data = dataCallBack(data))
             console.log(data)
@@ -105,6 +106,7 @@ export function useTable(
      * @return void
      */
     const handleCurrentChange = async (val: number) => {
+        console.log('current change:', val)
         state.pageable.page = val
         await getList()
     }
