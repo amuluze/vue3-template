@@ -98,12 +98,64 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 },
             },
             {
-                path: '/user/permission',
+                path: '/user/resource',
                 name: 'permission',
-                component: async () => import('@/views/user/permission/index.vue'),
+                component: async () => import('@/views/user/resource/index.vue'),
                 meta: {
                     title: '权限',
                     icon: 'permission',
+                },
+            },
+        ],
+    },
+    {
+        path: '/container',
+        name: 'container',
+        redirect: '/container/container',
+        meta: {
+            title: '容器管理',
+            icon: 'container',
+            show: true,
+        },
+        children: [
+            {
+                path: '/container/container',
+                name: 'container_container',
+                component: async () => import('@/views/container/container/index.vue'),
+                meta: {
+                    title: '容器',
+                    icon: 'container',
+                    show: false,
+                },
+            },
+            {
+                path: '/container/image',
+                name: 'container_image',
+                component: async () => import('@/views/container/image/index.vue'),
+                meta: {
+                    title: '镜像',
+                    icon: 'container',
+                    show: false,
+                },
+            },
+            {
+                path: '/container/network',
+                name: 'container_network',
+                component: async () => import('@/views/container/network/index.vue'),
+                meta: {
+                    title: '网络',
+                    icon: 'container',
+                    show: false,
+                },
+            },
+            {
+                path: '/container/setting',
+                name: 'container_setting',
+                component: async () => import('@/views/container/setting/index.vue'),
+                meta: {
+                    title: '设置',
+                    icon: 'setting',
+                    show: false,
                 },
             },
         ],

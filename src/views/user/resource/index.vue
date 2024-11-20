@@ -1,42 +1,10 @@
 <script setup lang="ts">
-import { queryRole } from '@/api/account'
-import type { Resource } from '@/interface/account.ts'
 import { useTable } from '@/hooks/useTable.ts'
+import { queryResource } from '@/api/account'
 import type { TableInstance } from 'element-plus'
 
 const tableRef = ref<TableInstance>()
-const defaultProps = {
-  children: 'children',
-  label: 'label',
-  id: 'id',
-}
-
-interface Tree {
-  id: string
-  label: string
-  children?: Tree[]
-}
-
-function generateTree(data: Resource[]) {
-  const child: Tree[] = []
-  data.forEach((item) => {
-    const treeItem: Tree = {
-      id: item.id,
-      label: item.name,
-      children: [],
-    }
-    child.push(treeItem)
-  })
-  const tree: Tree[] = [{
-    id: '',
-    label: '权限列表',
-    children: child,
-  }]
-  console.log('>>', tree)
-  return tree
-}
-
-const { tableData, loading, search } = useTable(queryRole, {}, false)
+const { tableData, loading, search } = useTable(queryResource, {}, false)
 
 onMounted(async () => {
   await search()
@@ -54,13 +22,14 @@ onMounted(async () => {
                 :header-cell-style="{ height: '45px', fontSize: '15px', color: '#000', background: '#fafafa' }"
                 border
             >
-                <el-table-column prop="name" label="角色名" min-width="120" align="center" />
-                <el-table-column prop="resource_ids" label="权限" min-width="200" align="center" show-overflow-tooltip>
+                <el-table-column prop="name" label="接口名称" min-width="100" />
+                <el-table-column prop="path" label="URL" min-width="200">
                     <template #default="scope">
-                        <el-tree :data="generateTree(scope.row.resources)" :props="defaultProps" />
+                        <el-tag>{{ scope.row.path }}</el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="status" label="状态" min-width="100" align="center" sortable>
+                <el-table-column prop="method" label="请求方式" min-width="100" sortable />
+                <el-table-column prop="status" label="状态" wmin-idth="100" sortable>
                     <template #default="scope">
                         <el-tag v-if="scope.row.status === 1" type="success">
                             正常
@@ -70,7 +39,6 @@ onMounted(async () => {
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="created_at" label="创建时间" min-width="160" align="center" sortable />
             </el-table>
         </div>
     </div>

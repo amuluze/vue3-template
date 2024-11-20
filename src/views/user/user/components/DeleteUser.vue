@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { deleteUser } from '@/api/account'
+import type { UserDeleteArgs } from '@/interface/account.ts'
+
 const props = defineProps<{
   visible: boolean
+  ids: string[]
   title?: string
   update?: () => void
 }>()
@@ -21,15 +25,31 @@ const dialogVisible = computed<boolean>({
     }
   },
 })
+
+// 删除用户
+const userDeleteLoading = ref(false)
+
+async function confirmDelete() {
+  userDeleteLoading.value = true
+  const params: UserDeleteArgs = {
+    ids: props.ids,
+  }
+  console.log('delete params: ', params)
+  deleteUser(params).finally(() => {
+    userDeleteLoading.value = false
+    dialogVisible.value = false
+    props.update && props.update()
+  })
+}
 </script>
 
 <template>
     <el-dialog v-model="dialogVisible" :title="title" width="500px" draggable>
-        <span>确认执行批量删除操作？</span>
+        <span>确认执行删除操作？</span>
         <template #footer>
             <span class="dialog-footer">
                 <el-button @click="dialogVisible = false">取消</el-button>
-                <el-button type="primary" @click="dialogVisible = false">确认</el-button>
+                <el-button type="primary" @click="confirmDelete">确认</el-button>
             </span>
         </template>
     </el-dialog>
