@@ -1,27 +1,47 @@
 <script setup lang="ts">
-import useCommandComponent from '@/hooks/useCommandComponent.ts'
-import Dialog from '@/views/overview/components/Dialog.vue'
-import Comp from '@/views/overview/components/Comp.vue'
-import service from '@/mock'
-
-async function testMock() {
-  // 获取 mock 数据
-  const { data } = await service.get('/api/users')
-  console.log(data)
-}
-
-const dialog = useCommandComponent(Dialog)
+const searchModel = ref<Record<string, any>>({
+  username: '',
+  sex: 1,
+  address: '',
+  time: '',
+})
+const searchItems: Form.Item[] = [
+  {
+    type: 'input',
+    label: '用户名称',
+    prop: 'username',
+    value: '',
+    placeholder: '请输入用户名称',
+  },
+  {
+    type: 'select',
+    label: '性别',
+    prop: 'sex',
+    value: 1,
+    placeholder: '请选择性别',
+    options: {
+      data: [
+        { label: '男', value: 1 },
+        { label: '女', value: 0 },
+      ],
+    },
+  },
+  {
+    type: 'input',
+    label: '地址',
+    prop: 'address',
+    value: '',
+    placeholder: '请输入地址',
+  },
+  {
+    type: 'datepicker',
+    label: '档案时间',
+    prop: 'time',
+    value: '',
+  },
+]
 </script>
 
 <template>
-    <div>
-        <el-button @click="dialog({ title: '弹窗标题' })">
-            打开弹窗
-        </el-button>
-        <Comp text="子组件 1" />
-        <Comp text="子组件 2" />
-        <el-button @click="testMock">
-            测试 mock
-        </el-button>
-    </div>
+    <search-form :items="searchItems" :model="searchModel" />
 </template>
