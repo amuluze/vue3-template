@@ -134,7 +134,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 component: async () => import('@/views/container/image/index.vue'),
                 meta: {
                     title: '镜像',
-                    icon: 'container',
+                    icon: 'image',
                     show: false,
                 },
             },
@@ -144,7 +144,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 component: async () => import('@/views/container/network/index.vue'),
                 meta: {
                     title: '网络',
-                    icon: 'container',
+                    icon: 'network',
                     show: false,
                 },
             },

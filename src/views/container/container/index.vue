@@ -55,29 +55,37 @@ onMounted(async () => {
                 <el-table-column label="操作" width="200" fixed="right" align="center">
                     <template #default="scope">
                         <el-button type="primary" size="small" text>
+                            <svg-icon icon-class="log" style="margin-right: 4px" />
                             日志
-                        </el-button>
-                        <el-button type="primary" size="small" text :disabled="enableEdit(scope.row.name)">
-                            启动
                         </el-button>
                         <el-dropdown>
                             <el-button type="primary" size="small" text>
+                                <svg-icon icon-class="more" style="margin-right: 4px" />
                                 更多
                             </el-button>
                             <template #dropdown>
                                 <el-dropdown-menu>
                                     <el-dropdown-item>
+                                        <el-button type="primary" size="small" text :disabled="enableEdit(scope.row.name)">
+                                            <svg-icon icon-class="start" style="margin-right: 4px" />
+                                            启动
+                                        </el-button>
+                                    </el-dropdown-item>
+                                    <el-dropdown-item>
                                         <el-button type="warning" size="small" text :disabled="enableEdit(scope.row.name)">
+                                            <svg-icon icon-class="stop" style="margin-right: 4px" />
                                             停止
                                         </el-button>
                                     </el-dropdown-item>
                                     <el-dropdown-item>
                                         <el-button type="warning" size="small" text :disabled="enableEdit(scope.row.name)">
+                                            <svg-icon icon-class="update" style="margin-right: 4px" />
                                             重启
                                         </el-button>
                                     </el-dropdown-item>
                                     <el-dropdown-item>
                                         <el-button type="danger" size="small" text :disabled="enableEdit(scope.row.name)">
+                                            <svg-icon icon-class="delete" style="margin-right: 4px" />
                                             删除
                                         </el-button>
                                     </el-dropdown-item>
