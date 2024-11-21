@@ -47,8 +47,8 @@ onMounted(() => {
 
 <template>
     <div class="am-search">
-        <el-form ref="searchFormRef" :inline="true" :model="searchForm">
-            <el-row class="am-row">
+        <el-form ref="searchFormRef" :inline="true" :model="searchForm" label-width="auto">
+            <el-row class="am-row" align="middle" :gutter="5">
                 <el-col v-for="(item, index) in props.items.slice(0, condition ? initConditionLen : props.items.length)" :key="index" :span="6">
                     <el-form-item :label="item.label" :prop="item.prop" style="width: 90%">
                         <!-- 输入框 -->
@@ -87,13 +87,15 @@ onMounted(() => {
                 </el-col>
                 <el-col :span="6">
                     <el-form-item class="btn-group-item flex-end">
-                        <el-button type="primary" size="small">
+                        <el-button type="primary" plain>
+                            <svg-icon icon-class="search" style="margin-right: 4px" />
                             查询
                         </el-button>
-                        <el-button type="danger" size="small">
+                        <el-button type="danger" plain>
+                            <svg-icon icon-class="update" style="margin-right: 4px" />
                             重置
                         </el-button>
-                        <el-button v-show="showConBtn" type="primary" size="small" link @click="toggleCondition">
+                        <el-button v-show="showConBtn" type="primary" link @click="toggleCondition">
                             {{ condition ? "展开" : "收起" }}
                             <svg-icon v-if="condition" icon-class="down" />
                             <svg-icon v-else icon-class="up" />
@@ -111,6 +113,7 @@ onMounted(() => {
   flex-direction: row;
   align-items: center;
   padding: 16px;
+  margin-bottom: 4px;
 
   border: 1px solid #e5e7ed;
   border-radius: 4px;
@@ -121,6 +124,11 @@ onMounted(() => {
     .el-form-item {
       margin: 0;
     }
+  }
+}
+@include b(row) {
+  .el-col {
+    margin-bottom: 8px;
   }
 }
 </style>

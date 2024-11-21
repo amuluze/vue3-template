@@ -1,25 +1,28 @@
 <script setup lang="ts">
-import useCommandComponent from '@/hooks/useCommandComponent.ts'
-import Dialog from '@/views/overview/components/Dialog.vue'
-import Comp from '@/views/overview/components/Comp.vue'
-import service from '@/mock'
+import { userList } from '@/mock'
+import { useTable } from '@/hooks/useTable.ts'
+
+const { tableData, pageable, search } = useTable(userList)
 
 async function testMock() {
   // 获取 mock 数据
-  const { data } = await service.get('/api/users')
-  console.log(data)
+  // const { data } = await userList()
+  // console.log('data:', data)
+  await search()
+  console.log('table data: ', tableData)
+  console.log('pageable: ', pageable)
 }
 
-const dialog = useCommandComponent(Dialog)
+// const dialog = useCommandComponent(Dialog)
 </script>
 
 <template>
     <div>
-        <el-button @click="dialog({ title: '弹窗标题' })">
-            打开弹窗
-        </el-button>
-        <Comp text="子组件 1" />
-        <Comp text="子组件 2" />
+        <!--        <el-button @click="dialog({ title: '弹窗标题' })"> -->
+        <!--            打开弹窗 -->
+        <!--        </el-button> -->
+        <!--        <Comp text="子组件 1" /> -->
+        <!--        <Comp text="子组件 2" /> -->
         <el-button @click="testMock">
             测试 mock
         </el-button>

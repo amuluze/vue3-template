@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { useTable } from '@/hooks/useTable.ts'
-import { queryUser } from '@/api/account'
-
 const searchModel = ref<Record<string, any>>({
   username: '',
+  age: 0,
   sex: 1,
   address: '',
   time: '',
@@ -11,10 +9,17 @@ const searchModel = ref<Record<string, any>>({
 const searchItems: Form.Item[] = [
   {
     type: 'input',
-    label: '用户名称',
+    label: '用户名',
     prop: 'username',
     value: '',
     placeholder: '请输入用户名称',
+  },
+  {
+    type: 'input',
+    label: '年龄',
+    prop: 'age',
+    value: '',
+    placeholder: '请输入年龄',
   },
   {
     type: 'select',
@@ -43,19 +48,8 @@ const searchItems: Form.Item[] = [
     value: '',
   },
 ]
-
-const { tableData, pageable, search } = useTable(queryUser)
-async function handleSearch() {
-  await search()
-  console.log('table data: ', tableData)
-  console.log('pageable: ', pageable)
-}
 </script>
 
 <template>
     <search-form :items="searchItems" :model="searchModel" />
-
-    <el-button @click="handleSearch">
-        测试 mock
-    </el-button>
 </template>

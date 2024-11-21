@@ -22,6 +22,45 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
     },
     {
+        path: '/component',
+        name: 'component',
+        redirect: '/component/svg',
+        meta: {
+            title: '常用组件',
+            icon: 'component',
+            show: true,
+        },
+        children: [
+            {
+                path: '/component/svg',
+                name: 'svg',
+                component: async () => import('@/views/components/svg/index.vue'),
+                meta: {
+                    title: 'SVG 图标',
+                    icon: 'svg',
+                },
+            },
+            {
+                path: '/components/search',
+                name: 'search',
+                component: async () => import('@/views/components/search/index.vue'),
+                meta: {
+                    title: '搜索框',
+                    icon: 'search',
+                },
+            },
+            {
+                path: '/components/table',
+                name: 'table',
+                component: async () => import('@/views/components/table/index.vue'),
+                meta: {
+                    title: '表格',
+                    icon: 'table',
+                },
+            },
+        ],
+    },
+    {
         path: '/chart',
         name: 'chart',
         redirect: '/chart/line',

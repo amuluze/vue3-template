@@ -8,6 +8,19 @@ import AddUser from '@/views/user/user/components/AddUser.vue'
 import DeleteUser from '@/views/user/user/components/DeleteUser.vue'
 import EditUser from '@/views/user/user/components/EditUser.vue'
 
+const searchModel = ref<Record<string, any>>({
+  username: '',
+})
+const searchItems: Form.Item[] = [
+  {
+    type: 'input',
+    label: '用户名：',
+    prop: 'username',
+    value: '',
+    placeholder: '请输入用户名称',
+  },
+]
+
 const { tableData, loading, search } = useTable(queryUser, {}, false)
 onMounted(async () => {
   await search()
@@ -30,6 +43,7 @@ const editUser = useCommandComponent(EditUser)
 
 <!-- 表格使用的完整实例 -->
 <template>
+    <search-form :items="searchItems" :model="searchModel" />
     <div class="am-container">
         <div class="am-table-operator">
             <div class="am-table-operator__left">
