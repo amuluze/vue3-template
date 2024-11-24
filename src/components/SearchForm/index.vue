@@ -48,8 +48,9 @@ onMounted(() => {
 <template>
     <div class="am-search">
         <el-form ref="searchFormRef" :inline="true" :model="searchForm" label-width="auto">
-            <el-row class="am-row" align="middle" :gutter="5">
-                <el-col v-for="(item, index) in props.items.slice(0, condition ? initConditionLen : props.items.length)" :key="index" :span="6">
+            <!-- 展开时，增加 margin-bottom -->
+            <el-row :class="{ 'am-row': !condition }" align="middle" :gutter="5">
+                <el-col v-for="(item, index) in props.items.slice(0, condition ? initConditionLen : props.items.length)" :key="index" :xl="6" :lg="6" :md="6" :sm="12" :xs="24">
                     <el-form-item :label="item.label" :prop="item.prop" style="width: 90%">
                         <!-- 输入框 -->
                         <el-input
@@ -85,7 +86,7 @@ onMounted(() => {
                         />
                     </el-form-item>
                 </el-col>
-                <el-col :span="6">
+                <el-col :xl="6" :lg="6" :md="6" :sm="12" :xs="24">
                     <el-form-item class="btn-group-item flex-end">
                         <el-button type="primary" plain>
                             <svg-icon icon-class="search" style="margin-right: 4px" />

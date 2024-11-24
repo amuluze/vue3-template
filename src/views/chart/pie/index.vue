@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
 
+const loading = ref(false)
 const option: EChartsOption = {
   tooltip: {
     trigger: 'item',
@@ -57,17 +58,53 @@ const option: EChartsOption = {
 </script>
 
 <template>
-    <div class="am-pie">
-        <el-card shadow="hover">
-            <Echarts :option="option" />
-        </el-card>
+    <div class="am-column">
+        <el-row :gutter="8">
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <style scoped lang="scss">
-@include b(pie) {
+@include b(column) {
   height: 100%;
   width: 100%;
+  overflow: auto;
 
   .el-card {
     height: 100%;
@@ -78,5 +115,11 @@ const option: EChartsOption = {
       width: 100% !important;
     }
   }
+}
+
+@include b(column-content) {
+  height: 750px;
+  width: 100%;
+  margin-bottom: 8px;
 }
 </style>

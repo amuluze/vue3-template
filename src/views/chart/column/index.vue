@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
 
+const loading = ref(false)
 const option: EChartsOption = {
   tooltip: {
     trigger: 'axis',
@@ -129,9 +130,44 @@ const option: EChartsOption = {
 
 <template>
     <div class="am-column">
-        <el-card shadow="hover">
-            <Echarts :option="option" />
-        </el-card>
+        <el-row :gutter="8">
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="12" :md="12" :sm="12" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
@@ -139,6 +175,7 @@ const option: EChartsOption = {
 @include b(column) {
   height: 100%;
   width: 100%;
+  overflow: auto;
 
   .el-card {
     height: 100%;
@@ -149,5 +186,11 @@ const option: EChartsOption = {
       width: 100% !important;
     }
   }
+}
+
+@include b(column-content) {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 8px;
 }
 </style>

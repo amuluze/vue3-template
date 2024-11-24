@@ -1,305 +1,106 @@
 <script setup lang="ts">
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
 import Echarts from '@/components/Echarts/index.vue'
-import echarts from '@/components/Echarts/echarts.ts'
 
+const loading = ref(false)
 const option = {
-  title: [
-    {
-      text: '预约量',
-      x: '25%',
-      y: 30,
+  title: [{
+    text: 'CPU 使用率',
+    x: '50%',
+    y: 30,
+    textAlign: 'center',
+    textStyle: {
+      color: '#363535',
+      fontSize: '16px',
+      fontWeight: 'bold',
       textAlign: 'center',
-      textStyle: {
-        color: '#a1a1a1',
-        fontSize: 16,
-        fontFamily: 'Microsoft Yahei',
-        fontWeight: '100',
-        textAlign: 'center',
+    },
+  }],
+  series: [{
+    type: 'liquidFill',
+    radius: '50%',
+    center: ['50%', '65%'], // 分别是 x、y 轴的便宜
+    data: [0.6],
+    label: {
+      normal: {
+        color: '#045cc0',
+        insideColor: '#045cc0',
+        textStyle: {
+          fontSize: '20px',
+          fontWeight: 'bold',
+        },
       },
     },
-    {
-      text: '实时客流量',
-      x: '75%',
-      y: 30,
-      textAlign: 'center',
-      textStyle: {
-        color: '#a1a1a1',
-        fontSize: 16,
-        fontFamily: 'Microsoft Yahei',
-        fontWeight: '100',
-        textAlign: 'center',
+    color: [{
+      type: 'linear',
+      x: 0,
+      y: 0,
+      x2: 0,
+      y2: 1,
+      colorStops: [{
+        offset: 1,
+        color: ['#fff'],
+      }, {
+        offset: 0,
+        color: ['#6a7feb'],
+      }],
+      global: false,
+    }],
+    backgroundStyle: {
+      borderWidth: 1,
+      color: 'transparent',
+    },
+    outline: {
+      show: true,
+      borderDistance: 8, // 内层白圈的宽度
+      itemStyle: { // 最外层圈的颜色的宽度
+        borderColor: '#6a7feb',
+        borderWidth: 4,
       },
     },
-    {
-      text: `${(0.5 * 100).toFixed(0)}%`,
-      left: '25%',
-      top: '38%',
-      textAlign: 'center',
-      textStyle: {
-        fontSize: '50',
-        fontWeight: '300',
-        color: '#a06a0a',
-        textAlign: 'center',
-        textBorderColor: 'rgba(0, 0, 0, 0)',
-        textShadowColor: '#fff',
-        textShadowBlur: '0',
-        textShadowOffsetX: 0,
-        textShadowOffsetY: 1,
-      },
-    },
-    {
-      text: `${(0.5 * 100).toFixed(0)}%`,
-      left: '75%',
-      top: '38%',
-      textAlign: 'center',
-      textStyle: {
-        fontSize: '50',
-        fontWeight: '300',
-        color: '#02456d',
-        textAlign: 'center',
-        textBorderColor: 'rgba(0, 0, 0, 0)',
-        textShadowColor: '#fff',
-        textShadowBlur: '0',
-        textShadowOffsetX: 0,
-        textShadowOffsetY: 1,
-      },
-    },
-  ],
-  series: [
-    {
-      type: 'liquidFill',
-      radius: '50%',
-      z: 6,
-      center: ['25%', '50%'],
-      color: [
-        {
-          type: 'linear',
-          x: 0,
-          y: 0,
-          x2: 0,
-          y2: 1,
-          colorStops: [
-            {
-              offset: 1,
-              color: 'rgba(251, 173, 23, 0)',
-            },
-            {
-              offset: 0.5,
-              color: 'rgba(251, 173, 23, .2)',
-            },
-            {
-              offset: 0,
-              color: 'rgba(251, 173, 23, 1)',
-            },
-          ],
-          globalCoord: false,
-        },
-      ],
-      data: [0.5, 0.5, 0.5],
-      backgroundStyle: {
-        borderWidth: 1,
-        color: 'transparent',
-      },
-      label: {
-        normal: {
-          formatter: '',
-        },
-      },
-      outline: {
-        show: true,
-        itemStyle: {
-          borderWidth: 0,
-        },
-        borderDistance: 0,
-      },
-    },
-    {
-      name: '第二层白边',
-      type: 'pie',
-      z: 3,
-      radius: ['0%', '55%'],
-      center: ['25%', '50%'],
-      hoverAnimation: false,
-      itemStyle: {
-        normal: {
-          label: {
-            show: false,
-          },
-        },
-      },
-      data: [
-        {
-          value: 100,
-          itemStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: '#fefefe',
-                },
-                {
-                  offset: 1,
-                  color: '#e7e8ea',
-                },
-              ]),
-            },
-          },
-        },
-        {
-          value: 0,
-          itemStyle: {
-            normal: {
-              color: 'transparent',
-            },
-          },
-        },
-      ],
-    },
-    {
-      name: '最外绿边',
-      type: 'pie',
-      z: 1,
-      radius: ['0%', '58%'],
-      center: ['25%', '50%'],
-      hoverAnimation: false,
-      itemStyle: {
-        normal: {
-          label: {
-            show: false,
-          },
-        },
-      },
-      data: [
-        {
-          value: 100,
-          itemStyle: {
-            color: '#fdc56e',
-          },
-        },
-        {
-          value: 0,
-          itemStyle: {
-            normal: {
-              color: 'transparent',
-            },
-          },
-        },
-      ],
-    },
-    {
-      type: 'liquidFill',
-      radius: '50%',
-      z: 6,
-      center: ['75%', '50%'],
-      color: ['#c1dce7', '#90d3f0', '#009bdb'],
-      data: [0.6, { value: 0.5, direction: 'left' }, 0.4, 0.3],
-      backgroundStyle: {
-        borderWidth: 1,
-        color: 'transparent',
-      },
-      label: {
-        normal: {
-          formatter: '',
-        },
-      },
-      outline: {
-        show: true,
-        itemStyle: {
-          borderWidth: 0,
-        },
-        borderDistance: 0,
-      },
-    },
-    {
-      name: '第二层白边',
-      type: 'pie',
-      z: 3,
-      radius: ['0%', '55%'],
-      center: ['75%', '50%'],
-      hoverAnimation: false,
-      itemStyle: {
-        normal: {
-          label: {
-            show: false,
-          },
-        },
-      },
-      data: [
-        {
-          value: 100,
-          itemStyle: {
-            normal: {
-              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                {
-                  offset: 0,
-                  color: '#fefefe',
-                },
-                {
-                  offset: 1,
-                  color: '#e7e8ea',
-                },
-              ]),
-            },
-          },
-        },
-        {
-          value: 0,
-          itemStyle: {
-            normal: {
-              color: 'transparent',
-            },
-          },
-        },
-      ],
-    },
-    {
-      name: '最外蓝边',
-      type: 'pie',
-      z: 1,
-      radius: ['0%', '58%'],
-      center: ['75%', '50%'],
-      hoverAnimation: false,
-      itemStyle: {
-        normal: {
-          label: {
-            show: false,
-          },
-        },
-      },
-      data: [
-        {
-          value: 100,
-          itemStyle: {
-            color: '#07a2e3',
-          },
-        },
-        {
-          value: 0,
-          itemStyle: {
-            normal: {
-              color: 'transparent',
-            },
-          },
-        },
-      ],
-    },
-  ],
+  }],
 } as EChartsOption
 </script>
 
 <template>
-    <div class="am-water">
-        <el-card shadow="hover">
-            <Echarts :option="option" />
-        </el-card>
+    <div class="am-column">
+        <el-row :gutter="8">
+            <el-col :lg="8" :md="8" :sm="8" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="8" :md="8" :sm="8" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+            <el-col :lg="8" :md="8" :sm="8" :xs="24">
+                <el-skeleton :loading="loading" animated>
+                    <div class="am-column-content">
+                        <el-card shadow="hover">
+                            <Echarts :option="option" />
+                        </el-card>
+                    </div>
+                </el-skeleton>
+            </el-col>
+        </el-row>
     </div>
 </template>
 
 <style scoped lang="scss">
-@include b(water) {
+@include b(column) {
   height: 100%;
   width: 100%;
+  overflow: auto;
 
   .el-card {
     height: 100%;
@@ -310,5 +111,11 @@ const option = {
       width: 100% !important;
     }
   }
+}
+
+@include b(column-content) {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 8px;
 }
 </style>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTable } from '@/hooks/useTable.ts'
-import { queryResource } from '@/api/account'
+import { queryResource } from '@/mock/account'
 import type { TableInstance } from 'element-plus'
 
 const tableRef = ref<TableInstance>()

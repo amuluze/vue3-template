@@ -12,16 +12,6 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         },
     },
     {
-        path: '/data',
-        name: 'data',
-        component: async () => import('@/views/data/index.vue'),
-        meta: {
-            title: '数据',
-            icon: 'data',
-            show: true,
-        },
-    },
-    {
         path: '/component',
         name: 'component',
         redirect: '/component/svg',
@@ -66,7 +56,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         redirect: '/chart/line',
         meta: {
             title: 'Echarts',
-            icon: 'chart',
+            icon: 'data',
             show: true,
         },
         children: [

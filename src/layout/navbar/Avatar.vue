@@ -37,6 +37,7 @@ const updatePasswordDraw = useCommandComponent(UpdatePassword)
                     <svg-icon icon-class="edit" style="margin-right: 4px" />
                     更新密码
                 </el-dropdown-item>
+                <el-divider />
                 <el-dropdown-item @click.prevent="doLogout">
                     <svg-icon icon-class="power" style="margin-right: 4px" />
                     退出登录
@@ -45,3 +46,10 @@ const updatePasswordDraw = useCommandComponent(UpdatePassword)
         </template>
     </el-dropdown>
 </template>
+
+<style lang="scss" scoped>
+.el-divider {
+  margin: 4px;
+  width: 90%;
+}
+</style>

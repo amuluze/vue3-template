@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useTable } from '@/hooks/useTable.ts'
-import { queryNetworks } from '@/api/container'
+import { queryNetworks } from '@/mock/container'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const { tableData, pageable, loading, search, handleSizeChange, handleCurrentChange } = useTable(queryNetworks)

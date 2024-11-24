@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { queryRole } from '@/api/account'
+import { queryRole } from '@/mock/account'
 import type { Resource } from '@/interface/account.ts'
 import { useTable } from '@/hooks/useTable.ts'
 import type { TableInstance } from 'element-plus'

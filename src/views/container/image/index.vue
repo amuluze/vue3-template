@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { useTable } from '@/hooks/useTable.ts'
-import { queryImages } from '@/api/container'
+import { queryImages } from '@/mock/container'
 
 const { tableData, pageable, loading, search, handleSizeChange, handleCurrentChange } = useTable(queryImages)
 onMounted(async () => {

@@ -73,7 +73,7 @@ async function handleLogin() {
                         <el-input v-model="loginForm.password" size="large" type="password" class="password-input" placeholder="请输入密码" name="password" :show-password="true" />
                     </el-form-item>
                     <el-button class="btn" size="large" type="primary" @click.prevent="handleLogin">
-                        登录
+                        <svg-icon icon-class="user" /> <span style="margin-left: 8px">登录</span>
                     </el-button>
                 </el-form>
             </div>

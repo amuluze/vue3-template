@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { User } from '@/interface/account.ts'
 import { useTable } from '@/hooks/useTable.ts'
-import { queryUser } from '@/api/account'
+import { queryUser } from '@/mock/account'
 import type { TableInstance } from 'element-plus'
 import useCommandComponent from '@/hooks/useCommandComponent.ts'
 import AddUser from '@/views/user/user/components/AddUser.vue'

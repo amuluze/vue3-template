@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useTable } from '@/hooks/useTable.ts'
 import type { TableInstance } from 'element-plus'
-import { queryContainers } from '@/api/container'
+import { queryContainers } from '@/mock/container'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 
 const tableRef = ref<TableInstance>()
