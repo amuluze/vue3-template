@@ -1211,6 +1211,27 @@ mock.onGet('/api/v1/host/host_info').reply(200, {
     kernel_arch: 'x86_64',
 })
 
+mock.onGet('/api/v1/host/cpu_info').reply(200, {
+    percent: 1.8394648845187698,
+})
+
+mock.onGet('/api/v1/host/mem_info').reply(200, {
+    percent: 14.479194768503909,
+    total: 4114558976,
+    used: 595755008,
+})
+
+mock.onGet('/api/v1/host/disk_info').reply(200, {
+    info: [
+        {
+            device: 'vda1',
+            percent: 24.595693620879786,
+            total: 63089594368,
+            used: 14776897536,
+        },
+    ],
+})
+
 mock.onGet('/api/v1/container/version').reply(200, {
     Timestamp: '2024-11-24T04:58:23.866453078Z',
     docker_version: '26.1.4',

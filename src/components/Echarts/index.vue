@@ -23,8 +23,9 @@ const { setOptions, initCharts, echartsResize } = useEcharts(chartRef as Ref<HTM
 const store = useStore()
 
 watch(
-  () => props.option,
+  () => currentOptions,
   (newVal) => {
+    console.log('echarts new val: ', newVal)
     let targetOptions: EChartsOption = {}
     targetOptions = { ...newVal }
     setOptions(targetOptions)

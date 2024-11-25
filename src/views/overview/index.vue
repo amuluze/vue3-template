@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { HostInfo } from '@/interface/host'
-import { queryHostInfo } from '@/mock/host'
+import { queryCPUInfo, queryDiskInfo, queryHostInfo, queryMemInfo } from '@/mock/host'
 import type { DockerInfo } from '@/interface/container'
-import { queryDockerInfo } from '@/mock/container'
+import { queryContainers, queryDockerInfo, queryImages } from '@/mock/container'
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
+import { set } from 'lodash-es'
 
 const loading = ref(false)
 
@@ -19,13 +20,21 @@ async function getDockerInfo() {
   dockerInfo.value = data
 }
 
-onMounted(async () => {
-  await getHostInfo()
-  await getDockerInfo()
-})
+const containerCount = ref(0)
+const imageCount = ref(0)
+
+async function statisticContainer() {
+  const { data } = await queryContainers()
+  containerCount.value = data.total
+}
+
+async function statisticImage() {
+  const { data } = await queryImages()
+  imageCount.value = data.total
+}
 
 const option = {
-  title: [{
+  title: {
     text: 'CPU 使用率',
     x: '50%',
     y: 30,
@@ -36,12 +45,12 @@ const option = {
       fontWeight: 'bold',
       textAlign: 'center',
     },
-  }],
+  },
   series: [{
     type: 'liquidFill',
     radius: '50%',
     center: ['50%', '65%'], // 分别是 x、y 轴的便宜
-    data: [0.6],
+    data: [0.5],
     label: {
       normal: {
         color: '#045cc0',
@@ -81,6 +90,40 @@ const option = {
     },
   }],
 } as EChartsOption
+
+const cpuOption: EChartsOption = { ...option }
+async function renderCPU() {
+  const { data } = await queryCPUInfo()
+  set(cpuOption, 'title.text', 'CPU')
+  set(cpuOption, 'series[0].data', [Math.round(data.percent) / 100])
+  console.log('cpu option: ', cpuOption)
+}
+
+const memOption: EChartsOption = { ...option }
+async function renderMem() {
+  const { data } = await queryMemInfo()
+  set(memOption, 'title.text', 'Mem')
+  set(memOption, 'series[0].data', [Math.round(data.percent) / 100])
+  console.log('mem option: ', cpuOption)
+}
+
+const diskOption: EChartsOption = { ...option }
+async function renderDisk() {
+  const { data } = await queryDiskInfo()
+  set(diskOption, 'title.text', 'Disk')
+  set(diskOption, 'series[0].data', [Math.round(data.info[0].percent) / 100])
+  console.log('disk option: ', cpuOption)
+}
+
+onMounted(async () => {
+  await getHostInfo()
+  await getDockerInfo()
+  await statisticContainer()
+  await statisticImage()
+  await renderCPU()
+  await renderMem()
+  await renderDisk()
+})
 </script>
 
 <template>
@@ -97,10 +140,10 @@ const option = {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            容器数量
+                                            用户数量
                                         </div>
                                         <div class="am-description__number">
-                                            3
+                                            {{ containerCount }}
                                         </div>
                                     </div>
                                 </div>
@@ -118,10 +161,10 @@ const option = {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            镜像数量
+                                            角色数量
                                         </div>
                                         <div class="am-description__number">
-                                            5
+                                            {{ imageCount }}
                                         </div>
                                     </div>
                                 </div>
@@ -134,21 +177,21 @@ const option = {
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="option" />
+                            <Echarts :option="cpuOption" />
                         </el-card>
                     </div>
                 </el-col>
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="option" />
+                            <Echarts :option="memOption" />
                         </el-card>
                     </div>
                 </el-col>
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="option" />
+                            <Echarts :option="diskOption" />
                         </el-card>
                     </div>
                 </el-col>
