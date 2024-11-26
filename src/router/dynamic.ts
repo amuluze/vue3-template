@@ -48,6 +48,33 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                     icon: 'table',
                 },
             },
+            {
+                path: '/components/dialog',
+                name: 'dialog',
+                component: async () => import('@/views/components/dialog/index.vue'),
+                meta: {
+                    title: '弹窗',
+                    icon: 'common',
+                },
+            },
+            {
+                path: '/components/description',
+                name: 'description',
+                component: async () => import('@/views/components/description/index.vue'),
+                meta: {
+                    title: '描述',
+                    icon: 'common',
+                },
+            },
+            {
+                path: '/components/code',
+                name: 'code',
+                component: async () => import('@/views/components/code/index.vue'),
+                meta: {
+                    title: '代码编辑器',
+                    icon: 'code',
+                },
+            },
         ],
     },
     {

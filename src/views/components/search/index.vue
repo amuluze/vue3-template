@@ -1,25 +1,35 @@
 <script setup lang="ts">
+import { useTable } from '@/hooks/useTable.ts'
+import { queryUser } from '@/mock/account'
+import type { User } from '@/interface/account.ts'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import type { TableInstance } from 'element-plus'
+
 const searchModel = ref<Record<string, any>>({
-  username: '',
-  age: 0,
-  sex: 1,
-  address: '',
-  time: '',
+  username: 'admin',
 })
+
 const searchItems: Form.Item[] = [
   {
     type: 'input',
-    label: '用户名',
+    label: '用户名：',
     prop: 'username',
     value: '',
     placeholder: '请输入用户名称',
   },
   {
     type: 'input',
-    label: '年龄',
-    prop: 'age',
+    label: '备注：',
+    prop: 'remark',
     value: '',
-    placeholder: '请输入年龄',
+    placeholder: '备注',
+  },
+  {
+    type: 'input',
+    label: '状态：',
+    prop: 'status',
+    value: 0,
+    placeholder: '状态',
   },
   {
     type: 'select',
@@ -35,21 +45,100 @@ const searchItems: Form.Item[] = [
     },
   },
   {
-    type: 'input',
-    label: '地址',
-    prop: 'address',
-    value: '',
-    placeholder: '请输入地址',
-  },
-  {
     type: 'datepicker',
-    label: '档案时间',
-    prop: 'time',
+    label: '创建时间',
+    prop: 'created_at',
     value: '',
   },
 ]
+
+const tableRef = ref<TableInstance>()
+const tableSelection = ref<User[]>([])
+
+const selectable = (row: User) => !['1', '2'].includes(row.id)
+
+function handleSelectionChange(val: User[]) {
+  console.log('selection: ', val)
+  tableSelection.value = val
+}
+const { tableData, loading, pageable, search, handleCurrentChange, handleSizeChange, updateTotalParam } = useTable(queryUser, {}, true)
+
+onMounted(async () => {
+  await search()
+})
 </script>
 
 <template>
-    <search-form :items="searchItems" :model="searchModel" />
+    <search-form :items="searchItems" :model="searchModel" :search="updateTotalParam" />
+    <div class="am-container">
+        <div class="am-table">
+            <el-table
+                ref="tableRef"
+                v-loading="loading"
+                :data="tableData as User[]"
+                :header-cell-style="{ height: '45px', fontSize: '15px', color: '#000', background: '#fafafa' }"
+                height="100%"
+                border
+                @selection-change="handleSelectionChange"
+            >
+                <el-table-column type="selection" :selectable="selectable" width="55" />
+                <el-table-column prop="username" label="用户名" min-width="120" align="center" />
+                <el-table-column prop="remark" label="备注" min-width="160" align="center" />
+                <el-table-column prop="status" label="状态" min-width="100" align="center" sortable>
+                    <template #default="scope">
+                        <el-tag v-if="scope.row.status === 1" type="success">
+                            正常
+                        </el-tag>
+                        <el-tag v-else type="danger">
+                            禁用
+                        </el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column prop="created_at" label="创建时间" min-width="160" align="center" sortable />
+            </el-table>
+        </div>
+        <div class="am-pagination">
+            <el-config-provider :locale="zhCn">
+                <el-pagination
+                    v-model:current-page="pageable.page"
+                    :page-size="pageable.size"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :page-sizes="pageable.options"
+                    :total="pageable.total"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                />
+            </el-config-provider>
+        </div>
+    </div>
 </template>
+
+<style lang="scss" scoped>
+@include b(container) {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+
+  border: 1px solid #e5e7ed;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+@include b(table) {
+  // el-table 撑满
+  flex: 1;
+  max-height: 100%;
+  overflow: auto;
+  margin: 8px 0;
+}
+
+@include b(pagination) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+</style>

@@ -76,6 +76,7 @@ export function useTable(
      * @return void
      */
     const updateTotalParam = async (searchParams: { [key: string]: any }) => {
+        console.log('search params:', searchParams)
         Object.assign(state.totalParam, searchParams)
         await getList()
     }

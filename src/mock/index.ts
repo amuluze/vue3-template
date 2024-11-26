@@ -44,7 +44,7 @@ mock.onGet('/api/v1/user/user_query', {}).reply(200, {
         {
             id: '92efd4b6-781c-46ef-bf29-7b37d4a924d0',
             username: 'amprobe',
-            remark: '',
+            remark: '普通用户',
             isAdmin: 1,
             status: 1,
             roles: [
@@ -62,7 +62,7 @@ mock.onGet('/api/v1/user/user_query', {}).reply(200, {
         {
             id: 'e9c748f9-c8ae-434b-a9c9-38b8aecd2ae3',
             username: 'admin',
-            remark: '',
+            remark: '管理员',
             isAdmin: 1,
             status: 1,
             roles: [

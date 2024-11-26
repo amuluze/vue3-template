@@ -11,6 +11,7 @@ import EditUser from '@/views/user/user/components/EditUser.vue'
 const searchModel = ref<Record<string, any>>({
   username: '',
 })
+
 const searchItems: Form.Item[] = [
   {
     type: 'input',
@@ -21,7 +22,7 @@ const searchItems: Form.Item[] = [
   },
 ]
 
-const { tableData, loading, search } = useTable(queryUser, {}, false)
+const { tableData, loading, search, updateTotalParam } = useTable(queryUser, {}, false)
 onMounted(async () => {
   await search()
 })
@@ -43,7 +44,7 @@ const editUser = useCommandComponent(EditUser)
 
 <!-- 表格使用的完整实例 -->
 <template>
-    <search-form :items="searchItems" :model="searchModel" />
+    <search-form :items="searchItems" :model="searchModel" :search="updateTotalParam" />
     <div class="am-container">
         <div class="am-table-operator">
             <div class="am-table-operator__left">

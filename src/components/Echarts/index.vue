@@ -24,11 +24,11 @@ const store = useStore()
 
 watch(
   () => currentOptions,
-  (newVal) => {
-    console.log('echarts new val: ', newVal)
-    let targetOptions: EChartsOption = {}
-    targetOptions = { ...newVal }
-    setOptions(targetOptions)
+  (currentOptions) => {
+    console.log('echarts new val: ', currentOptions)
+    // let targetOptions: EChartsOption = {}
+    // targetOptions = { ...newVal }
+    setOptions(currentOptions.value)
   },
   {
     deep: true,

@@ -5,8 +5,9 @@ import type { DockerInfo } from '@/interface/container'
 import { queryContainers, queryDockerInfo, queryImages } from '@/mock/container'
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
 import { set } from 'lodash-es'
+import { cpuOption, diskOption, memOption } from '@/config/echarts.ts'
 
-const loading = ref(false)
+const loading = ref(true)
 
 const hostInfo = ref<HostInfo>()
 async function getHostInfo() {
@@ -33,86 +34,28 @@ async function statisticImage() {
   imageCount.value = data.total
 }
 
-const option = {
-  title: {
-    text: 'CPU 使用率',
-    x: '50%',
-    y: 30,
-    textAlign: 'center',
-    textStyle: {
-      color: '#363535',
-      fontSize: '16px',
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
-  },
-  series: [{
-    type: 'liquidFill',
-    radius: '50%',
-    center: ['50%', '65%'], // 分别是 x、y 轴的便宜
-    data: [0.5],
-    label: {
-      normal: {
-        color: '#045cc0',
-        insideColor: '#045cc0',
-        textStyle: {
-          fontSize: '20px',
-          fontWeight: 'bold',
-        },
-      },
-    },
-    color: [{
-      type: 'linear',
-      x: 0,
-      y: 0,
-      x2: 0,
-      y2: 1,
-      colorStops: [{
-        offset: 1,
-        color: ['#fff'],
-      }, {
-        offset: 0,
-        color: ['#6a7feb'],
-      }],
-      global: false,
-    }],
-    backgroundStyle: {
-      borderWidth: 1,
-      color: 'transparent',
-    },
-    outline: {
-      show: true,
-      borderDistance: 8, // 内层白圈的宽度
-      itemStyle: { // 最外层圈的颜色的宽度
-        borderColor: '#6a7feb',
-        borderWidth: 4,
-      },
-    },
-  }],
-} as EChartsOption
-
-const cpuOption: EChartsOption = { ...option }
+const cpuOptionData: EChartsOption = reactive<EChartsOption>(cpuOption) as EChartsOption
 async function renderCPU() {
   const { data } = await queryCPUInfo()
   set(cpuOption, 'title.text', 'CPU')
   set(cpuOption, 'series[0].data', [Math.round(data.percent) / 100])
-  console.log('cpu option: ', cpuOption)
+  console.log('cpu option: ', cpuOptionData)
 }
 
-const memOption: EChartsOption = { ...option }
+const memOptionData: EChartsOption = reactive<EChartsOption>(memOption) as EChartsOption
 async function renderMem() {
   const { data } = await queryMemInfo()
   set(memOption, 'title.text', 'Mem')
   set(memOption, 'series[0].data', [Math.round(data.percent) / 100])
-  console.log('mem option: ', cpuOption)
+  console.log('mem option: ', memOptionData)
 }
 
-const diskOption: EChartsOption = { ...option }
+const diskOptionData: EChartsOption = reactive<EChartsOption>(diskOption) as EChartsOption
 async function renderDisk() {
   const { data } = await queryDiskInfo()
   set(diskOption, 'title.text', 'Disk')
   set(diskOption, 'series[0].data', [Math.round(data.info[0].percent) / 100])
-  console.log('disk option: ', cpuOption)
+  console.log('disk option: ', diskOptionData)
 }
 
 onMounted(async () => {
@@ -123,6 +66,7 @@ onMounted(async () => {
   await renderCPU()
   await renderMem()
   await renderDisk()
+  loading.value = false
 })
 </script>
 
@@ -140,7 +84,7 @@ onMounted(async () => {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            用户数量
+                                            容器数量
                                         </div>
                                         <div class="am-description__number">
                                             {{ containerCount }}
@@ -161,7 +105,7 @@ onMounted(async () => {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            角色数量
+                                            镜像数量
                                         </div>
                                         <div class="am-description__number">
                                             {{ imageCount }}
@@ -177,21 +121,27 @@ onMounted(async () => {
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="cpuOption" />
+                            <el-skeleton :loading="loading" animated>
+                                <Echarts :option="cpuOptionData" />
+                            </el-skeleton>
                         </el-card>
                     </div>
                 </el-col>
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="memOption" />
+                            <el-skeleton :loading="loading" animated>
+                                <Echarts :option="memOptionData" />
+                            </el-skeleton>
                         </el-card>
                     </div>
                 </el-col>
                 <el-col :xl="8" :lg="8" :md="8" :sm="8" :xs="24">
                     <div class="am-chart">
                         <el-card shadow="never">
-                            <Echarts :option="diskOption" />
+                            <el-skeleton :loading="loading" animated>
+                                <Echarts :option="diskOptionData" />
+                            </el-skeleton>
                         </el-card>
                     </div>
                 </el-col>

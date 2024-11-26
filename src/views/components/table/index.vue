@@ -4,6 +4,10 @@ import { useTable } from '@/hooks/useTable.ts'
 import { queryUser } from '@/mock/account'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import type { TableInstance } from 'element-plus'
+import useCommandComponent from '@/hooks/useCommandComponent.ts'
+import AddUser from '@/views/components/table/components/AddUser.vue'
+import DeleteUser from '@/views/components/table/components/DeleteUser.vue'
+import EditUser from '@/views/components/table/components/EditUser.vue'
 
 const tableRef = ref<TableInstance>()
 const tableSelection = ref<User[]>([])
@@ -16,6 +20,11 @@ function handleSelectionChange(val: User[]) {
 }
 
 const { tableData, pageable, loading, search, handleCurrentChange, handleSizeChange } = useTable(queryUser)
+
+const addUser = useCommandComponent(AddUser)
+const deleteUser = useCommandComponent(DeleteUser)
+const editUser = useCommandComponent(EditUser)
+
 onMounted(async () => {
   await search()
 })
@@ -25,11 +34,11 @@ onMounted(async () => {
     <div class="am-container">
         <div class="am-table-operator">
             <div class="am-table-operator__left">
-                <el-button type="primary" plain>
+                <el-button type="primary" plain @click="addUser({ title: '添加用户', update: search })">
                     <svg-icon icon-class="add" style="margin-right: 4px" />
                     新增用户
                 </el-button>
-                <el-button type="primary" plain>
+                <el-button type="primary" plain @click="deleteUser({ title: '批量删除', ids: [...tableSelection.map(item => item.id)], update: search })">
                     <svg-icon icon-class="delete" style="margin-right: 4px" />
                     批量删除
                 </el-button>
@@ -61,12 +70,12 @@ onMounted(async () => {
                 </el-table-column>
                 <el-table-column prop="created_at" label="创建时间" min-width="160" align="center" sortable />
                 <el-table-column label="操作" width="200" fixed="right" align="center">
-                    <template #default="">
-                        <el-button type="primary" size="small" text>
+                    <template #default="scope">
+                        <el-button type="primary" size="small" text @click="editUser({ title: '编辑用户', entity: scope.row, update: search })">
                             <svg-icon icon-class="edit" style="margin-right: 4px" />
                             编辑
                         </el-button>
-                        <el-button type="danger" size="small" text>
+                        <el-button type="danger" size="small" text @click="deleteUser({ title: '删除用户', ids: [scope.row.id], update: search })">
                             <svg-icon icon-class="delete" style="margin-right: 4px" />
                             删除
                         </el-button>

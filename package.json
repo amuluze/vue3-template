@@ -27,6 +27,7 @@
     "devDependencies": {
         "@antfu/eslint-config": "^3.8.0",
         "@iconify-json/ep": "^1.1.15",
+        "@types/lodash-es": "^4.17.12",
         "@types/node": "^22.8.7",
         "@vitejs/plugin-vue": "^5.1.4",
         "axios-mock-adapter": "^2.1.0",
