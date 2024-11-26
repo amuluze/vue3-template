@@ -47,7 +47,6 @@ async function renderMem() {
   const { data } = await queryMemInfo()
   set(memOption, 'title.text', 'Mem')
   set(memOption, 'series[0].data', [Math.round(data.percent) / 100])
-  console.log('mem option: ', memOptionData)
 }
 
 const diskOptionData: EChartsOption = reactive<EChartsOption>(diskOption) as EChartsOption
@@ -55,7 +54,6 @@ async function renderDisk() {
   const { data } = await queryDiskInfo()
   set(diskOption, 'title.text', 'Disk')
   set(diskOption, 'series[0].data', [Math.round(data.info[0].percent) / 100])
-  console.log('disk option: ', diskOptionData)
 }
 
 onMounted(async () => {
