@@ -126,6 +126,16 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         ],
     },
     {
+        path: '/terminal',
+        name: 'terminal',
+        component: async () => import('@/views/terminal/index.vue'),
+        meta: {
+            title: '终端',
+            icon: 'terminal',
+            show: true,
+        },
+    },
+    {
         path: '/user',
         name: 'user-manage',
         redirect: '/user/user',

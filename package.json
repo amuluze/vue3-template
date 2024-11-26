@@ -12,6 +12,10 @@
         "lint:fix": "eslint . --fix"
     },
     "dependencies": {
+        "@xterm/addon-attach": "^0.11.0",
+        "@xterm/addon-fit": "^0.10.0",
+        "@xterm/xterm": "^5.5.0",
+        "ace-builds": "^1.36.5",
         "axios": "1.7.7",
         "echarts": "^5.5.0",
         "echarts-liquidfill": "^3.1.0",
@@ -20,9 +24,11 @@
         "mitt": "^3.0.1",
         "pinia": "^2.1.7",
         "pinia-plugin-persistedstate": "^3.2.1",
+        "reconnecting-websocket": "^4.4.0",
         "terser": "^5.36.0",
         "vue": "^3.5.12",
-        "vue-router": "^4.3.0"
+        "vue-router": "^4.3.0",
+        "vue3-ace-editor": "^2.2.4"
     },
     "devDependencies": {
         "@antfu/eslint-config": "^3.8.0",
