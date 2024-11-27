@@ -11,10 +11,10 @@ import ReconnectingWebSocket from 'reconnecting-websocket'
 
 class CustomReconnectingWebSocket extends ReconnectingWebSocket {
     constructor(url: string, protocols?: string | string[], options?: any) {
-        const location: Location = window.location
-        const uri = `${location.host}/${url}`
-        url = /https/.test(location.protocol) ? `wss://${uri}` : `ws://${uri}`
-        // url = 'ws://101.42.246.113:8000/ws'
+        // const location: Location = window.location
+        // const uri = `${location.host}/${url}`
+        // url = /https/.test(location.protocol) ? `wss://${uri}` : `ws://${uri}`
+        url = 'ws://127.0.0.1:9000/terminal'
         super(url, protocols, {
             ...options,
             connectionTimeout: 1000,

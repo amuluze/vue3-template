@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Terminal } from '@xterm/xterm'
 import { FitAddon } from '@xterm/addon-fit'
+import '@xterm/xterm/css/xterm.css'
 
 import CustomReconnectingWebSocket from '@/components/Websocket'
 
@@ -24,29 +25,31 @@ function initTerminal() {
   setTimeout(() => {
     fitAddon.fit()
   }, 50)
-  window.addEventListener('resize', fitAddon.fit)
+  // window.addEventListener('resize', fitAddon.fit)
   term.focus()
 
-  term.onData((key) => {
-    ws!.send(JSON.stringify({ Type: 0, Data: key }))
+  term.onData((data) => {
+    console.log('term.onData:', data)
+    ws!.send(data)
   })
-  term.onBinary((data) => {
-    ws!.send(JSON.stringify({ Type: 0, Data: data }))
-  })
-  term.onResize((data) => {
-    ws!.send(JSON.stringify({ Type: 2, Data: { Cols: data.cols, Rows: data.rows } }))
-  })
+  // term.onBinary((data) => {
+  //   ws!.send(JSON.stringify({ Type: 0, Data: data }))
+  // })
+  // term.onResize((data) => {
+  //   ws!.send(JSON.stringify({ Type: 2, Data: { Cols: data.cols, Rows: data.rows } }))
+  // })
 }
 
 onMounted(() => {
   ws = new CustomReconnectingWebSocket('ws')
-  ws.onopen = () => {
-    ping = setInterval(() => {
-      ws!.send(JSON.stringify({ type: 'ping' }))
-    }, 30000)
-  }
+  // ws.onopen = () => {
+  //   ping = setInterval(() => {
+  //     ws!.send(JSON.stringify({ type: 'ping' }))
+  //   }, 30000)
+  // }
   ws.onmessage = (msg) => {
-    console.log(msg.data)
+    console.log('on message: ', msg.data)
+    term!.write(msg.data)
   }
   initTerminal()
 })
@@ -63,14 +66,32 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <el-card>
-        <div id="terminal" class="console" />
-    </el-card>
+    <div class="am-container">
+        <el-card>
+            <div id="terminal" class="am-console" />
+        </el-card>
+    </div>
 </template>
 
 <style scoped lang="scss">
-.console {
-  min-height: calc(100vh - 300px);
+@include b(container) {
+  height: 100%;
+  width: 100%;
+
+  .el-card {
+    height: 100%;
+
+    :deep(.el-card__body) {
+      display: flex;
+      flex-direction: column;
+      height: 100% !important;
+      padding: 0;
+    }
+  }
+}
+
+@include b(console) {
+  height: 100%;
 
   :deep(.terminal) {
     padding: 10px;
