@@ -7,54 +7,33 @@
  * Websocket 封装
  * @ url： 请求地址       类型： string     默认： ''      备注： 'web/msg'
  */
+import ReconnectingWebSocket from 'reconnecting-websocket'
 
-export class Websocket {
-    url: string
-    ws: WebSocket
-    close: Function
-    send: Function
-    constructor(
-        url: string,
-        onOpen: ((ws: Websocket, ev: Event) => any) | null = null,
-        onMessage: ((ws: Websocket, ev: MessageEvent) => any) | null = null,
-        onError: ((ws: Websocket, ev: Event) => any) | null = null,
-        onClose: ((ws: Websocket, ev: Event) => any) | null = null,
-    ) {
+class CustomReconnectingWebSocket extends ReconnectingWebSocket {
+    constructor(url: string, protocols?: string | string[], options?: any) {
         const location: Location = window.location
-        url = `${location.host}/${url}`
-        this.url = /https/.test(location.protocol) ? `wss://${url}` : `ws://${url}`
-        // this.url = 'ws://101.42.246.113:8000/ws'
-        console.log('----->', this.url)
-        this.ws = new WebSocket(this.url)
-        this.close = (): void => {
-            this.ws.close()
-        }
-        this.send = (msg: string): void => {
-            this.ws.send(msg)
-        }
+        const uri = `${location.host}/${url}`
+        url = /https/.test(location.protocol) ? `wss://${uri}` : `ws://${uri}`
+        // url = 'ws://101.42.246.113:8000/ws'
+        super(url, protocols, {
+            ...options,
+            connectionTimeout: 1000,
+            maxRetries: 10,
+        })
 
-        this.ws.onopen = (ev: Event): any => {
-            if (onOpen !== null) {
-                onOpen(this, ev)
-            }
+        this.onopen = (event): void => {
+            console.log('websocket open', event)
         }
-
-        this.ws.onmessage = (ev: MessageEvent): any => {
-            if (onMessage !== null) {
-                onMessage(this, ev)
-            }
+        this.onclose = (event) => {
+            console.log('websocket close', event)
         }
-
-        this.ws.onerror = (ev: Event): any => {
-            if (onError != null) {
-                onError(this, ev)
-            }
+        this.onmessage = (event) => {
+            console.log('websocket message', event)
         }
-
-        this.ws.onclose = (ev: Event): any => {
-            if (onClose !== null) {
-                onClose(this, ev)
-            }
+        this.onerror = (event) => {
+            console.log('websocket error', event)
         }
     }
 }
+
+export default CustomReconnectingWebSocket

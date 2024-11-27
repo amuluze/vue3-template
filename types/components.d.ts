@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     404: typeof import('./../src/components/Error/404.vue')['default']
     CodeEditor: typeof import('./../src/components/CodeEditor/index.vue')['default']
-    Content: typeof import('@/components/ContentWrap/index.vue')['default']
     ContentWrap: typeof import('./../src/components/ContentWrap/index.vue')['default']
     Echarts: typeof import('./../src/components/Echarts/index.vue')['default']
     ElAlert: typeof import('element-plus/es')['ElAlert']
@@ -43,7 +42,6 @@ declare module 'vue' {
     ElScrollbar: typeof import('element-plus/es')['ElScrollbar']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
-    ElSpace: typeof import('element-plus/es')['ElSpace']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     ElSwitch: typeof import('element-plus/es')['ElSwitch']
     ElTable: typeof import('element-plus/es')['ElTable']
