@@ -126,6 +126,70 @@ const option: EChartsOption = {
     },
   ],
 }
+
+const basicOptions: EChartsOption = {
+  xAxis: {
+    type: 'category',
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      data: [120, 200, 150, 80, 70, 110, 130],
+      type: 'bar',
+    },
+  ],
+}
+
+const singleOption: EChartsOption = {
+  xAxis: {
+    type: 'category',
+    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+  },
+  yAxis: {
+    type: 'value',
+  },
+  series: [
+    {
+      data: [
+        120,
+        {
+          value: 200,
+          itemStyle: {
+            color: '#a90000',
+          },
+        },
+        150,
+        80,
+        70,
+        110,
+        130,
+      ],
+      type: 'bar',
+    },
+  ],
+}
+
+const datasetOption: EChartsOption = {
+  legend: {},
+  tooltip: {},
+  dataset: {
+    source: [
+      ['product', '2015', '2016', '2017'],
+      ['Matcha Latte', 43.3, 85.8, 93.7],
+      ['Milk Tea', 83.1, 73.4, 55.1],
+      ['Cheese Cocoa', 86.4, 65.2, 82.5],
+      ['Walnut Brownie', 72.4, 53.9, 39.1],
+    ],
+  },
+  xAxis: { type: 'category' },
+  yAxis: {},
+  // Declare several bar series, each will be mapped
+  // to a column of dataset.source by default.
+  series: [{ type: 'bar' }, { type: 'bar' }, { type: 'bar' }],
+}
 </script>
 
 <template>
@@ -135,7 +199,7 @@ const option: EChartsOption = {
                 <el-skeleton :loading="loading" animated>
                     <div class="am-column-content">
                         <el-card shadow="hover">
-                            <Echarts :option="option" />
+                            <Echarts :option="basicOptions" />
                         </el-card>
                     </div>
                 </el-skeleton>
@@ -144,7 +208,7 @@ const option: EChartsOption = {
                 <el-skeleton :loading="loading" animated>
                     <div class="am-column-content">
                         <el-card shadow="hover">
-                            <Echarts :option="option" />
+                            <Echarts :option="singleOption" />
                         </el-card>
                     </div>
                 </el-skeleton>
@@ -153,7 +217,7 @@ const option: EChartsOption = {
                 <el-skeleton :loading="loading" animated>
                     <div class="am-column-content">
                         <el-card shadow="hover">
-                            <Echarts :option="option" />
+                            <Echarts :option="datasetOption" />
                         </el-card>
                     </div>
                 </el-skeleton>

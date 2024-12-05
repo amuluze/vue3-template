@@ -8,9 +8,6 @@ function saveContent() {
 <template>
     <div class="am-container">
         <code-editor v-model:content="content" default-height="600px" />
-        <el-button plain @click="saveContent">
-            保存
-        </el-button>
     </div>
 </template>
 
