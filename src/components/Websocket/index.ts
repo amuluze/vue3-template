@@ -14,7 +14,6 @@ class CustomReconnectingWebSocket extends ReconnectingWebSocket {
         const location: Location = window.location
         const uri = `${location.host}/${url}`
         url = /https/.test(location.protocol) ? `wss://${uri}` : `ws://${uri}`
-        // url = 'ws://101.42.246.113:8000/ws'
         super(url, protocols, {
             ...options,
             connectionTimeout: 1000,

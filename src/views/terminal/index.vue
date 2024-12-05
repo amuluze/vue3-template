@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Terminal } from '@xterm/xterm'
 import { FitAddon } from '@xterm/addon-fit'
+import '@xterm/xterm/css/xterm.css'
 
 import CustomReconnectingWebSocket from '@/components/Websocket'
 
@@ -16,7 +17,10 @@ function initTerminal() {
     cursorStyle: 'block',
     scrollback: 1000,
     theme: {
-      background: '#000',
+      background: 'var(--xterm-bg-color)',
+      foreground: 'var(--xterm-fg-color)',
+      cursor: 'var(--xterm-cursor-color)',
+      selectionBackground: 'var(--xterm-selection-bg-color)',
     },
   })
   term.loadAddon(fitAddon)
@@ -27,26 +31,21 @@ function initTerminal() {
   window.addEventListener('resize', fitAddon.fit)
   term.focus()
 
-  term.onData((key) => {
-    ws!.send(JSON.stringify({ Type: 0, Data: key }))
-  })
-  term.onBinary((data) => {
-    ws!.send(JSON.stringify({ Type: 0, Data: data }))
-  })
-  term.onResize((data) => {
-    ws!.send(JSON.stringify({ Type: 2, Data: { Cols: data.cols, Rows: data.rows } }))
+  term.onData((data) => {
+    ws!.send(data)
   })
 }
 
 onMounted(() => {
-  ws = new CustomReconnectingWebSocket('ws')
+  ws = new CustomReconnectingWebSocket('terminal')
   ws.onopen = () => {
     ping = setInterval(() => {
-      ws!.send(JSON.stringify({ type: 'ping' }))
+      ws!.send('ping')
     }, 30000)
   }
   ws.onmessage = (msg) => {
     console.log(msg.data)
+    term!.write(msg.data)
   }
   initTerminal()
 })
@@ -63,14 +62,16 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <el-card>
-        <div id="terminal" class="console" />
-    </el-card>
+    <div class="am-container">
+        <el-card shadow="never">
+            <div id="terminal" class="am-console" />
+        </el-card>
+    </div>
 </template>
 
 <style scoped lang="scss">
-.console {
-  min-height: calc(100vh - 300px);
+@include b(console) {
+  min-height: 100%;
 
   :deep(.terminal) {
     padding: 10px;

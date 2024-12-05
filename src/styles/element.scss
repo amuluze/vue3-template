@@ -1,3 +1,4 @@
+/* el-drawer */
 .el-drawer {
   .el-drawer__header {
     padding: 16px 20px;
@@ -31,7 +32,23 @@
   }
 }
 
-// select 样式
+/*  el-select */
 .el-select {
     width: 100%;
+}
+
+/* el-card */
+.el-card {
+    height: 100%;
+    :deep(.el-card__body) {
+        display: flex;
+        flex-direction: column;
+        height: 100% !important;
+    }
+}
+
+/* .el-divider */
+.el-divider {
+    margin: 4px;
+    width: 90%;
 }

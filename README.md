@@ -8,10 +8,10 @@
 - [ ] 国际化 `i18n`
 - [ ] 组件 `components`
     - [x] SVG 图标 `svg-icon`
-    - [ ] 可视化 `echarts`
-    - [ ] 表格 `el-table`
-    - [ ] 表单 `el-form`
-    - [ ] 弹窗 `el-dialog`
-    - [ ] 通知 `el-notification`
-    - [ ] 消息弹窗 `Message`
+    - [x] 可视化 `echarts`
+    - [x] 表格 `el-table`
+    - [x] 表单 `el-form`
+    - [x] 弹窗 `el-dialog`
+    - [x] 通知 `el-notification`
+    - [x] 消息弹窗 `Message`
     
