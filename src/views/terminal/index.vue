@@ -71,11 +71,11 @@ onUnmounted(() => {
 
 <style scoped lang="scss">
 @include b(console) {
-  min-height: 100%;
+  height: 100%;
 
-  :deep(.terminal) {
-    padding: 10px;
-  }
+  //:deep(.terminal) {
+  //  padding: 10px;
+  //}
 
   :deep(.xterm-viewport) {
     border-radius: 5px;

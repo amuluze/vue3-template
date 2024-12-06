@@ -79,6 +79,10 @@ export default defineConfig({
             scss: {
                 api: 'modern-compiler',
                 additionalData: '@use "@/styles/bem.scss" as *;',
+                anotherConfig: {
+                    api: 'another-compiler',
+                    additionalData: '@use "@/styles/amuluze.scss" as *;',
+                },
             },
         },
     },

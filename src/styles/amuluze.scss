@@ -2,15 +2,19 @@
 @include b(container) {
     display: flex;
     flex-direction: column;
-
-    height: 100%;
+    justify-content: space-between;
+    height: calc(100vh - 80px);
     width: 100%;
-    padding: 16px;
-
     border: 1px solid #e5e7ed;
     border-radius: 4px;
-
     background-color: #fff;
+
+    .el-card {
+        height: 100%;
+        :deep(.el-card__body) {
+            height: 100%;
+        }
+    }
 }
 
 // el-table 撑满
