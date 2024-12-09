@@ -16,6 +16,7 @@ declare namespace Form {
       | 'email'
       | 'pattern'
       | 'any'
+      | 'datetime'
 
     type Rule = Partial<Record<string, Arrayable<RuleItem>>>
 
@@ -36,6 +37,8 @@ declare namespace Form {
       | 'password'
       | 'select'
       | 'datepicker'
+      | 'timepicker'
+      | 'datetimerange'
       | 'radio'
       | 'checkbox'
       | 'textarea'

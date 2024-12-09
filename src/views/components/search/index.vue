@@ -25,6 +25,12 @@ const searchItems: Form.Item[] = [
     placeholder: '备注',
   },
   {
+    type: 'datetimerange',
+    label: '创建时间',
+    prop: 'created_at',
+    value: [],
+  },
+  {
     type: 'input',
     label: '状态：',
     prop: 'status',

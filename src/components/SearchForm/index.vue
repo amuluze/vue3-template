@@ -81,8 +81,17 @@ onMounted(() => {
                         <!-- 日期选择器 -->
                         <el-date-picker
                             v-if="item.type === 'datepicker'"
-                            v-bind="item.options"
                             v-model="searchForm[item.prop]"
+                        />
+
+                        <!-- 时间范围选择器 -->
+                        <el-date-picker
+                            v-if="item.type === 'datetimerange'"
+                            v-model="searchForm[item.prop]"
+                            :type="item.type"
+                            range-separator="To"
+                            start-placeholder="Start date"
+                            end-placeholder="End date"
                         />
                     </el-form-item>
                 </el-col>
