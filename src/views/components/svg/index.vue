@@ -22,15 +22,6 @@
 </template>
 
 <style scoped lang="scss">
-// el-card 撑满布局
-.el-card {
-  height: 100%;
-  :deep(.el-card__body) {
-    display: flex;
-    flex-direction: column;
-    height: 100% !important;
-  }
-}
 @include b(svg) {
   display: flex;
   flex-direction: row;

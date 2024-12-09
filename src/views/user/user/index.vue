@@ -103,66 +103,8 @@ const editUser = useCommandComponent(EditUser)
                 </el-table-column>
             </el-table>
         </div>
-        <!--        <div class="am-pagination"> -->
-        <!--            <el-config-provider :locale="zhCn"> -->
-        <!--                <el-pagination -->
-        <!--                    v-model:current-page="pageable.page" -->
-        <!--                    :page-size="pageable.size" -->
-        <!--                    layout="total, sizes, prev, pager, next, jumper" -->
-        <!--                    :page-sizes="pageable.options" -->
-        <!--                    :total="pageable.total" -->
-        <!--                    @size-change="handleSizeChange" -->
-        <!--                    @current-change="handleCurrentChange" -->
-        <!--                /> -->
-        <!--            </el-config-provider> -->
-        <!--        </div> -->
     </div>
 </template>
 
 <style scoped lang="scss">
-@include b(container) {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  height: 100%;
-  width: 100%;
-  padding: 16px;
-
-  border: 1px solid #e5e7ed;
-  border-radius: 4px;
-  background-color: #fff;
-
-  //// el-card 撑满布局
-  //.el-card {
-  //  height: 100%;
-  //  :deep(.el-card__body) {
-  //    display: flex;
-  //    flex-direction: column;
-  //    height: 100% !important;
-  //  }
-  //}
-}
-
-@include b(table-operator) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 36px;
-  width: 100%;
-}
-
-@include b(table) {
-  // el-table 撑满
-  flex: 1;
-  max-height: 100%;
-  overflow: auto;
-  margin: 8px 0;
-}
-
-@include b(pagination) {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 </style>

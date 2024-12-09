@@ -114,31 +114,4 @@ onMounted(async () => {
 </template>
 
 <style lang="scss" scoped>
-@include b(container) {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
-  height: 100%;
-  width: 100%;
-  padding: 16px;
-
-  border: 1px solid #e5e7ed;
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-@include b(table) {
-  // el-table 撑满
-  flex: 1;
-  max-height: 100%;
-  overflow: auto;
-  margin: 8px 0;
-}
-
-@include b(pagination) {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
 </style>

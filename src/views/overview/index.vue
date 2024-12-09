@@ -69,7 +69,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <el-row :gutter="8" justify="space-between" class="am-container">
+    <el-row :gutter="8" justify="space-between">
         <el-col :lg="16">
             <el-row :gutter="8">
                 <el-col :xl="12" :lg="12" :md="12" :sm="12" :xs="24">
@@ -179,9 +179,6 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-@include b(container) {
-  overflow: auto;
-}
 @include b(panel) {
   display: flex;
   flex-direction: row;

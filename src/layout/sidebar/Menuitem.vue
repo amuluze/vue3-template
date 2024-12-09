@@ -16,28 +16,22 @@ function handleClickMenu(item: RouteRecordRaw) {
         <el-sub-menu v-if="item.children?.length" :index="item.path">
             <template #title>
                 <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />
-                <span class="sle">{{ item.meta?.title }}</span>
+                <span class="am-sle">{{ item.meta?.title }}</span>
             </template>
             <menuitem :items="item.children" />
         </el-sub-menu>
         <el-menu-item v-else :index="item.path" @click="handleClickMenu(item)">
             <svg-icon v-if="item.meta && item.meta.icon" :icon-class="item.meta.icon as string" />
             <template #title>
-                <span class="sle">{{ item.meta?.title }}</span>
+                <span class="am-sle">{{ item.meta?.title }}</span>
             </template>
         </el-menu-item>
     </template>
 </template>
 
 <style scoped lang="scss">
-@include b(menuitem) {
-  .svg-icon {
-    margin-right: 8px;
-  }
-}
-
 /* 文字单行省略号 */
-.sle {
+@include b(sle) {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

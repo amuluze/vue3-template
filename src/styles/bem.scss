@@ -34,3 +34,63 @@ $modifier-sel: '--' !default;
     }
   }
 }
+
+@include b(container) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    height: 100%;
+    width: 100%;
+
+    border: 1px solid #e5e7ed;
+    border-radius: 4px;
+    background-color: #fff;
+    padding: 16px;
+
+    .el-card {
+        height: 100%;
+        :deep(.el-card__body) {
+            height: 100%;
+        }
+    }
+}
+
+// el-table 撑满
+@include b(table) {
+    flex: 1;
+    max-height: 100%;
+    overflow: auto;
+    margin: 8px 0;
+}
+
+@include b(table-operator) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    width: 100%;
+}
+
+@include b(pagination) {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@include b(description) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    @include e(text) {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    @include e(number) {
+        font-size: 32px;
+        font-weight: bold;
+    }
+}

@@ -77,24 +77,4 @@ onMounted(async () => {
 </template>
 
 <style scoped lang="scss">
-@include b(container) {
-  display: flex;
-  flex-direction: column;
-
-  height: 100%;
-  width: 100%;
-  padding: 16px;
-
-  border: 1px solid #e5e7ed;
-  border-radius: 4px;
-  background-color: #fff;
-}
-
-@include b(table) {
-  // el-table 撑满
-  flex: 1;
-  max-height: 100%;
-  overflow: auto;
-  margin: 8px 0;
-}
 </style>

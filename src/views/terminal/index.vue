@@ -73,10 +73,6 @@ onUnmounted(() => {
 @include b(console) {
   height: 100%;
 
-  //:deep(.terminal) {
-  //  padding: 10px;
-  //}
-
   :deep(.xterm-viewport) {
     border-radius: 5px;
   }

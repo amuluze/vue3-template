@@ -95,12 +95,4 @@ const menus = computed(() => {
   border-right: 1px solid;
   border-color: #e9e9ea;
 }
-
-/* 文字单行省略号 */
-.sle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-left: 8px;
-}
 </style>
