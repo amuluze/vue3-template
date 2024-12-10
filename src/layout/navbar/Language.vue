@@ -19,15 +19,17 @@ function changeLanguage(lang: string) {
 
 <template>
     <el-dropdown class="mr-4" trigger="click" @command="changeLanguage">
-        <svg-icon icon-class="translate" />
+        <svg-icon size="1.2rem" icon-class="translate" />
         <template #dropdown>
-            <el-dropdown-menu
-                v-for="item in languageList"
-                :key="item.value"
-                :command="item.value"
-                :disabled="language === item.value"
-            >
-                {{ item.label }}
+            <el-dropdown-menu>
+                <el-dropdown-item
+                    v-for="item in languageList"
+                    :key="item.value"
+                    :command="item.value"
+                    :disabled="language === item.value"
+                >
+                    {{ item.label }}
+                </el-dropdown-item>
             </el-dropdown-menu>
         </template>
     </el-dropdown>

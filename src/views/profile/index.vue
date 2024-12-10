@@ -27,10 +27,10 @@ async function getProfile() {
                 <el-tag>{{ profile?.username }}</el-tag>
             </el-descriptions-item>
             <el-descriptions-item label="状态">
-                <el-tag>{{ profile?.status == '1' ? '启用' : '禁用' }}</el-tag>
+                <el-tag>{{ profile?.status === '1' ? '启用' : '禁用' }}</el-tag>
             </el-descriptions-item>
             <el-descriptions-item label="角色">
-                <el-tag>{{ profile?.is_admin == 1 ? '管理员' : '普通用户' }}</el-tag>
+                <el-tag>{{ profile?.is_admin === 1 ? '管理员' : '普通用户' }}</el-tag>
             </el-descriptions-item>
         </el-descriptions>
     </el-card>

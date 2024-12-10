@@ -23,7 +23,7 @@ const updatePasswordDraw = useCommandComponent(UpdatePassword)
 </script>
 
 <template>
-    <el-dropdown>
+    <el-dropdown trigger="click" placement="bottom">
         <el-avatar size="small">
             <i-ep-user />
         </el-avatar>

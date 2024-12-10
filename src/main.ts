@@ -4,11 +4,13 @@ import router from '@/router'
 import { setupStore } from '@/store/setup'
 import 'virtual:uno.css'
 import 'virtual:svg-icons-register'
+
+import '@/styles/index.scss'
 // element+ 默认主题
 import 'element-plus/dist/index.css'
 // element+ 内置黑暗主题
 import 'element-plus/theme-chalk/dark/css-vars.css'
-import '@/styles/index.scss'
+
 import registerDirective from '@/directive'
 import i18n from '@/languages'
 

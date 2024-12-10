@@ -7,9 +7,7 @@ import Language from '@/layout/navbar/Language.vue'
 
 <template>
     <div class="am-navbar">
-        <div>
-            <Breadcrumb style="cursor: pointer" />
-        </div>
+        <Breadcrumb style="cursor: pointer" />
         <div class="am-navbar__right">
             <Language />
             <ThemeChange />
