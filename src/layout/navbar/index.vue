@@ -2,6 +2,7 @@
 import Avatar from '@/layout/navbar/Avatar.vue'
 import Breadcrumb from './Breadcrumb.vue'
 import ThemeChange from '@/layout/navbar/ThemeChange.vue'
+import Language from '@/layout/navbar/Language.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import ThemeChange from '@/layout/navbar/ThemeChange.vue'
             <Breadcrumb style="cursor: pointer" />
         </div>
         <div class="am-navbar__right">
+            <Language />
             <ThemeChange />
             <Avatar />
         </div>

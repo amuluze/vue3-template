@@ -4,17 +4,15 @@
  * @Description:
  */
 import type { themeState } from '@/interface/store.ts'
-import { DEFAULT_PRIMARY } from '@/config/theme.ts'
 
 export const useThemeStore = defineStore('theme', {
     state: (): themeState => ({
-        primary: DEFAULT_PRIMARY,
         isDark: false,
     }),
     actions: {
-        setTheme(state: themeState) {
-            this.primary = state.primary
-            this.isDark = state.isDark
+        setDark(isDark: boolean) {
+            this.isDark = isDark
         },
     },
+    persist: true,
 })

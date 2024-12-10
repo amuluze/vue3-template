@@ -5,6 +5,7 @@ export interface UserState {
 
 export interface AppState {
     isCollapse: boolean
+    language: string
 }
 
 export interface PermissionsState {
@@ -12,7 +13,6 @@ export interface PermissionsState {
 }
 
 export interface themeState {
-    primary: string
     isDark: boolean
 }
 

@@ -7,16 +7,17 @@
 /**
  * @description 获取浏览器默认语言
  */
-export function getBrowserLang() {
-    const browserLang = navigator.language
-    let defaultBrowserLang: string
-    if (['cn', 'zh', 'zh-cn'].includes(browserLang.toLowerCase())) {
-        defaultBrowserLang = 'zh'
+export function getBrowserLanguage(): string {
+    const browserLanguage = navigator.language ? navigator.language : navigator.browserLanguage
+    let defaultBrowserLanguage: string = ''
+
+    if (['cn', 'zh', 'zh-cn'].includes(browserLanguage.toLowerCase())) {
+        defaultBrowserLanguage = 'zh'
     }
     else {
-        defaultBrowserLang = 'en'
+        defaultBrowserLanguage = 'en'
     }
-    return defaultBrowserLang
+    return defaultBrowserLanguage
 }
 
 /**

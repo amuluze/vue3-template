@@ -4,8 +4,47 @@
  * @Description:
  */
 
-// * 默认主题颜色
-export const DEFAULT_PRIMARY = '#409EFF'
+// * 主题配置
+export const themeConfig: Record<Theme.ThemeType, { [ key: string ]: string }> = {
+    light: {
+        // 菜单样式
+        '--el-menu-bg-color': '#ffffff',
+        '--el-menu-hover-bg-color': '#cccccc',
+        '--el-menu-active-bg-color': '#ecf5ff',
+        '--el-menu-text-color': '#333333',
+        '--el-menu-active-color': '#409EFF',
+        '--el-menu-hover-text-color': '#333333',
+        '--el-menu-horizontal-sub-item-height': '50px',
+        // 侧边栏样式
+        '--el-aside-logo-text-color': '#303133',
+        '--el-aside-border-color': '#e4e7ed',
+        // 头部样式
+        '--el-header-logo-text-color': '#303133',
+        '--el-header-bg-color': '#ffffff',
+        '--el-header-text-color': '#303133',
+        '--el-header-text-color-regular': '#606266',
+        '--el-header-border-color': '#e4e7ed',
+    },
+    dark: {
+        // 菜单样式
+        '--el-menu-bg-color': '#141414',
+        '--el-menu-hover-bg-color': '#000000',
+        '--el-menu-active-bg-color': '#000000',
+        '--el-menu-text-color': '#bdbdc0',
+        '--el-menu-active-color': '#ffffff',
+        '--el-menu-hover-text-color': '#ffffff',
+        '--el-menu-horizontal-sub-item-height': '50px',
+        // 侧边栏样式
+        '--el-aside-logo-text-color': '#dadada',
+        '--el-aside-border-color': '#414243',
+        // 头部样式
+        '--el-header-logo-text-color': '#dadada',
+        '--el-header-bg-color': '#141414',
+        '--el-header-text-color': '#e5eaf3',
+        '--el-header-text-color-regular': '#cfd3dc',
+        '--el-header-border-color': '#414243',
+    },
+}
 
 export const echartsThemeData = [
     {
