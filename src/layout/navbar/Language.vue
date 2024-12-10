@@ -18,7 +18,7 @@ function changeLanguage(lang: string) {
 </script>
 
 <template>
-    <el-dropdown trigger="click" @command="changeLanguage">
+    <el-dropdown class="mr-4" trigger="click" @command="changeLanguage">
         <svg-icon icon-class="translate" />
         <template #dropdown>
             <el-dropdown-menu

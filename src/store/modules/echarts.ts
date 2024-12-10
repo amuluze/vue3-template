@@ -9,6 +9,7 @@ export const useEChartsStore = defineStore('echarts', {
     state: (): echartsThemeState => ({
         currentColorArray: [],
     }),
+    getters: {},
     actions: {
         setCurrentColorArray(colorArray: string[]) {
             this.currentColorArray = colorArray

@@ -12,7 +12,7 @@ function useTheme() {
     // 修改主题颜色
     const changePrimary = () => {
         let type: Theme.ThemeType = 'light'
-        if (store.theme.isDark)
+        if (store.theme.dark)
             type = 'dark'
         const theme = themeConfig[type]
         for (const [key, value] of Object.entries(theme)) {
@@ -23,17 +23,18 @@ function useTheme() {
     // 切换暗黑模式
     const switchDark = () => {
         const html = document.documentElement
-        store.theme.setDark(!store.theme.isDark)
-        if (store.theme.isDark)
+        console.log(!store.theme.dark)
+        store.theme.setDark(!store.theme.dark)
+        if (store.theme.dark)
             html.setAttribute('class', 'dark')
         else html.setAttribute('class', '')
-        console.log('is dark: ', store.theme.isDark)
+        console.log('is dark: ', store.theme.dark)
         changePrimary()
     }
 
     // 初始化主题
     const initTheme = () => {
-        console.log('is dark: ', store.theme.isDark)
+        console.log('is dark: ', store.theme.dark)
         changePrimary()
     }
 

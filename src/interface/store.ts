@@ -13,7 +13,7 @@ export interface PermissionsState {
 }
 
 export interface themeState {
-    isDark: boolean
+    dark: boolean
 }
 
 export interface echartsThemeState {

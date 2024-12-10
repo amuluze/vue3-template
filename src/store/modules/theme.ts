@@ -7,11 +7,13 @@ import type { themeState } from '@/interface/store.ts'
 
 export const useThemeStore = defineStore('theme', {
     state: (): themeState => ({
-        isDark: false,
+        dark: false,
     }),
+    getters: {},
     actions: {
-        setDark(isDark: boolean) {
-            this.isDark = isDark
+        setDark(val: boolean) {
+            console.log('set dark value: ', val)
+            this.dark = val
         },
     },
     persist: true,

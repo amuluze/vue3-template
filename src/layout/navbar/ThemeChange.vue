@@ -9,10 +9,11 @@ const { switchDark } = useTheme()
 function themeChange() {
   switchDark()
 }
+const dark = ref(store.theme.dark)
 </script>
 
 <template>
-    <el-switch v-model="store.theme.isDark" class="am-theme" @change="themeChange">
+    <el-switch v-model="dark" class="mr-4" @change="themeChange">
         <template #active-action>
             <svg-icon icon-class="moon" />
         </template>
@@ -23,7 +24,4 @@ function themeChange() {
 </template>
 
 <style scoped lang="scss">
-@include b(theme) {
-  margin-right: 16px;
-}
 </style>

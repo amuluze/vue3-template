@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', {
         token: '',
         refresh: '',
     }),
+    getters: {},
     actions: {
         setToken(token: string, refresh: string) {
             this.token = token
