@@ -16,6 +16,7 @@ function useTheme() {
             type = 'dark'
         const theme = themeConfig[type]
         for (const [key, value] of Object.entries(theme)) {
+            console.log(key, value)
             document.documentElement.style.setProperty(key, value)
         }
     }

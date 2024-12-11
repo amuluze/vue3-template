@@ -32,7 +32,7 @@ import Sidebar from '@/layout/sidebar/index.vue'
   height: 100%;
   transition: 0.5s;
   border-right: #f4f4f4 1px solid;
-  background-color: #e9effd;
+  background-color: var(--el-aside-border-color);
 }
 
 @include b(layout-main) {

@@ -58,7 +58,7 @@ const menus = computed(() => {
     font-size: 20px;
     font-weight: bold;
     margin-left: 8px;
-    color: #105eeb;
+    color: var(--el-aside-logo-text-color);
     white-space: nowrap;
   }
 }
@@ -67,21 +67,33 @@ const menus = computed(() => {
   height: calc(100vh - 64px);
 
   .el-scrollbar {
+    background-color: var(--el-menu-bg-color) !important;
     .is-active {
-      color: #409eff !important;
+      background-color: var(--el-menu-bg-color);
+      color: var(--el-menu-active-bg-color) !important;
+    }
+    .el-scrollbar__view {
+      background-color: var(--el-menu-bg-color) !important;
     }
   }
   .el-menu {
     width: 100% !important;
     height: 100%;
-    background-color: #e9effd !important;
+    background-color: var(--el-menu-bg-color) !important;
     border: none !important;
+
+    .el-sub-menu {
+      background-color: var(--el-menu-bg-color) !important;
+    }
+    .el-menu-item {
+      background-color: var(--el-menu-bg-color) !important;
+    }
   }
 }
 @include b(collapse) {
   width: 12px;
   height: 32px;
-  background: #e9effd;
+  background: var(--el-aside-border-color);
   border-radius: 0 5px 5px 0;
   display: flex;
   justify-content: center;
@@ -93,6 +105,6 @@ const menus = computed(() => {
   border-top: 1px solid;
   border-bottom: 1px solid;
   border-right: 1px solid;
-  border-color: #e9e9ea;
+  border-color: var(--el-aside-border-color);
 }
 </style>

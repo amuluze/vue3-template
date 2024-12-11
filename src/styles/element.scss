@@ -47,3 +47,14 @@
     }
 }
 
+.el-menu {
+    background-color: var(--el-menu-bg-color);
+
+    .el-menu--vertical {
+        background-color: var(--el-menu-bg-color);
+    }
+
+    .el-menu-item {
+        background-color: var(--el-menu-bg-color);
+    }
+}
