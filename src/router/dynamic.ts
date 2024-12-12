@@ -6,7 +6,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: 'overview',
         component: async () => import('@/views/overview/index.vue'),
         meta: {
-            title: '总览',
+            title: 'menu.overview',
             icon: 'overview',
             show: true,
         },
@@ -16,7 +16,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: 'component',
         redirect: '/component/svg',
         meta: {
-            title: '常用组件',
+            title: 'menu.components',
             icon: 'component',
             show: true,
         },
@@ -26,7 +26,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'svg',
                 component: async () => import('@/views/components/svg/index.vue'),
                 meta: {
-                    title: 'SVG 图标',
+                    title: 'menu.svg',
                     icon: 'svg',
                 },
             },
@@ -35,7 +35,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'search',
                 component: async () => import('@/views/components/search/index.vue'),
                 meta: {
-                    title: '搜索框',
+                    title: 'menu.searchForm',
                     icon: 'search',
                 },
             },
@@ -44,7 +44,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'table',
                 component: async () => import('@/views/components/table/index.vue'),
                 meta: {
-                    title: '表格',
+                    title: 'menu.table',
                     icon: 'table',
                 },
             },
@@ -53,7 +53,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'dialog',
                 component: async () => import('@/views/components/dialog/index.vue'),
                 meta: {
-                    title: '弹窗',
+                    title: 'menu.dialog',
                     icon: 'common',
                 },
             },
@@ -62,16 +62,16 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'description',
                 component: async () => import('@/views/components/description/index.vue'),
                 meta: {
-                    title: '描述',
+                    title: 'menu.description',
                     icon: 'common',
                 },
             },
             {
                 path: '/components/code',
-                name: 'code',
+                name: 'codeEdit',
                 component: async () => import('@/views/components/code/index.vue'),
                 meta: {
-                    title: '代码编辑器',
+                    title: 'menu.codeEdit',
                     icon: 'code',
                 },
             },
@@ -82,7 +82,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: 'chart',
         redirect: '/chart/line',
         meta: {
-            title: 'Echarts',
+            title: 'menu.chart',
             icon: 'data',
             show: true,
         },
@@ -92,7 +92,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'line',
                 component: async () => import('@/views/chart/line/index.vue'),
                 meta: {
-                    title: '折线图',
+                    title: 'menu.line',
                     icon: 'common',
                 },
             },
@@ -101,7 +101,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'column',
                 component: async () => import('@/views/chart/column/index.vue'),
                 meta: {
-                    title: '柱状图',
+                    title: 'menu.column',
                     icon: 'common',
                 },
             },
@@ -110,7 +110,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'pie',
                 component: async () => import('@/views/chart/pie/index.vue'),
                 meta: {
-                    title: '饼状图',
+                    title: 'menu.pie',
                     icon: 'common',
                 },
             },
@@ -119,7 +119,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'water',
                 component: async () => import('@/views/chart/water/index.vue'),
                 meta: {
-                    title: '水型图',
+                    title: 'menu.water',
                     icon: 'common',
                 },
             },
@@ -130,7 +130,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: 'terminal',
         component: async () => import('@/views/terminal/index.vue'),
         meta: {
-            title: '终端',
+            title: 'menu.terminal',
             icon: 'terminal',
             show: true,
         },
@@ -140,7 +140,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
         name: 'user-manage',
         redirect: '/user/user',
         meta: {
-            title: '用户管理',
+            title: 'menu.userManager',
             icon: 'people',
             show: true,
         },
@@ -150,7 +150,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'user',
                 component: async () => import('@/views/user/user/index.vue'),
                 meta: {
-                    title: '用户',
+                    title: 'menu.user',
                     icon: 'user',
                 },
             },
@@ -159,7 +159,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'role',
                 component: async () => import('@/views/user/role/index.vue'),
                 meta: {
-                    title: '角色',
+                    title: 'menu.role',
                     icon: 'role',
                 },
             },
@@ -168,70 +168,18 @@ export const dynamicRoutes: RouteRecordRaw[] = [
                 name: 'permission',
                 component: async () => import('@/views/user/resource/index.vue'),
                 meta: {
-                    title: '权限',
+                    title: 'menu.permission',
                     icon: 'permission',
                 },
             },
         ],
     },
-    // {
-    //     path: '/container',
-    //     name: 'container',
-    //     redirect: '/container/container',
-    //     meta: {
-    //         title: '容器管理',
-    //         icon: 'container',
-    //         show: true,
-    //     },
-    //     children: [
-    //         {
-    //             path: '/container/container',
-    //             name: 'container_container',
-    //             component: async () => import('@/views/container/container/index.vue'),
-    //             meta: {
-    //                 title: '容器',
-    //                 icon: 'container',
-    //                 show: false,
-    //             },
-    //         },
-    //         {
-    //             path: '/container/image',
-    //             name: 'container_image',
-    //             component: async () => import('@/views/container/image/index.vue'),
-    //             meta: {
-    //                 title: '镜像',
-    //                 icon: 'image',
-    //                 show: false,
-    //             },
-    //         },
-    //         {
-    //             path: '/container/network',
-    //             name: 'container_network',
-    //             component: async () => import('@/views/container/network/index.vue'),
-    //             meta: {
-    //                 title: '网络',
-    //                 icon: 'network',
-    //                 show: false,
-    //             },
-    //         },
-    //         {
-    //             path: '/container/setting',
-    //             name: 'container_setting',
-    //             component: async () => import('@/views/container/setting/index.vue'),
-    //             meta: {
-    //                 title: '设置',
-    //                 icon: 'setting',
-    //                 show: false,
-    //             },
-    //         },
-    //     ],
-    // },
     {
         path: '/about',
         name: 'about',
         component: async () => import('@/views/about/index.vue'),
         meta: {
-            title: '关于项目',
+            title: 'menu.about',
             icon: 'about',
             show: true,
         },

@@ -3,7 +3,9 @@ import { logout } from '@/api/auth'
 import useStore from '@/store'
 import useCommandComponent from '@/hooks/useCommandComponent.ts'
 import UpdatePassword from '@/layout/navbar/components/UpdatePassword.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const store = useStore()
 const router = useRouter()
 async function doLogout() {
@@ -31,16 +33,16 @@ const updatePasswordDraw = useCommandComponent(UpdatePassword)
             <el-dropdown-menu>
                 <el-dropdown-item @click.prevent="toProfile">
                     <svg-icon icon-class="people" style="margin-right: 4px" />
-                    个人中心
+                    {{ t('avatar.profile') }}
                 </el-dropdown-item>
                 <el-dropdown-item @click="updatePasswordDraw({ title: '更新密码' })">
                     <svg-icon icon-class="edit" style="margin-right: 4px" />
-                    更新密码
+                    {{ t('avatar.updatePassword') }}
                 </el-dropdown-item>
                 <el-divider />
                 <el-dropdown-item @click.prevent="doLogout">
                     <svg-icon icon-class="power" style="margin-right: 4px" />
-                    退出登录
+                    {{ t('avatar.logout') }}
                 </el-dropdown-item>
             </el-dropdown-menu>
         </template>
