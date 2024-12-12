@@ -5,24 +5,22 @@ import Sidebar from '@/layout/sidebar/index.vue'
 </script>
 
 <template>
-    <div class="am-layout">
-        <el-container>
-            <div class="am-layout-sidebar">
-                <Sidebar />
-            </div>
-            <div class="am-layout-main">
-                <Navbar />
-                <Content />
-            </div>
-        </el-container>
-    </div>
+    <el-container class="am-layout">
+        <div class="am-layout-sidebar">
+            <Sidebar />
+        </div>
+        <div class="am-layout-main">
+            <Navbar />
+            <Content />
+        </div>
+    </el-container>
 </template>
 
 <style scoped lang="scss">
 @include b(layout) {
   width: 100%;
   height: 100%;
-  background-color: #f4f4f4;
+  background-color: var(--el-menu-bg-color);
   overflow: hidden;
 }
 
@@ -31,8 +29,8 @@ import Sidebar from '@/layout/sidebar/index.vue'
   position: relative;
   height: 100%;
   transition: 0.5s;
-  border-right: #f4f4f4 1px solid;
-  background-color: var(--el-aside-border-color);
+  border-right: var(--el-aside-border-color) 1px solid;
+  background-color: var(--el-menu-bg-color);
 }
 
 @include b(layout-main) {
@@ -42,6 +40,7 @@ import Sidebar from '@/layout/sidebar/index.vue'
   height: 100%;
   margin-left: 16px;
   border-radius: 4px;
+  background-color: var(--el-menu-bg-color);
   overflow-y: scroll;
 }
 </style>

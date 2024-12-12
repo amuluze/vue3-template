@@ -25,9 +25,6 @@ const menus = computed(() => {
                     :collapse="store.app.isCollapse"
                     :unique-opened="true"
                     :collapse-transition="false"
-                    background-color="#e9effd"
-                    text-color="#000"
-                    active-text-color="#105eeb"
                     mode="vertical"
                 >
                     <Menuitem :items="menus" />
@@ -41,13 +38,18 @@ const menus = computed(() => {
 </template>
 
 <style scoped lang="scss">
+.el-aside {
+  background-color: var(--el-menu-bg-color);
+  border-right: 1px solid var(--el-aside-border-color);
+}
+
 @include b(logo) {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 64px;
   line-height: 64px;
-  border-bottom: #cdcfd2 1px solid;
+  border-bottom: var(--el-aside-border-color) 1px solid;
 
   @include e(img) {
     height: 28px;
@@ -65,35 +67,15 @@ const menus = computed(() => {
 
 @include b(menu) {
   height: calc(100vh - 64px);
-
-  .el-scrollbar {
-    background-color: var(--el-menu-bg-color) !important;
-    .is-active {
-      background-color: var(--el-menu-bg-color);
-      color: var(--el-menu-active-bg-color) !important;
-    }
-    .el-scrollbar__view {
-      background-color: var(--el-menu-bg-color) !important;
-    }
-  }
   .el-menu {
-    width: 100% !important;
-    height: 100%;
-    background-color: var(--el-menu-bg-color) !important;
     border: none !important;
-
-    .el-sub-menu {
-      background-color: var(--el-menu-bg-color) !important;
-    }
-    .el-menu-item {
-      background-color: var(--el-menu-bg-color) !important;
-    }
   }
 }
+
 @include b(collapse) {
   width: 12px;
   height: 32px;
-  background: var(--el-aside-border-color);
+  background: var(--el-menu-bg-color);
   border-radius: 0 5px 5px 0;
   display: flex;
   justify-content: center;

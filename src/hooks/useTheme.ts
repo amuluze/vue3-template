@@ -15,6 +15,7 @@ function useTheme() {
         if (store.theme.dark)
             type = 'dark'
         const theme = themeConfig[type]
+
         for (const [key, value] of Object.entries(theme)) {
             console.log(key, value)
             document.documentElement.style.setProperty(key, value)
@@ -33,9 +34,13 @@ function useTheme() {
         changePrimary()
     }
 
-    // 初始化主题
+    // 初始化主题#e9effd
     const initTheme = () => {
+        const html = document.documentElement
         console.log('is dark: ', store.theme.dark)
+        if (store.theme.dark)
+            html.setAttribute('class', 'dark')
+        else html.setAttribute('class', '')
         changePrimary()
     }
 

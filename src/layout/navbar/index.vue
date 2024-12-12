@@ -24,9 +24,11 @@ import Language from '@/layout/navbar/Language.vue'
   height: 64px;
   width: 100%;
   padding: 0 16px;
-  background-color: #e9effd;
+  color: var(--el-header-text-color);
+  background-color: var(--el-header-bg-color);
   border-radius: 4px;
-  border-bottom: #cdcfd2 1px solid;
+  border-bottom: 1px solid var(--el-header-border-color);
+  border-left: 1px solid var(--el-header-border-color);
 
   @include e(right) {
     display: flex;

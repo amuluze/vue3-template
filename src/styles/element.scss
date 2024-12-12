@@ -1,3 +1,11 @@
+:root {
+    --el-color-primary: #409EFF;
+    --xterm-bg-color: #000000;
+    --xterm-fg-color: #ffffff;
+    --xterm-cursor-color: #ffffff;
+    --xterm-selection-bg-color: #444444;
+}
+
 /* el-drawer */
 .el-drawer {
   .el-drawer__header {
@@ -40,21 +48,11 @@
 /* el-card */
 .el-card {
     height: 100%;
+    color: var(--el-menu-text-color) !important;
+    background-color: var(--el-menu-bg-color) !important;
     :deep(.el-card__body) {
         display: flex;
         flex-direction: column;
         height: 100% !important;
-    }
-}
-
-.el-menu {
-    background-color: var(--el-menu-bg-color);
-
-    .el-menu--vertical {
-        background-color: var(--el-menu-bg-color);
-    }
-
-    .el-menu-item {
-        background-color: var(--el-menu-bg-color);
     }
 }

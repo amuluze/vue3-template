@@ -42,14 +42,16 @@ $modifier-sel: '--' !default;
 
     height: 100%;
     width: 100%;
-
-    border: 1px solid #e5e7ed;
     border-radius: 4px;
-    background-color: #fff;
+    border: 1px solid var(--el-header-border-color);
+    color: var(--el-header-text-color);
+    background-color: var(--el-header-bg-color);
     padding: 16px;
 
-    .el-card {
+    :deep(.el-card) {
         height: 100%;
+        color: var(--el-menu-text-color);
+        background-color: var(--el-menu-bg-color);
         :deep(.el-card__body) {
             height: 100%;
         }
@@ -62,6 +64,24 @@ $modifier-sel: '--' !default;
     max-height: 100%;
     overflow: auto;
     margin: 8px 0;
+    color: var(--el-menu-text-color);
+    background-color: var(--el-menu-bg-color);
+
+    .el-table {
+        background-color: var(--el-menu-bg-color) !important;
+        color: var(--el-menu-text-color);
+        //
+    }
+
+    .el-table__header th {
+        background-color: var(--el-menu-bg-color) !important;
+        color: var(--el-menu-text-color) !important;
+    }
+    .el-table__row {
+        background-color: var(--el-menu-bg-color);
+        color: var(--el-menu-text-color);
+        //border: 1px solid var(--el-header-border-color);
+    }
 }
 
 @include b(table-operator) {
@@ -70,12 +90,16 @@ $modifier-sel: '--' !default;
     justify-content: space-between;
     height: 36px;
     width: 100%;
+    color: var(--el-menu-text-color);
+    background-color: var(--el-menu-bg-color);
 }
 
 @include b(pagination) {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    color: var(--el-menu-text-color);
+    background-color: var(--el-menu-bg-color);
 }
 
 @include b(description) {

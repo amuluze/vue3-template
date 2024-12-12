@@ -124,10 +124,10 @@ onMounted(() => {
   align-items: center;
   padding: 16px;
   margin-bottom: 8px;
-
-  border: 1px solid #e5e7ed;
   border-radius: 4px;
-  background-color: #fff;
+  border: 1px solid var(--el-header-border-color);
+  color: var(--el-header-text-color);
+  background-color: var(--el-header-bg-color);
   .el-form {
     width: 100%;
     height: 100%;

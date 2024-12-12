@@ -9,7 +9,7 @@ export const themeConfig: Record<Theme.ThemeType, { [ key: string ]: string }> =
     light: {
         // 菜单样式
         '--el-menu-bg-color': '#ffffff',
-        '--el-menu-hover-bg-color': '#cccccc',
+        '--el-menu-hover-bg-color': '#ffffff',
         '--el-menu-active-bg-color': '#ecf5ff',
         '--el-menu-text-color': '#333333',
         '--el-menu-active-color': '#409EFF',
@@ -30,7 +30,7 @@ export const themeConfig: Record<Theme.ThemeType, { [ key: string ]: string }> =
         '--el-menu-bg-color': '#141414',
         '--el-menu-hover-bg-color': '#000000',
         '--el-menu-active-bg-color': '#000000',
-        '--el-menu-text-color': '#bdbdc0',
+        '--el-menu-text-color': '#dadada',
         '--el-menu-active-color': '#ffffff',
         '--el-menu-hover-text-color': '#ffffff',
         '--el-menu-horizontal-sub-item-height': '50px',
