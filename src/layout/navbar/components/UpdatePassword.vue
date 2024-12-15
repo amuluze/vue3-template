@@ -3,6 +3,7 @@ import type { FormInstance } from 'element-plus'
 import { updatePassword } from '@/api/auth'
 import { success } from '@/components/Message/message.ts'
 import useStore from '@/store'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   visible: boolean
@@ -70,10 +71,11 @@ async function confirmPasswordUpdate(formEl: FormInstance | undefined) {
     }
   })
 }
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-drawer v-model="drawerVisible" title="更新密码" size="30%">
+    <el-drawer v-model="drawerVisible" :title="t('account.updatePassword')" size="30%">
         <el-form
             ref="passwordUpdateRef"
             :model="passwordUpdateMode"
@@ -81,20 +83,20 @@ async function confirmPasswordUpdate(formEl: FormInstance | undefined) {
             label-width="120px"
             label-position="left"
         >
-            <el-form-item label="用户名" prop="username">
-                <el-input v-model="passwordUpdateMode.username" placeholder="请输入用户名" />
+            <el-form-item :label="t('account.userName')" prop="username">
+                <el-input v-model="passwordUpdateMode.username" :placeholder="t('account.inputUserName')" />
             </el-form-item>
-            <el-form-item label="旧密码" prop="old_password">
-                <el-input v-model="passwordUpdateMode.old_password" type="password" placeholder="请输入旧密码" />
+            <el-form-item :label="t('account.oldPassword')" prop="old_password">
+                <el-input v-model="passwordUpdateMode.old_password" type="password" :placeholder="t('account.inputOldPassword')" />
             </el-form-item>
-            <el-form-item label="新密码" prop="new_password">
-                <el-input v-model="passwordUpdateMode.new_password" type="password" placeholder="请输入新密码" />
+            <el-form-item :label="t('account.newPassword')" prop="new_password">
+                <el-input v-model="passwordUpdateMode.new_password" type="password" :placeholder="t('account.inputNewPassword')" />
             </el-form-item>
         </el-form>
 
         <template #footer>
             <el-button type="primary" plain @click="drawerVisible = false">
-                取消
+                {{ t('account.cancel') }}
             </el-button>
             <el-button
                 v-loading="passwordUpdateLoading"
@@ -102,7 +104,7 @@ async function confirmPasswordUpdate(formEl: FormInstance | undefined) {
                 plain
                 @click="confirmPasswordUpdate(passwordUpdateRef)"
             >
-                确定
+                {{ t('account.confirm') }}
             </el-button>
         </template>
     </el-drawer>

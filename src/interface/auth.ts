@@ -23,6 +23,6 @@ export interface UpdatePassword {
 export interface UserInfo {
     id: string
     username: string
-    status: string
+    status: number
     is_admin: number
 }
