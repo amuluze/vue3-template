@@ -6,6 +6,7 @@ import { queryContainers, queryDockerInfo, queryImages } from '@/mock/container'
 import type { EChartsOption } from '@/components/Echarts/echarts.ts'
 import { set } from 'lodash-es'
 import { cpuOption, diskOption, memOption } from '@/config/echarts.ts'
+import { useI18n } from 'vue-i18n'
 
 const loading = ref(true)
 
@@ -56,6 +57,8 @@ async function renderDisk() {
   set(diskOption, 'series[0].data', [Math.round(data.info[0].percent) / 100])
 }
 
+const { t } = useI18n()
+
 onMounted(async () => {
   await getHostInfo()
   await getDockerInfo()
@@ -82,7 +85,7 @@ onMounted(async () => {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            容器数量
+                                            {{ t('content.containerNumber') }}
                                         </div>
                                         <div class="am-description__number">
                                             {{ containerCount }}
@@ -103,7 +106,7 @@ onMounted(async () => {
                                     </div>
                                     <div class="am-description">
                                         <div class="am-description__text">
-                                            镜像数量
+                                            {{ t('content.imageNumber') }}
                                         </div>
                                         <div class="am-description__number">
                                             {{ imageCount }}
@@ -146,32 +149,32 @@ onMounted(async () => {
             </el-row>
         </el-col>
         <el-col :lg="8">
-            <content-wrap :style="{ 'margin-bottom': '8px', 'height': '250px' }" title="主机信息" message="主机信息">
+            <content-wrap :style="{ 'margin-bottom': '8px', 'height': '250px' }" :title="t('content.hostInfo')" :message="t('content.hostInfo')">
                 <p>
-                    主机名称：<el-tag>{{ hostInfo?.hostname }}</el-tag>
+                    {{ t('content.hostName') }}：<el-tag>{{ hostInfo?.hostname }}</el-tag>
                 </p>
                 <p>
-                    启动时间：<el-tag>{{ hostInfo?.uptime }}</el-tag>
+                    {{ t('content.upTime') }}：<el-tag>{{ hostInfo?.uptime }}</el-tag>
                 </p>
                 <p>
-                    发行版本：<el-tag>{{ hostInfo?.platform }}-{{ hostInfo?.platform_version }}</el-tag>
+                    {{ t('content.releaseVersion') }}：<el-tag>{{ hostInfo?.platform }}-{{ hostInfo?.platform_version }}</el-tag>
                 </p>
                 <p>
-                    内核版本：<el-tag>{{ hostInfo?.kernel_version }}</el-tag>
+                    {{ t('content.kernelVersion') }}：<el-tag>{{ hostInfo?.kernel_version }}</el-tag>
                 </p>
                 <p>
-                    系统类型：<el-tag>{{ hostInfo?.os }}/{{ hostInfo?.kernel_arch }}</el-tag>
+                    {{ t('content.os') }}：<el-tag>{{ hostInfo?.os }}/{{ hostInfo?.kernel_arch }}</el-tag>
                 </p>
             </content-wrap>
-            <content-wrap :style="{ height: '200px' }" title="Docker 信息" message="Docker 信息">
+            <content-wrap :style="{ height: '200px' }" :title="t('content.dockerInfo')" :message="t('content.dockerInfo')">
                 <p>
-                    Docker 版本：<el-tag>{{ dockerInfo?.docker_version }}</el-tag>
+                    {{ t('content.dockerVersion') }}：<el-tag>{{ dockerInfo?.docker_version }}</el-tag>
                 </p>
                 <p>
-                    API 版本： <el-tag>{{ dockerInfo?.min_api_version }}-{{ dockerInfo?.api_version }}</el-tag>
+                    {{ t('content.apiVersion') }}： <el-tag>{{ dockerInfo?.min_api_version }}-{{ dockerInfo?.api_version }}</el-tag>
                 </p>
                 <p>
-                    系统类型： <el-tag>{{ dockerInfo?.os }}/{{ dockerInfo?.arch }}</el-tag>
+                    {{ t('content.os') }}： <el-tag>{{ dockerInfo?.os }}/{{ dockerInfo?.arch }}</el-tag>
                 </p>
             </content-wrap>
         </el-col>

@@ -2,6 +2,7 @@
 import type { FormInstance, FormRules } from 'element-plus'
 import type { Role, User } from '@/interface/account.ts'
 import { queryRole, updateUser } from '@/api/account'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   visible: boolean
@@ -96,10 +97,11 @@ async function confirmUserUpdate(formEl: FormInstance | undefined) {
     }
   })
 }
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-drawer v-model="drawerVisible" title="编辑用户" size="50%">
+    <el-drawer v-model="drawerVisible" :title="t('account.editAccount')" size="50%">
         <el-form
             ref="userUpdateRef"
             :model="userUpdateMode"
@@ -107,11 +109,11 @@ async function confirmUserUpdate(formEl: FormInstance | undefined) {
             label-width="120px"
             label-position="left"
         >
-            <el-form-item label="用户名" prop="username">
-                <el-input v-model="userUpdateMode.username" placeholder="请输入用户名" />
+            <el-form-item :label="t('account.userName')" prop="username">
+                <el-input v-model="userUpdateMode.username" :placeholder="t('account.inputUserName')" />
             </el-form-item>
-            <el-form-item label="角色" prop="role_ids">
-                <el-select v-model="userUpdateMode.role_ids" multiple placeholder="请选择角色">
+            <el-form-item :label="t('account.roleName')" prop="role_ids">
+                <el-select v-model="userUpdateMode.role_ids" multiple :placeholder="t('account.inputRoleName')">
                     <el-option
                         v-for="item in roleData"
                         :key="item.id"
@@ -120,10 +122,10 @@ async function confirmUserUpdate(formEl: FormInstance | undefined) {
                     />
                 </el-select>
             </el-form-item>
-            <el-form-item label="备注" prop="remark">
-                <el-input v-model="userUpdateMode.remark" placeholder="请输入备注" />
+            <el-form-item :label="t('account.remark')" prop="remark">
+                <el-input v-model="userUpdateMode.remark" :placeholder="t('account.inputRemark')" />
             </el-form-item>
-            <el-form-item label="状态" prop="status">
+            <el-form-item :label="t('account.status')" prop="status">
                 <el-tooltip content="用户状态，1为正常，2为禁用" placement="top">
                     <el-switch v-model="userUpdateMode.status" active-value="1" inactive-value="2" />
                 </el-tooltip>
@@ -132,7 +134,7 @@ async function confirmUserUpdate(formEl: FormInstance | undefined) {
 
         <div class="am-user-create__operator">
             <el-button type="primary" plain @click="drawerVisible = false">
-                取消
+                {{ t('account.cancel') }}
             </el-button>
             <el-button
                 v-loading="userUpdateLoading"
@@ -140,7 +142,7 @@ async function confirmUserUpdate(formEl: FormInstance | undefined) {
                 plain
                 @click="confirmUserUpdate(userUpdateRef)"
             >
-                确定
+                {{ t('account.confirm') }}
             </el-button>
         </div>
     </el-drawer>

@@ -7,6 +7,7 @@ import useCommandComponent from '@/hooks/useCommandComponent.ts'
 import AddUser from '@/views/user/user/components/AddUser.vue'
 import DeleteUser from '@/views/user/user/components/DeleteUser.vue'
 import EditUser from '@/views/user/user/components/EditUser.vue'
+import { useI18n } from 'vue-i18n'
 
 const searchModel = ref<Record<string, any>>({
   username: '',
@@ -15,10 +16,10 @@ const searchModel = ref<Record<string, any>>({
 const searchItems: Form.Item[] = [
   {
     type: 'input',
-    label: '用户名：',
+    label: 'account.userName',
     prop: 'username',
     value: '',
-    placeholder: '请输入用户名称',
+    placeholder: 'account.inputUserName',
   },
 ]
 
@@ -40,6 +41,7 @@ function handleSelectionChange(val: User[]) {
 const addUser = useCommandComponent(AddUser)
 const deleteUser = useCommandComponent(DeleteUser)
 const editUser = useCommandComponent(EditUser)
+const { t } = useI18n()
 </script>
 
 <!-- 表格使用的完整实例 -->
@@ -48,13 +50,13 @@ const editUser = useCommandComponent(EditUser)
     <div class="am-container">
         <div class="am-table-operator">
             <div class="am-table-operator__left">
-                <el-button type="primary" plain @click="addUser({ title: '添加用户', update: search })">
+                <el-button type="primary" plain @click="addUser({ title: 'account.newAccount', update: search })">
                     <svg-icon icon-class="add" style="margin-right: 4px" />
-                    新增用户
+                    {{ t('account.newAccount') }}
                 </el-button>
-                <el-button type="primary" plain @click="deleteUser({ title: '批量删除', ids: [...tableSelection.map(item => item.id)], update: search })">
+                <el-button type="primary" plain @click="deleteUser({ title: 'account.batchDeleteAccount', ids: [...tableSelection.map(item => item.id)], update: search })">
                     <svg-icon icon-class="delete" style="margin-right: 4px" />
-                    批量删除
+                    {{ t('account.batchDeleteAccount') }}
                 </el-button>
             </div>
             <div class="am-table-operator__right" />
@@ -70,34 +72,34 @@ const editUser = useCommandComponent(EditUser)
                 @selection-change="handleSelectionChange"
             >
                 <el-table-column type="selection" :selectable="selectable" width="55" />
-                <el-table-column prop="username" label="用户名" min-width="120" align="center" />
-                <el-table-column prop="role" label="角色" min-width="160" align="center">
+                <el-table-column prop="username" :label="t('account.userName')" min-width="120" align="center" />
+                <el-table-column prop="role" :label="t('account.roleName')" min-width="160" align="center">
                     <template #default="scope">
                         <el-tag v-for="(item, index) in scope.row.roles" :key="index">
                             {{ item.name }}
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="status" label="状态" min-width="100" align="center" sortable>
+                <el-table-column prop="status" :label="t('account.status')" min-width="100" align="center" sortable>
                     <template #default="scope">
                         <el-tag v-if="scope.row.status === 1" type="success">
-                            正常
+                            {{ t('account.enable') }}
                         </el-tag>
                         <el-tag v-else type="danger">
-                            禁用
+                            {{ t('account.disable') }}
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="created_at" label="创建时间" min-width="160" align="center" sortable />
-                <el-table-column label="操作" width="200" fixed="right" align="center">
+                <el-table-column prop="created_at" :label="t('account.createTime')" min-width="160" align="center" sortable />
+                <el-table-column :label="t('account.operate')" width="200" fixed="right" align="center">
                     <template #default="scope">
-                        <el-button type="primary" size="small" text @click="editUser({ title: '编辑用户', entity: scope.row, update: search })">
+                        <el-button type="primary" size="small" text @click="editUser({ title: 'account.editAccount', entity: scope.row, update: search })">
                             <svg-icon icon-class="edit" style="margin-right: 4px" />
-                            编辑
+                            {{ t('account.edit') }}
                         </el-button>
-                        <el-button type="danger" size="small" text @click="deleteUser({ title: '删除用户', ids: [scope.row.id], update: search })">
+                        <el-button type="danger" size="small" text @click="deleteUser({ title: 'account.deleteAccount', ids: [scope.row.id], update: search })">
                             <svg-icon icon-class="delete" style="margin-right: 4px" />
-                            删除
+                            {{ t('account.delete') }}
                         </el-button>
                     </template>
                 </el-table-column>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { deleteUser } from '@/api/account'
 import type { UserDeleteArgs } from '@/interface/account.ts'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   visible: boolean
@@ -41,15 +42,16 @@ async function confirmDelete() {
     props.update && props.update()
   })
 }
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-dialog v-model="dialogVisible" :title="title" width="500px" draggable>
-        <span>确认执行删除操作？</span>
+    <el-dialog v-model="dialogVisible" :title="t(props.title as string)" width="500px" draggable>
+        <span> {{ t('account.confirmDelete') }}？</span>
         <template #footer>
             <span class="dialog-footer">
-                <el-button @click="dialogVisible = false">取消</el-button>
-                <el-button type="primary" @click="confirmDelete">确认</el-button>
+                <el-button @click="dialogVisible = false">{{ t('account.cancel') }}</el-button>
+                <el-button type="primary" @click="confirmDelete">{{ t('account.confirm') }}</el-button>
             </span>
         </template>
     </el-dialog>

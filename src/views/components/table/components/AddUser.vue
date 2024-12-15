@@ -2,6 +2,7 @@
 import type { Role } from '@/interface/account.ts'
 import type { FormInstance, FormRules } from 'element-plus'
 import { createUser, queryRole } from '@/api/account'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
   visible: boolean
@@ -82,19 +83,20 @@ async function confirmUserCreate(formEl: FormInstance | undefined) {
     }
   })
 }
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-drawer v-model="drawerVisible" :destroy-on-close="true" :title="title" size="30%">
+    <el-drawer v-model="drawerVisible" :destroy-on-close="true" :title="t('account.newAccount')" size="30%">
         <el-form ref="userCreateRef" :model="userCreateMode" :rules="rules" label-width="120px" label-position="left">
-            <el-form-item label="用户名" prop="username">
-                <el-input v-model="userCreateMode.username" placeholder="请输入用户名" />
+            <el-form-item :label="t('account.userName')" prop="username">
+                <el-input v-model="userCreateMode.username" :placeholder="t('account.inputUserName')" />
             </el-form-item>
-            <el-form-item label="密码" prop="password">
-                <el-input v-model="userCreateMode.password" show-password placeholder="请输入密码" />
+            <el-form-item :label="t('account.password')" prop="password">
+                <el-input v-model="userCreateMode.password" show-password :placeholder="t('account.inputPassword')" />
             </el-form-item>
-            <el-form-item label="角色" prop="role_ids">
-                <el-select v-model="userCreateMode.role_ids" multiple placeholder="请选择角色">
+            <el-form-item :label="t('account.roleName')" prop="role_ids">
+                <el-select v-model="userCreateMode.role_ids" multiple :placeholder="t('account.inputRoleName')">
                     <el-option
                         v-for="item in roleData"
                         :key="item.id"
@@ -103,10 +105,10 @@ async function confirmUserCreate(formEl: FormInstance | undefined) {
                     />
                 </el-select>
             </el-form-item>
-            <el-form-item label="备注" prop="remark">
-                <el-input v-model="userCreateMode.remark" placeholder="请输入备注" />
+            <el-form-item :label="t('account.remark')" prop="remark">
+                <el-input v-model="userCreateMode.remark" :placeholder="t('account.inputRemark')" />
             </el-form-item>
-            <el-form-item label="状态" prop="status">
+            <el-form-item :label="t('account.status')" prop="status">
                 <el-tooltip content="用户状态，1为正常，2为禁用" placement="top">
                     <el-switch v-model="userCreateMode.status" active-value="1" inactive-value="2" />
                 </el-tooltip>

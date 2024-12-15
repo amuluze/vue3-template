@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps<{
   visible: boolean
   title?: string
@@ -21,10 +23,11 @@ const dialogVisible = computed<boolean>({
     }
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-dialog v-model="dialogVisible" :title="title" width="500px" draggable>
+    <el-dialog v-model="dialogVisible" :title="t(props.title as string)" width="500px" draggable>
         DialogDemo
     </el-dialog>
 </template>

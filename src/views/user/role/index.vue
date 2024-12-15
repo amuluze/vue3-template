@@ -3,6 +3,7 @@ import { queryRole } from '@/mock/account'
 import type { Resource } from '@/interface/account.ts'
 import { useTable } from '@/hooks/useTable.ts'
 import type { TableInstance } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 const tableRef = ref<TableInstance>()
 const defaultProps = {
@@ -41,6 +42,7 @@ const { tableData, loading, search } = useTable(queryRole, {}, false)
 onMounted(async () => {
   await search()
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -54,23 +56,23 @@ onMounted(async () => {
                 :header-cell-style="{ height: '45px', fontSize: '15px', color: '#000', background: '#fafafa' }"
                 border
             >
-                <el-table-column prop="name" label="角色名" min-width="120" align="center" />
-                <el-table-column prop="resource_ids" label="权限" min-width="200" align="center" show-overflow-tooltip>
+                <el-table-column prop="name" :label="t('account.roleName')" min-width="120" align="center" />
+                <el-table-column prop="resource_ids" :label="t('account.permission')" min-width="200" align="center" show-overflow-tooltip>
                     <template #default="scope">
                         <el-tree :data="generateTree(scope.row.resources)" :props="defaultProps" />
                     </template>
                 </el-table-column>
-                <el-table-column prop="status" label="状态" min-width="100" align="center" sortable>
+                <el-table-column prop="status" :label="t('account.status')" min-width="100" align="center" sortable>
                     <template #default="scope">
                         <el-tag v-if="scope.row.status === 1" type="success">
-                            正常
+                            {{ t('account.enable') }}
                         </el-tag>
                         <el-tag v-else type="danger">
-                            禁用
+                            {{ t('account.disable') }}
                         </el-tag>
                     </template>
                 </el-table-column>
-                <el-table-column prop="created_at" label="创建时间" min-width="160" align="center" sortable />
+                <el-table-column prop="created_at" :label="t('account.createTime')" min-width="160" align="center" sortable />
             </el-table>
         </div>
     </div>

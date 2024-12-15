@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { FormInstance } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 
 /**
  * conditionList   组件外部传入的查询条件的配置列表数据
@@ -44,6 +45,7 @@ onMounted(() => {
     props.model ? (searchForm.value = props.model) : (searchForm.value[item.prop] = item.value || value)
   })
 })
+const { t } = useI18n()
 </script>
 
 <template>
@@ -51,13 +53,13 @@ onMounted(() => {
         <el-form ref="searchFormRef" :inline="true" :model="searchForm" label-width="auto">
             <el-row :class="{ 'condition-col': !collapsed }" align="middle" :gutter="5">
                 <el-col v-for="(item, index) in props.items.slice(0, collapsed ? initConditionLen : props.items.length)" :key="index" class="custom-col" :xl="6" :lg="6" :md="8" :sm="12" :xs="24">
-                    <el-form-item :label="item.label" :prop="item.prop" style="width: 90%">
+                    <el-form-item :label="t(item.label)" :prop="item.prop" style="width: 90%">
                         <!-- 输入框 -->
                         <el-input
                             v-if="item.type === 'input'"
                             v-model="searchForm[item.prop]"
                             :type="item.type ?? 'text'"
-                            :placeholder="item.placeholder"
+                            :placeholder="t(item.placeholder as string)"
                             :clearable="item.clearable"
                             :disabled="item.disabled"
                         />
@@ -66,7 +68,7 @@ onMounted(() => {
                         <el-select
                             v-if="item.type === 'select'"
                             v-model="searchForm[item.prop]"
-                            :placeholder="item.placeholder"
+                            :placeholder="t(item.placeholder as string)"
                             :clearable="item.clearable"
                             :multiple="item.multiple"
                         >
@@ -99,14 +101,18 @@ onMounted(() => {
                     <el-form-item class="btn-group-item flex-end">
                         <el-button type="primary" plain @click="search(searchForm)">
                             <svg-icon icon-class="search" style="margin-right: 4px" />
-                            查询
+                            {{ t('search.search') }}
                         </el-button>
                         <el-button type="danger" plain @click="reset">
                             <svg-icon icon-class="update" style="margin-right: 4px" />
-                            重置
+                            {{ t('search.reset') }}
                         </el-button>
                         <el-button v-show="showConBtn" type="primary" link @click="toggleCollapsed">
-                            {{ collapsed ? "展开" : "收起" }}
+                            <span v-if="collapsed">
+                                {{ t('search.unfold') }}
+                            </span>
+                            <span v-else>{{ t('search.fold') }}</span>
+                            <!-- {{ collapsed ? "展开" : "收起" }} -->
                             <svg-icon v-if="collapsed" icon-class="down" />
                             <svg-icon v-else icon-class="up" />
                         </el-button>

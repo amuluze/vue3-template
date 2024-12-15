@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
 const props = defineProps<{
   visible: boolean
   title?: string
@@ -21,10 +23,11 @@ const drawerVisible = computed<boolean>({
     }
   },
 })
+const { t } = useI18n()
 </script>
 
 <template>
-    <el-drawer v-model="drawerVisible" :destroy-on-close="true" :title="title" size="30%">
+    <el-drawer v-model="drawerVisible" :destroy-on-close="true" :title="t(props.title as string)" size="30%">
         DrawerDemo
     </el-drawer>
 </template>

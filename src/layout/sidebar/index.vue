@@ -40,7 +40,7 @@ const menus = computed(() => {
 <style scoped lang="scss">
 .el-aside {
   background-color: var(--el-menu-bg-color);
-  border-right: 1px solid var(--el-aside-border-color);
+  //border-right: 1px solid var(--el-aside-border-color);
 }
 
 @include b(logo) {
