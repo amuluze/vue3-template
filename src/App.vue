@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import useTheme from './hooks/useTheme'
 import useStore from '@/store'
 import en from 'element-plus/es/locale/lang/en'
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import useTheme from './hooks/useTheme'
 
 import { getBrowserLanguage } from '@/utils'
 import { useI18n } from 'vue-i18n'
@@ -23,7 +23,6 @@ onMounted(() => {
   i18n.locale.value = language
   store.app.setLanguage(language)
 })
-
 // 初始化主题配置
 const { initTheme } = useTheme()
 initTheme()

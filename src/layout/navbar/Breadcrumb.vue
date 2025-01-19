@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n';
+
 const router = useRouter()
 
 const breadcrumbList = computed(() => {
@@ -8,6 +10,7 @@ const breadcrumbList = computed(() => {
 function toHomepage() {
   router.push('/overview')
 }
+const { t } = useI18n()
 </script>
 
 <template>
@@ -15,7 +18,8 @@ function toHomepage() {
         <svg-icon icon-class="homepage" @click="toHomepage" />
         <el-breadcrumb separator="/">
             <el-breadcrumb-item v-for="(item, index) in breadcrumbList" :key="index" :to="{ path: item.path }">
-                <span>{{ item.meta.title }}</span>
+                <span v-if="typeof item.meta?.title === 'string'">{{ t(item.meta?.title) }}</span>
+                <span v-else>{{ item.meta?.title }}</span>
             </el-breadcrumb-item>
         </el-breadcrumb>
     </div>
