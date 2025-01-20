@@ -305,7 +305,7 @@ const multipleOption: EChartsOption = {
 
 <template>
     <div class="am-column">
-        <el-row :gutter="8">
+        <el-row>
             <el-col :lg="12" :md="12" :sm="12" :xs="24">
                 <el-skeleton :loading="loading" animated>
                     <div class="am-column-content">
@@ -366,6 +366,5 @@ const multipleOption: EChartsOption = {
 @include b(column-content) {
   height: 400px;
   width: 100%;
-  margin-bottom: 8px;
 }
 </style>
