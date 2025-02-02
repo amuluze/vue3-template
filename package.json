@@ -1,0 +1,61 @@
+{
+    "name": "vue3-template",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "ts": "vue-tsc --noEmit",
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "dependencies": {
+        "@xterm/addon-attach": "^0.11.0",
+        "@xterm/addon-fit": "^0.10.0",
+        "@xterm/xterm": "^5.5.0",
+        "ace-builds": "^1.36.5",
+        "axios": "1.7.7",
+        "echarts": "^5.5.0",
+        "echarts-liquidfill": "^3.1.0",
+        "element-plus": "^2.8.7",
+        "lodash-es": "^4.17.21",
+        "mitt": "^3.0.1",
+        "pinia": "^2.1.7",
+        "pinia-plugin-persistedstate": "^3.2.1",
+        "reconnecting-websocket": "^4.4.0",
+        "terser": "^5.36.0",
+        "vue": "^3.5.12",
+        "vue-i18n": "^10.0.5",
+        "vue-router": "^4.3.0",
+        "vue3-ace-editor": "^2.2.4"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^3.8.0",
+        "@iconify-json/ep": "^1.1.15",
+        "@types/lodash-es": "^4.17.12",
+        "@types/node": "^22.8.7",
+        "@vitejs/plugin-vue": "^5.1.4",
+        "axios-mock-adapter": "^2.1.0",
+        "eslint": "^9.14.0",
+        "eslint-plugin-format": "^0.1.2",
+        "lint-staged": "^15.2.10",
+        "sass": "^1.80.6",
+        "simple-git-hooks": "^2.11.1",
+        "typescript": "5.5.4",
+        "unocss": "^0.65.1",
+        "unplugin-auto-import": "^0.18.3",
+        "unplugin-icons": "^0.20.0",
+        "unplugin-vue-components": "^0.27.4",
+        "vite": "^5.4.8",
+        "vite-plugin-svg-icons": "^2.0.1",
+        "vue-tsc": "^2.1.10"
+    },
+    "simple-git-hooks": {
+        "pre-commit": "pnpm lint-staged"
+    },
+    "lint-staged": {
+        "*": "eslint --fix"
+    }
+}

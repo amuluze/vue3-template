@@ -1,0 +1,56 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "jsx": "preserve",
+        "lib": [
+            "ESNext",
+            "DOM"
+        ],
+        "noLib": false,
+        "useDefineForClassFields": true, // 允许使用js
+        "baseUrl": ".",
+        "module": "ESNext",
+        /* Bundler mode */
+        "moduleResolution": "node", // 查询的基础路径
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "#/*": [
+                "src/types/*"
+            ]
+        },
+        "resolveJsonModule": true, // 路径映射,配合别名使用
+        "types": [
+            "vite/client",
+            "vue"
+        ],
+        "allowImportingTsExtensions": true, // 允许使用 import 引入使用 export = 导出的内容
+        "allowJs": false,
+        /* Linting */
+        "strict": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noEmit": true,
+        "sourceMap": true,
+        "allowSyntheticDefaultImports": true /* 允许默认导入 */,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "isolatedModules": true, // 声明文件包
+        "skipLibCheck": true /* Skip type checking all .d.ts files. */ /* Ensure that casing is correct in imports. */
+    },
+    "include": [
+        "src/**/*.d.ts",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.vue",
+        "types/**/*.d.ts",
+        "vite.config.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/*.js"
+    ]
+}
